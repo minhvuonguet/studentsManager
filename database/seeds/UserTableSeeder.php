@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Models\Roles;
 use App\Models\User;
-
+use App\Models\User_Point;
 class UserTableSeeder extends Seeder
 {
     /**
@@ -59,12 +59,25 @@ class UserTableSeeder extends Seeder
             'changePass'=>0
         ]);
         User::create([
-            'name'=>'students1',
-            'email'=>'students1@gmail.com',
-            'password'=>\Hash::make('students1'),
-            'role_id'=>$role2->id,
+            'name' => 'students1',
+            'email' => 'students1@gmail.com',
+            'password' => \Hash::make('students1'),
+            'role_id' => $role2->id,
             'office'=>'Students',
-            'changePass'=>0
+            'mssv' => 13020706,
+            'hoten' => 'nguyen Nhu Vuong',
+            'lop' => 'k58cc',
+            'changePass'=>0,
+        ]);
+        User_Point::create([
+            'ctsv'=>0,
+            'daotao' => 10,
+            'khoa_hoc_cong_nghe' => -10,
+            'van_phong_doan' => 20,
+            'co_van_hoc_tap' => 0,
+            'van_phong_khoa' => 10
         ]);
     }
 }
+
+

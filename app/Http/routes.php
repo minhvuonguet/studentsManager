@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.login');
 });
 
 
@@ -21,7 +21,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/login', ['as' => 'login', 'uses' => 'AdminControler@getLogin']);
     Route::post('/postLogin', ['as' => 'postLogin', 'uses' => 'AdminControler@postLogin']);
     Route::get('ViewUser', ['as'=>'ViewUser', 'uses' => 'AdminControler@ViewUser']);
-
+    Route::get('sendmail', ['as'=>'sendmail', 'uses'=>'AdminControler@sendmail']);
 
     Route::group(['middleware'=>'auth'], function(){
         Route::get('list', ['as' => 'list', 'uses' => 'AdminControler@listUser']);
