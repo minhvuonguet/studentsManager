@@ -75,7 +75,10 @@ class UserTableSeeder extends Seeder
             'khoa_hoc_cong_nghe' => -10,
             'van_phong_doan' => 20,
             'co_van_hoc_tap' => 0,
-            'van_phong_khoa' => 10
+            'van_phong_khoa' => 10,
+            'other' => 0,
+            'sum' => 70,
+            'note' => ''
         ]);
     }
 }

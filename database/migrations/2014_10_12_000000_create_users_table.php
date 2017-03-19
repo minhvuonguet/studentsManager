@@ -46,6 +46,10 @@ class CreateUsersTable extends Migration
             $table->integer('van_phong_doan');
             $table->integer('co_van_hoc_tap');
             $table->integer('van_phong_khoa');
+            $table->integer('other');
+            $table->integer('sum');
+            $table->string('note');
+
             $table->rememberToken();
             $table->timestamps();
 
