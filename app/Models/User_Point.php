@@ -24,7 +24,11 @@ class User_Point extends Model
         'note'
     ];
 
-//    public function role(){
-//        return $this->hasOne();
-//    }
+    public function user_(){
+        return $this->hasOne();
+    }
+    public function getAllUser () {
+        $sql = "SELECT * FROM `user_point`";
+        return $sql;
+    }
 }

@@ -9,31 +9,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Mail;
-
-
+use App\Models\User_Point;
+use Excel;
 
 class AdminControler extends Controller {
     public function getLogin() {
         return view('admin.login');
     }
     public function postLogin(Request $request){
-//        echo $request->username;
-//        echo $request->password;
-//        Mail::send('admin.sendMail', array('email' => 'minhvuonguet@gmail.com'), function ($message) {
-//            $message->to('minhvuonguet@gmail.com', 'Visitor')->subject('Welcome to Employee Directory. !');
-//        });
         if (Auth::attempt([ 'name' => $request->username, 'password' => $request->password,'role_id'=>2 ]) ||
             Auth::attempt([ 'name' => $request->username, 'password' => $request->password,'role_id'=>1 ]) ) {
             $use_ = new User();
-
-
             return redirect()->route('list');
         }
         if (Auth::attempt([ 'name' => $request->username, 'password' => $request->password,'role_id'=>3 ])) {
             $use_ = new User();
-
             return redirect()->route('ViewUser');
         }
 
@@ -58,5 +50,45 @@ class AdminControler extends Controller {
             $message->from('minhvuongeup@gmail.com','minh vuong');
             $message->to('minhvuonguet@gmail.com', 'minh')->subject('wft');
         });
+    }
+    public function testEx () {
+//        Excel::load('test.xls', function($reader) {
+//            // Getting all results
+//            $results = $reader->get();
+//            // ->all() is a wrapper for ->get() and will work the same
+//            $results = $reader->all();
+//        });
+//        return view('welcome');
+    }
+    public function cacula_point () {
+        $base_point = 70;
+
+        $allStudents = User::all(["id", "mssv", "role_id","diem_ren_luyen"]);
+        $length = count($allStudents);
+        $data = User_Point::all();
+        $length_User_Point = count($data);
+        $sumPoint = 0;
+
+        for($i = 0; $i < $length; $i++) {
+            if($allStudents[$i]['role_id'] == 3) {
+                for($j = 0; $j < $length_User_Point; $j++ ) {
+                    if($data[$j]['mssv']== $allStudents[$i]['mssv']) {
+
+                        $sumPoint = $data[$j]['ctsv'] + $data[$j]['daotao']
+                            + $data[$j]['khoa_hoc_cong_nghe']
+                            + $data[$j]['van_phong_doan'] + $data[$j]['co_van_hoc_tap']
+                            + $data[$j]['van_phong_khoa'] + $data[$j]['other'];
+                    }
+                }
+                $sum = $base_point + $sumPoint;
+                $sumPoint = 0;
+                echo 'sv : '. $allStudents[$i]->mssv .' sum : ' .$sum . '<br />';
+                $students = User::find($allStudents[$i]['id']);
+
+                $students->diem_ren_luyen = $sum;
+                $students-> save();
+            }
+        }
+        return view ('admin.test')->with(['list' => $allStudents]);
     }
 }

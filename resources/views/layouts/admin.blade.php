@@ -27,6 +27,7 @@
     <script type="text/javascript" src="public/assets/Admin/js/main.js"></script>
 </head>
 <body>
+@section('main-parent')
     <div class="container-fuild">
         <div class="row">
             <div class="header col-sm-12">
@@ -49,4 +50,5 @@
             </div>
         </div>
     </div>
+@show
 </body>

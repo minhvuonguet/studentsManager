@@ -22,9 +22,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/postLogin', ['as' => 'postLogin', 'uses' => 'AdminControler@postLogin']);
     Route::get('ViewUser', ['as'=>'ViewUser', 'uses' => 'AdminControler@ViewUser']);
     Route::get('sendmail', ['as'=>'sendmail', 'uses'=>'AdminControler@sendmail']);
-
+    Route::get('testex', ['as'=>'testex', 'uses'=>'AdminControler@testEX']);
     Route::group(['middleware'=>'auth'], function(){
         Route::get('list', ['as' => 'list', 'uses' => 'AdminControler@listUser']);
+        Route::get('caculate', ['as' => 'caculate', 'uses' => 'AdminControler@cacula_point']);
+        Route::get('mau_diem', ['as'=> 'mau_diem', 'uses'=> 'StudentsControler@getMauDiem']);
         Route::get('logout', ['as' => 'logout', 'uses' => 'AdminControler@getLogout']);
     });
 

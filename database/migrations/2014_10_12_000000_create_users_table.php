@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
         });
         Schema::create('users', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->bigIncrements('user_id');
+            $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('email');
             $table->string('password', 60);
@@ -32,14 +32,16 @@ class CreateUsersTable extends Migration
             $table->string('hoten');
             $table->date('ngaysinh');
             $table->string('lop');
+            $table->integer('diem_ren_luyen');
             $table->rememberToken();
             $table->timestamps();
             $table->foreign('role_id')->references('id')->on('roles');
         });
         Schema::create('user_point', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->bigIncrements('id')->unique();;
+            $table->bigIncrements('id')->unique();
             $table->unsignedInteger('user_id');
+            $table->unsignedInteger('mssv');
             $table->integer('ctsv');
             $table->integer('daotao');
             $table->integer('khoa_hoc_cong_nghe');
@@ -49,10 +51,10 @@ class CreateUsersTable extends Migration
             $table->integer('other');
             $table->integer('sum');
             $table->string('note');
-
             $table->rememberToken();
             $table->timestamps();
 
+//            $table->foreign('user_id')->references('id')->on('users');
 //            $table->foreign('user_id')->references('id')->on('users');
         });
         /**
