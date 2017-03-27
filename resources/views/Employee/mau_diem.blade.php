@@ -1,5 +1,10 @@
 @extends('layouts.admin')
 @section('main-parent')
+<style>
+    table {
+        margin-top: 150px;
+    }
+</style>
 <div class="container">
     <div class="row">
         <table class="table table-bordered">
@@ -208,7 +213,7 @@
             </tr>
             <tr>
                 <td><strong>Tổng cộng (1.+2.+3.+4.+5.) [0, 100]</strong></td>
-                <td>{{$sum_point}}</td>
+                <td><a href="{{URL::to('feadback')}}">{{$sum_point}}</a></td>
             </tr>
 
             <tr>

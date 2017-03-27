@@ -13,6 +13,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Models\User_Point;
 use Excel;
+use Illuminate\Support\Facades\Input;
+
 
 class AdminControler extends Controller {
     public function getLogin() {
@@ -51,15 +53,15 @@ class AdminControler extends Controller {
             $message->to('minhvuonguet@gmail.com', 'minh')->subject('wft');
         });
     }
-    public function testEx () {
-//        Excel::load('test.xls', function($reader) {
-//            // Getting all results
-//            $results = $reader->get();
-//            // ->all() is a wrapper for ->get() and will work the same
-//            $results = $reader->all();
-//        });
-//        return view('welcome');
-    }
+//    public function testEx () {
+////        Excel::load('test.xls', function($reader) {
+////            // Getting all results
+////            $results = $reader->get();
+////            // ->all() is a wrapper for ->get() and will work the same
+////            $results = $reader->all();
+////        });
+////        return view('welcome');
+//    }
     public function cacula_point () {
         $base_point = 70;
 
@@ -81,6 +83,8 @@ class AdminControler extends Controller {
                     }
                 }
                 $sum = $base_point + $sumPoint;
+                if($sum > 100)
+                    $sum = 100;
                 $sumPoint = 0;
                 echo 'sv : '. $allStudents[$i]->mssv .' sum : ' .$sum . '<br />';
                 $students = User::find($allStudents[$i]['id']);
@@ -90,5 +94,15 @@ class AdminControler extends Controller {
             }
         }
         return view ('admin.test')->with(['list' => $allStudents]);
+    }
+    public function testEX () {
+        $file = Input::file('file');
+        echo ($file);
+        $file_name = $file->getClientOriginalName();
+        $file->move('files', $file_name);
+        $result = Excel::load('files/'.$file_name, function($reader){
+            $reader->all();
+        })->get();
+        return view ('admin.test', ['test' => $result]);
     }
 }
