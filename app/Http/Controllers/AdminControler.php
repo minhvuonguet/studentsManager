@@ -29,7 +29,7 @@ class AdminControler extends Controller {
             $use_ = new User();
 
 
-            return redirect()->route('list');
+            return view('admin.adminManager');
         }
         if (Auth::attempt([ 'name' => $request->username, 'password' => $request->password,'role_id'=>3 ])) {
             $use_ = new User();

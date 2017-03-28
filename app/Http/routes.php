@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('admin.login');
 });
+Route::get('/ctsv', function () {
+    return view('');
+});
 
 
 Route::group(['middleware' => ['web']], function () {
@@ -27,5 +30,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('list', ['as' => 'list', 'uses' => 'AdminControler@listUser']);
         Route::get('logout', ['as' => 'logout', 'uses' => 'AdminControler@getLogout']);
     });
+
+   
 
 });
