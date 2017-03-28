@@ -19,6 +19,32 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('role_id');
             $table->timestamps();
         });
+        Schema::create('user_point', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->Increments('id');
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('mssv');
+//
+            $table->rememberToken();
+            $table->timestamps();
+
+//            $table->foreign('user_id')->references('id')->on('users');
+        });
+        Schema::create('hocki', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->Increments('id');
+
+            $table->unsignedInteger('point_id');
+            $table->string('ma_hk');
+            $table->string('mssv');
+            $table->Integer('diem_ren_luyen');
+            $table->rememberToken();
+            $table->timestamps();
+
+
+            $table->foreign('point_id')->references('id')->on('user_point');
+        });
+
         Schema::create('users', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->Increments('id');
@@ -33,30 +59,14 @@ class CreateUsersTable extends Migration
             $table->date('ngaysinh');
             $table->string('lop');
             $table->integer('diem_ren_luyen');
-
+            $table->unsignedInteger('hocky');
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('hocky')->references('id')->on('hocki');
             $table->foreign('role_id')->references('id')->on('roles');
         });
-        Schema::create('user_point', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->Increments('id');
-            $table->unsignedInteger('user_id');
-            $table->unsignedInteger('mssv');
-//            $table->integer('ctsv');
-//            $table->integer('daotao');
-//            $table->integer('khoa_hoc_cong_nghe');
-//            $table->integer('van_phong_doan');
-//            $table->integer('co_van_hoc_tap');
-//            $table->integer('van_phong_khoa');
-//            $table->integer('other');
-//            $table->integer('sum');
-//            $table->string('note');
-            $table->rememberToken();
-            $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
-        });
         Schema::create('ctsv', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->Increments('id');
@@ -190,6 +200,8 @@ class CreateUsersTable extends Migration
 
             $table->foreign('user_point_id')->references('id')->on('user_point');
         });
+
+
         /**
          *  stt ten, lop mssv ngay sinh, 
          *  students_point : stt, mssv, ctsv, daotao, khoa hoc cong nghe, van phong doan, co van hoc tap,  van phong khoa. ;
@@ -203,6 +215,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+
         Schema::drop('other');
         Schema::drop('van_phong_khoa');
         Schema::drop('co_van_hoc_tap');
@@ -210,8 +223,9 @@ class CreateUsersTable extends Migration
         Schema::drop('khoa_hoc_cong_nghe');
         Schema::drop('daotao');
         Schema::drop('ctsv');
-        Schema::drop('user_point');
         Schema::drop('users');
+        Schema::drop('hocki');
+        Schema::drop('user_point');
         Schema::drop('roles');
     }
 }
