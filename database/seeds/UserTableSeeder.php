@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Models\Roles;
 use App\Models\User;
+use App\Models\Hocky;
 use App\Models\User_Point;
 class UserTableSeeder extends Seeder
 {
@@ -25,7 +26,9 @@ class UserTableSeeder extends Seeder
             'name'=>'member',
             'role_id'=>'3'
         ]);
-
+        $hocky = Hocky::create([
+            'ma_hk'=>'HK1_2017'
+        ]);
         User::create([
             'name'=>'admin1',
             'email'=>'admin@gmail.com',
@@ -159,67 +162,67 @@ class UserTableSeeder extends Seeder
             'changePass'=>0,
         ]);
 
-
-        User_Point::create([
-            'ctsv'=>0,
-            'daotao' => 10,
-            'khoa_hoc_cong_nghe' => -10,
-            'van_phong_doan' => 20,
-            'co_van_hoc_tap' => 0,
-            'van_phong_khoa' => 10,
-            'mssv' => 13020706,
-            'other' => 0,
-            'sum' => 70,
-            'note' => ''
-        ]);
-        User_Point::create([
-            'ctsv'=>0,
-            'daotao' => 10,
-            'khoa_hoc_cong_nghe' => -10,
-            'van_phong_doan' => 20,
-            'co_van_hoc_tap' => 10,
-            'van_phong_khoa' => 10,
-            'mssv' => 13020707,
-            'other' => -7,
-            'sum' => 70,
-            'note' => ''
-        ]);
-        User_Point::create([
-            'ctsv'=>0,
-            'daotao' => 10,
-            'khoa_hoc_cong_nghe' => -10,
-            'van_phong_doan' => 20,
-            'co_van_hoc_tap' => -20,
-            'van_phong_khoa' => 0,
-            'mssv' => 13020708,
-            'other' => -10,
-            'sum' => 70,
-            'note' => ''
-        ]);
-        User_Point::create([
-            'ctsv'=>0,
-            'daotao' => 10,
-            'khoa_hoc_cong_nghe' => -10,
-            'van_phong_doan' => 20,
-            'co_van_hoc_tap' => 10,
-            'van_phong_khoa' => -10,
-            'mssv' => 13020710,
-            'other' => -20,
-            'sum' => 70,
-            'note' => ''
-        ]);
-        User_Point::create([
-            'ctsv'=>0,
-            'daotao' => -10,
-            'khoa_hoc_cong_nghe' => -10,
-            'van_phong_doan' => 20,
-            'co_van_hoc_tap' => 7,
-            'van_phong_khoa' => 10,
-            'mssv' => 13020711,
-            'other' => 0,
-            'sum' => 70,
-            'note' => ''
-        ]);
+//
+//        User_Point::create([
+//            'ctsv'=>0,
+//            'daotao' => 10,
+//            'khoa_hoc_cong_nghe' => -10,
+//            'van_phong_doan' => 20,
+//            'co_van_hoc_tap' => 0,
+//            'van_phong_khoa' => 10,
+//            'mssv' => 13020706,
+//            'other' => 0,
+//            'sum' => 70,
+//            'note' => ''
+//        ]);
+//        User_Point::create([
+//            'ctsv'=>0,
+//            'daotao' => 10,
+//            'khoa_hoc_cong_nghe' => -10,
+//            'van_phong_doan' => 20,
+//            'co_van_hoc_tap' => 10,
+//            'van_phong_khoa' => 10,
+//            'mssv' => 13020707,
+//            'other' => -7,
+//            'sum' => 70,
+//            'note' => ''
+//        ]);
+//        User_Point::create([
+//            'ctsv'=>0,
+//            'daotao' => 10,
+//            'khoa_hoc_cong_nghe' => -10,
+//            'van_phong_doan' => 20,
+//            'co_van_hoc_tap' => -20,
+//            'van_phong_khoa' => 0,
+//            'mssv' => 13020708,
+//            'other' => -10,
+//            'sum' => 70,
+//            'note' => ''
+//        ]);
+//        User_Point::create([
+//            'ctsv'=>0,
+//            'daotao' => 10,
+//            'khoa_hoc_cong_nghe' => -10,
+//            'van_phong_doan' => 20,
+//            'co_van_hoc_tap' => 10,
+//            'van_phong_khoa' => -10,
+//            'mssv' => 13020710,
+//            'other' => -20,
+//            'sum' => 70,
+//            'note' => ''
+//        ]);
+//        User_Point::create([
+//            'ctsv'=>0,
+//            'daotao' => -10,
+//            'khoa_hoc_cong_nghe' => -10,
+//            'van_phong_doan' => 20,
+//            'co_van_hoc_tap' => 7,
+//            'van_phong_khoa' => 10,
+//            'mssv' => 13020711,
+//            'other' => 0,
+//            'sum' => 70,
+//            'note' => ''
+//        ]);
     }
 }
 
