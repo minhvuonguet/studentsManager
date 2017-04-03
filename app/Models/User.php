@@ -8,7 +8,7 @@ class User extends  Model
 {
     protected $table = 'users';
     
-    protected $fillable = ['name','email','password', 'image'];
+    protected $fillable = ['username','email','password', 'image'];
 
     public function role(){
         return $this->hasOne();

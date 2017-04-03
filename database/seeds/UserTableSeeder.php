@@ -13,69 +13,96 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
+        // DB::table('roles')->truncate();
+        // DB::table('users')->truncate();
+        // DB::table('point')->truncate();
         $role = Roles::create([
             'name'=>'Administrator',
-            'role_id'=>'1'
+            'role_id'=>1
         ]);
         $role1 = Roles::create([
             'name'=>'Editor',
-            'role_id'=>'2'
+            'role_id'=>2
         ]);
         $role2 = Roles::create([
             'name'=>'member',
-            'role_id'=>'3'
+            'role_id'=>3
+        ]);
+        $role3 = Roles::create([
+            'name'=>'viewers',
+            'role_id'=>4
         ]);
 
         User::create([
-            'name'=>'admin1',
+            'mssv' => 13000000,
+            'username'=>'admin1',
+            'password'=>Hash::make('admin1'),
+            // 'role_id'=>$role->'role_id',
+            'role_id'=>1,
+            'fullname'=>'dang sieu nhan',
             'email'=>'admin@gmail.com',
-            'password'=>\Hash::make('admin1'),
-            'role_id'=>$role->id,
+            'class'=>'k0AA',
             'office'=>'Admin',
-            'changePass'=>0
+            'birthday'=>'1995-1-1'
         ]);
         User::create([
-            'name'=>'phongctsv',
+            'mssv' => 10000000,
+            'username'=>'phongctsv',
             'email'=>'phongctsv@gmail.com',
-            'password'=>\Hash::make('phongctsv'),
-            'role_id'=>$role1->id,
+            'password'=>Hash::make('phongctsv'),
+            // 'role_id'=>$role1->'role_id',
+            'role_id'=>2,
             'office'=>'Phong CTSV',
-            'changePass'=>0
         ]);
         User::create([
-            'name'=>'vanphongdoan',
+            'mssv' => 10000001,
+            'username'=>'vanphongdoan',
             'email'=>'vanphongdoan@gmail.com',
-            'password'=>\Hash::make('vanphongdoan'),
-            'role_id'=>$role1->id,
+            'password'=>Hash::make('vanphongdoan'),
+            // 'role_id'=>$role1->'role_id',
+            'role_id'=>2,
             'office'=>'Van Phong Doan',
-            'changePass'=>0
         ]);
         User::create([
-            'name'=>'vanphongkhoa',
+            'mssv' => 10000002,
+            'username'=>'vanphongkhoa',
             'email'=>'vanphongkhoa@gmail.com',
-            'password'=>\Hash::make('vanphongkhoa'),
-            'role_id'=>$role1->id,
+            'password'=>Hash::make('vanphongkhoa'),
+            // 'role_id'=>$role1->'role_id',
+            'role_id'=>2,
             'office'=>'Van Phong Khoa',
-            'changePass'=>0
         ]);
         User::create([
-            'name' => 'students1',
+            'username' => 'students1',
             'email' => 'students1@gmail.com',
-            'password' => \Hash::make('students1'),
-            'role_id' => $role2->id,
+            'password' =>Hash::make('students1'),
+            // 'role_id' => $role2->'role_id',
+            'role_id'=>3,
             'office'=>'Students',
             'mssv' => 13020706,
-            'hoten' => 'nguyen Nhu Vuong',
-            'lop' => 'k58cc',
-            'changePass'=>0,
+            'fullname' => 'nguyen Nhu Vuong',
+            'class' => 'k58cc',
+        ]);
+        User::create([
+            'username' => 'phuongdd_58',
+            'email' => 'yanglong.ph@gmail.com',
+            'password' =>Hash::make('phuongdd_58'),
+            // 'role_id' => $role->'role_id',
+            'role_id'=>1,
+            'office'=>'Students',
+            'mssv' => 13020553,
+            'fullname' => 'Dang Danh Phuong',
+            'class' => 'k58cc',
+            'birthday'=>'1995-1-1',
         ]);
         User_Point::create([
-            'ctsv'=>0,
-            'daotao' => 10,
-            'khoa_hoc_cong_nghe' => -10,
-            'van_phong_doan' => 20,
-            'co_van_hoc_tap' => 0,
-            'van_phong_khoa' => 10
+            'point_id'=>1302055311,
+            'mssv'=>13020553,
+            'hk_id'=>11,
+            'nckh_point'=>25,
+            'ytcd_point'=>24,
+            'ytsv_point'=>23,
+            'hddt_point'=>22,
         ]);
     }
 }

@@ -12,8 +12,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class User_Point extends Model
 {
-    protected $table = 'user_point';
-    protected $fillable = ['ctsv','daotao','khoa_hoc_cong_nghe', 'van_phong_doan', 'co_van_hoc_tap', 'van_phong_khoa'];
+    protected $table = 'point';
+    protected $fillable = ['nckh_point','ytcd_point','ytsv_point','hddt_point'];
 
 //    public function role(){
 //        return $this->hasOne();
