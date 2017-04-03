@@ -85,6 +85,7 @@ git clone https://github.com/minhvuonguet/studentsManager.git
 - trên trình duyệt gõ đường dẫn: ```localhost/Employee-Director```
 
 - Update csdl bằng cách:
+
 vào phpmyadmin ->
 
 server:127.0.0.1 ->
