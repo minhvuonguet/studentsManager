@@ -86,13 +86,21 @@ git clone https://github.com/minhvuonguet/studentsManager.git
 
 - Update csdl bằng cách:
 vào phpmyadmin ->
+
 server:127.0.0.1 ->
+
 sql ->
+
 ```DROP DATABASE students;```
+
 ```CREATE DATABASE students;```
+
 ```-> GO```
+
 ```php artisan migrate```
-```php artisan db:seed``'
+
+```php artisan db:seed```
+
   
 #### 2. đăng nhập 
 tài khoản admin mặc định: ***admin1***  
