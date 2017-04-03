@@ -24,14 +24,14 @@ class AdminControler extends Controller {
 //        Mail::send('admin.sendMail', array('email' => 'minhvuonguet@gmail.com'), function ($message) {
 //            $message->to('minhvuonguet@gmail.com', 'Visitor')->subject('Welcome to Employee Directory. !');
 //        });
-        if (Auth::attempt([ 'name' => $request->username, 'password' => $request->password,'role_id'=>2 ]) ||
-            Auth::attempt([ 'name' => $request->username, 'password' => $request->password,'role_id'=>1 ]) ) {
+        if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'role_id'=>2 ]) ||
+            Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'role_id'=>1 ]) ) {
             $use_ = new User();
 
 
             return view('admin.adminManager');
         }
-        if (Auth::attempt([ 'name' => $request->username, 'password' => $request->password,'role_id'=>3 ])) {
+        if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'role_id'=>3 ])) {
             $use_ = new User();
 
             return redirect()->route('ViewUser');

@@ -95,6 +95,54 @@ class UserTableSeeder extends Seeder
             'class' => 'k58cc',
             'birthday'=>'1995-1-1',
         ]);
+        User::create([
+            'username' => 'taikhoancap1',
+            'email' => 'taikhoancap1@gmail.com',
+            'password' =>Hash::make('taikhoancap1'),
+            // 'role_id' => $role->'role_id',
+            'role_id'=>1,
+            'office'=>'Students',
+            'mssv' => 13020554,
+            'fullname' => 'Dang Danh Phuong',
+            'class' => 'k58cc',
+            'birthday'=>'1995-1-1',
+        ]);
+        User::create([
+            'username' => 'taikhoancap2',
+            'email' => 'taikhoancap2@gmail.com',
+            'password' =>Hash::make('taikhoancap2'),
+            // 'role_id' => $role->'role_id',
+            'role_id'=>2,
+            'office'=>'Students',
+            'mssv' => 13020555,
+            'fullname' => 'Dang Danh Phuong',
+            'class' => 'k58cc',
+            'birthday'=>'1995-1-1',
+        ]);
+        User::create([
+            'username' => 'taikhoancap3',
+            'email' => 'taikhoancap1@gmail.com',
+            'password' =>Hash::make('taikhoancap3'),
+            // 'role_id' => $role->'role_id',
+            'role_id'=>3,
+            'office'=>'Students',
+            'mssv' => 13020556,
+            'fullname' => 'Dang Danh Phuong',
+            'class' => 'k58cc',
+            'birthday'=>'1995-1-1',
+        ]);
+        User::create([
+            'username' => 'taikhoancap4',
+            'email' => 'taikhoancap1@gmail.com',
+            'password' =>Hash::make('taikhoancap4'),
+            // 'role_id' => $role->'role_id',
+            'role_id'=>4,
+            'office'=>'Students',
+            'mssv' => 13020557,
+            'fullname' => 'Dang Danh Phuong',
+            'class' => 'k58cc',
+            'birthday'=>'1995-1-1',
+        ]);
         User_Point::create([
             'point_id'=>1302055311,
             'mssv'=>13020553,
