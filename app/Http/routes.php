@@ -18,6 +18,8 @@ Route::get('/ctsv', function () {
     return view('');
 });
 
+Route::get('/getExcels',['as'=>'getExcels', 'uses'=>'AdminControler@getExcels']);
+// Route::post('/getExcels',['as'=>'getExcels', 'uses'=>'AdminControler@postExcels']);
 
 Route::group(['middleware' => ['web']], function () {
 
@@ -26,9 +28,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('ViewUser', ['as'=>'ViewUser', 'uses' => 'AdminControler@ViewUser']);
     Route::get('sendmail', ['as'=>'sendmail', 'uses'=>'AdminControler@sendmail']);
 
+
     Route::group(['middleware'=>'auth'], function(){
         Route::get('list', ['as' => 'list', 'uses' => 'AdminControler@listUser']);
         Route::get('logout', ['as' => 'logout', 'uses' => 'AdminControler@getLogout']);
+
+        
     });
 
    

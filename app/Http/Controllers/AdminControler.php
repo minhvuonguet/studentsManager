@@ -8,9 +8,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Support\Facades\Mail;
+use Excel,Input,File;
+// use Illuminate\Http\Request;
 
 
 
@@ -59,4 +62,26 @@ class AdminControler extends Controller {
             $message->to('minhvuonguet@gmail.com', 'minh')->subject('wft');
         });
     }
+
+    public function getExcels () {
+        Excel::load('T1.xls', function($reader) {
+            // echo "$reader";
+            $reader->each(function($sheet){
+                // echo "$sheet"."<br>"."<br>"."<br>";
+                foreach($sheet as $row){
+                    // echo $row."<br>"."<br>"."<br>";
+                    foreach ($row as $column) {
+                        echo $column."<br>";
+                    }
+                    echo "<br>";
+                };
+            });
+        });
+        return view('admin.getExcels');
+    }
+
+    // public function postExcels (){
+    //     echo "string";
+        
+    // }
 }
