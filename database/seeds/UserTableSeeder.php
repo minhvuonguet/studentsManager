@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Database\Seeder;
 use App\Models\Roles;
 use App\Models\User;
-use App\Models\Hocky;
 use App\Models\User_Point;
 class UserTableSeeder extends Seeder
 {
@@ -14,231 +12,143 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
+        // DB::table('roles')->truncate();
+        // DB::table('users')->truncate();
+        // DB::table('point')->truncate();
         $role = Roles::create([
             'name'=>'Administrator',
-            'role_id'=>'1'
+            'role_id'=>1
         ]);
         $role1 = Roles::create([
             'name'=>'Editor',
-            'role_id'=>'2'
+            'role_id'=>2
         ]);
         $role2 = Roles::create([
             'name'=>'member',
-            'role_id'=>'3'
+            'role_id'=>3
         ]);
-        $user_point = User_Point::create([
-            'mssv'=>'13020706',
+        $role3 = Roles::create([
+            'name'=>'viewers',
+            'role_id'=>4
         ]);
-        Hocky::create([
-            'ma_hk'=>'HK1_2016',
-            'point_id' => $user_point->id
-        ]);
-
         User::create([
-            'name'=>'admin1',
+            'mssv' => 13000000,
+            'username'=>'admin1',
+            'password'=>Hash::make('admin1'),
+            // 'role_id'=>$role->'role_id',
+            'role_id'=>1,
+            'fullname'=>'dang sieu nhan',
             'email'=>'admin@gmail.com',
-            'password'=>\Hash::make('admin1'),
-            'role_id'=>$role->id,
-            'hocky' => 0,
+            'class'=>'k0AA',
             'office'=>'Admin',
-            'changePass'=>0
+            'birthday'=>'1995-1-1'
         ]);
         User::create([
-            'name'=>'phongctsv',
+            'mssv' => 10000000,
+            'username'=>'phongctsv',
             'email'=>'phongctsv@gmail.com',
-            'password'=>\Hash::make('phongctsv'),
-            'role_id'=>$role1->id,
+            'password'=>Hash::make('phongctsv'),
+            // 'role_id'=>$role1->'role_id',
+            'role_id'=>2,
             'office'=>'Phong CTSV',
-            'changePass'=>0
         ]);
         User::create([
-            'name'=>'vanphongdoan',
+            'mssv' => 10000001,
+            'username'=>'vanphongdoan',
             'email'=>'vanphongdoan@gmail.com',
-            'password'=>\Hash::make('vanphongdoan'),
-            'role_id'=>$role1->id,
+            'password'=>Hash::make('vanphongdoan'),
+            // 'role_id'=>$role1->'role_id',
+            'role_id'=>2,
             'office'=>'Van Phong Doan',
-            'changePass'=>0
         ]);
         User::create([
-            'name'=>'vanphongkhoa',
+            'mssv' => 10000002,
+            'username'=>'vanphongkhoa',
             'email'=>'vanphongkhoa@gmail.com',
-            'password'=>\Hash::make('vanphongkhoa'),
-            'role_id'=>$role1->id,
+            'password'=>Hash::make('vanphongkhoa'),
+            // 'role_id'=>$role1->'role_id',
+            'role_id'=>2,
             'office'=>'Van Phong Khoa',
-            'changePass'=>0
         ]);
         User::create([
-            'name' => 'students1',
+            'username' => 'students1',
             'email' => 'students1@gmail.com',
-            'password' => \Hash::make('students1'),
-            'role_id' => $role2->id,
+            'password' =>Hash::make('students1'),
+            // 'role_id' => $role2->'role_id',
+            'role_id'=>3,
             'office'=>'Students',
             'mssv' => 13020706,
-            'hoten' => 'nguyen Nhu Vuong',
-            'lop' => 'k58cc',
-           // 'hocky' => $hocky_1_2016->id,
-            'changePass'=>0,
-        ]);
-
-        User::create([
-            'name' => 'students2',
-            'email' => 'students2@gmail.com',
-            'password' => \Hash::make('students2'),
-            'role_id' => $role2->id,
-            'office'=>'Students',
-            'mssv' => 13020707,
-            'hoten' => 'Nguyen Van A',
-            'lop' => 'k58cc',
-        //    'hocky' => $hocky_1_2016->id,
-            'changePass'=>0,
+            'fullname' => 'nguyen Nhu Vuong',
+            'class' => 'k58cc',
         ]);
         User::create([
-            'name' => 'students3',
-            'email' => 'students3@gmail.com',
-            'password' => \Hash::make('students3'),
-            'role_id' => $role2->id,
+            'username' => 'phuongdd_58',
+            'email' => 'yanglong.ph@gmail.com',
+            'password' =>Hash::make('phuongdd_58'),
+            // 'role_id' => $role->'role_id',
+            'role_id'=>1,
             'office'=>'Students',
-            'mssv' => 13020708,
-            'hoten' => 'nguyen Van B',
-       //     'hocky' => $hocky_1_2016->id,
-            'lop' => 'k58cc',
-            'changePass'=>0,
+            'mssv' => 13020553,
+            'fullname' => 'Dang Danh Phuong',
+            'class' => 'k58cc',
+            'birthday'=>'1995-1-1',
         ]);
         User::create([
-            'name' => 'students4',
-            'email' => 'students4@gmail.com',
-            'password' => \Hash::make('students4'),
-            'role_id' => $role2->id,
+            'username' => 'taikhoancap1',
+            'email' => 'taikhoancap1@gmail.com',
+            'password' =>Hash::make('taikhoancap1'),
+            // 'role_id' => $role->'role_id',
+            'role_id'=>1,
             'office'=>'Students',
-            'mssv' => 13020709,
-            'hoten' => 'nguyen Van C',
-         //   'hocky' => $hocky_1_2016->id,
-            'lop' => 'k58cc',
-            'changePass'=>0,
+            'mssv' => 13020554,
+            'fullname' => 'Dang Danh Phuong',
+            'class' => 'k58cc',
+            'birthday'=>'1995-1-1',
         ]);
         User::create([
-            'name' => 'students5',
-            'email' => 'students5@gmail.com',
-            'password' => \Hash::make('students5'),
-            'role_id' => $role2->id,
+            'username' => 'taikhoancap2',
+            'email' => 'taikhoancap2@gmail.com',
+            'password' =>Hash::make('taikhoancap2'),
+            // 'role_id' => $role->'role_id',
+            'role_id'=>2,
             'office'=>'Students',
-            'mssv' => 13020710,
-            'hoten' => 'nguyen Van D',
-        //    'hocky' => $hocky_1_2016->id,
-            'lop' => 'k58cc',
-            'changePass'=>0,
+            'mssv' => 13020555,
+            'fullname' => 'Dang Danh Phuong',
+            'class' => 'k58cc',
+            'birthday'=>'1995-1-1',
         ]);
         User::create([
-            'name' => 'students6',
-            'email' => 'students6@gmail.com',
-            'password' => \Hash::make('students6'),
-            'role_id' => $role2->id,
+            'username' => 'taikhoancap3',
+            'email' => 'taikhoancap1@gmail.com',
+            'password' =>Hash::make('taikhoancap3'),
+            // 'role_id' => $role->'role_id',
+            'role_id'=>3,
             'office'=>'Students',
-            'mssv' => 13020711,
-            'hoten' => 'nguyen Van E',
-      //      'hocky' => $hocky_1_2016->id,
-            'lop' => 'k58cc',
-            'changePass'=>0,
+            'mssv' => 13020556,
+            'fullname' => 'Dang Danh Phuong',
+            'class' => 'k58cc',
+            'birthday'=>'1995-1-1',
         ]);
         User::create([
-            'name' => 'students7',
-            'email' => 'students7@gmail.com',
-            'password' => \Hash::make('students7'),
-            'role_id' => $role2->id,
+            'username' => 'taikhoancap4',
+            'email' => 'taikhoancap1@gmail.com',
+            'password' =>Hash::make('taikhoancap4'),
+            // 'role_id' => $role->'role_id',
+            'role_id'=>4,
             'office'=>'Students',
-            'mssv' => 13020712,
-            'hoten' => 'nguyen Van F',
-          //  'hocky' => $hocky_1_2016->id,
-            'lop' => 'k58cc',
-            'changePass'=>0,
+            'mssv' => 13020557,
+            'fullname' => 'Dang Danh Phuong',
+            'class' => 'k58cc',
+            'birthday'=>'1995-1-1',
         ]);
-        User::create([
-            'name' => 'students8',
-            'email' => 'students8@gmail.com',
-            'password' => \Hash::make('students8'),
-            'role_id' => $role2->id,
-            'office'=>'Students',
-            'mssv' => 13020713,
-            'hoten' => 'nguyen Van G',
-         //   'hocky' => $hocky_1_2016->id,
-            'lop' => 'k58cc',
-            'changePass'=>0,
+        User_Point::create([
+            'point_id'=>1302055311,
+            'mssv'=>13020553,
+            'hk_id'=>11,
+            'nckh_point'=>25,
+            'ytcd_point'=>24,
+            'ytsv_point'=>23,
+            'hddt_point'=>22,
         ]);
-        User::create([
-            'name' => 'students9',
-            'email' => 'students9@gmail.com',
-            'password' => \Hash::make('students9'),
-            'role_id' => $role2->id,
-            'office'=>'Students',
-            'mssv' => 13020714,
-            'hoten' => 'nguyen Van H',
-       //     'hocky' => $hocky_1_2016->id,
-            'lop' => 'k58cc',
-            'changePass'=>0,
-        ]);
-
-//
-//        User_Point::create([
-//            'ctsv'=>0,
-//            'daotao' => 10,
-//            'khoa_hoc_cong_nghe' => -10,
-//            'van_phong_doan' => 20,
-//            'co_van_hoc_tap' => 0,
-//            'van_phong_khoa' => 10,
-//            'mssv' => 13020706,
-//            'other' => 0,
-//            'sum' => 70,
-//            'note' => ''
-//        ]);
-//        User_Point::create([
-//            'ctsv'=>0,
-//            'daotao' => 10,
-//            'khoa_hoc_cong_nghe' => -10,
-//            'van_phong_doan' => 20,
-//            'co_van_hoc_tap' => 10,
-//            'van_phong_khoa' => 10,
-//            'mssv' => 13020707,
-//            'other' => -7,
-//            'sum' => 70,
-//            'note' => ''
-//        ]);
-//        User_Point::create([
-//            'ctsv'=>0,
-//            'daotao' => 10,
-//            'khoa_hoc_cong_nghe' => -10,
-//            'van_phong_doan' => 20,
-//            'co_van_hoc_tap' => -20,
-//            'van_phong_khoa' => 0,
-//            'mssv' => 13020708,
-//            'other' => -10,
-//            'sum' => 70,
-//            'note' => ''
-//        ]);
-//        User_Point::create([
-//            'ctsv'=>0,
-//            'daotao' => 10,
-//            'khoa_hoc_cong_nghe' => -10,
-//            'van_phong_doan' => 20,
-//            'co_van_hoc_tap' => 10,
-//            'van_phong_khoa' => -10,
-//            'mssv' => 13020710,
-//            'other' => -20,
-//            'sum' => 70,
-//            'note' => ''
-//        ]);
-//        User_Point::create([
-//            'ctsv'=>0,
-//            'daotao' => -10,
-//            'khoa_hoc_cong_nghe' => -10,
-//            'van_phong_doan' => 20,
-//            'co_van_hoc_tap' => 7,
-//            'van_phong_khoa' => 10,
-//            'mssv' => 13020711,
-//            'other' => 0,
-//            'sum' => 70,
-//            'note' => ''
-//        ]);
     }
 }
-
-
