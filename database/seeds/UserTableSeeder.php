@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Seeder;
 use App\Models\Roles;
 use App\Models\User;
@@ -32,7 +31,6 @@ class UserTableSeeder extends Seeder
             'name'=>'viewers',
             'role_id'=>4
         ]);
-
         User::create([
             'mssv' => 13000000,
             'username'=>'admin1',
@@ -154,5 +152,3 @@ class UserTableSeeder extends Seeder
         ]);
     }
 }
-
-

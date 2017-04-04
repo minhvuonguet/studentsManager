@@ -7,7 +7,7 @@
         <form action='showExcels' method="post" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <label>import excels</label>
-            <input type="file" onchange="this.form.submit();" name="fileExcels"></br>
+            <input type="file" onchange="this.form.submit();" name="fileeExcels"></br>
             <!-- <button type="submit">Import</button> -->
         </form>
     </div>

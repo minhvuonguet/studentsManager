@@ -64,14 +64,11 @@ class AdminControler extends Controller {
         });
     }
 
-    public function readExcels () {
-        return view('admin.readExcels');
-    }
+    // public function readExcels () {
+    //     return view('admin.readExcels');
+    // }
 
     public function showExcels (){
-        // echo "$request";
-
-        //load file excels
         Excel::load('T1.xlsx', function($reader){
             $reader->each(function($sheet){
                 $sheet->each(function($row){
@@ -83,6 +80,5 @@ class AdminControler extends Controller {
 
             });
         });
-       // return view(admin.login);
     }
 }

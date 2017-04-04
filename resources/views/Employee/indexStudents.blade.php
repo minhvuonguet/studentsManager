@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+<p>  đây là trang students </p>
+<a href="{{ URL::to('mau_diem') }}"> Bảng điểm rèn luyện </a>
+=======
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -144,3 +148,4 @@
 
 
 
+>>>>>>> d62edeeee936f81d44ff1e9d72a8a995d889ba85

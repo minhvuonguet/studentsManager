@@ -27,6 +27,7 @@
     <script type="text/javascript" src="public/assets/Admin/js/main.js"></script>
 </head>
 <body>
+
     <div class="container-fuild">
         <div class="row">
             <div class="header col-sm-12">
@@ -38,12 +39,13 @@
                 </div>
                 <div class="headUser col-sm-3">
                     <p class="text-right"> xin chào bạn <strong> {{Auth::user()->name}} </strong>  <a href="{{ URL::to('logout') }}"><i class="icon-logout"></i> </a> </p>
-
                 </div>
             </div>
-            <div class="content">
+            @section('main-parent')
+                <div class="content">
 
-            </div>
+                </div>
+            @show
             <div class="bottom">
 
             </div>
@@ -54,4 +56,5 @@
 
         </div>
     </div>
+
 </body>

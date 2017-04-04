@@ -1,8 +1,6 @@
 <?php
-
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
 class CreateUsersTable extends Migration
 {
     /**
@@ -10,7 +8,6 @@ class CreateUsersTable extends Migration
      *
      * @return void
      */
-
     public function up()
     {
         Schema::create('roles', function(Blueprint $table){
@@ -19,11 +16,8 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('note');
             $table->timestamps();
-
             $table->primary('role_id');
-
         });
-
         Schema::create('users', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->string('username')->unique();
@@ -36,14 +30,11 @@ class CreateUsersTable extends Migration
             $table->string('office');
             $table->date('birthday');
             $table->timestamps();
-
             $table->primary('username');
             $table->foreign('role_id')
-            ->references('role_id')
-            ->on('roles');
+                ->references('role_id')
+                ->on('roles');
         });
-
-
         Schema::create('point', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('point_id')->unique();//ma so diem sinh vien trong tung hoc ky
@@ -55,12 +46,9 @@ class CreateUsersTable extends Migration
             $table->integer('hddt_point');//hoat dong doan the
             $table->integer('total_point');//diem tong
             $table->timestamps();
-
             $table->primary('point_id');
             $table->foreign('mssv')->references('mssv')->on('users');
         });
-
-
         Schema::create('nckh', function(
             Blueprint $table){
             $table->engine = 'InnoDB';
@@ -69,7 +57,6 @@ class CreateUsersTable extends Migration
             $table->integer('nckh_point');
             $table->string('note');
             $table->timestamps();
-
             $table->primary('nckh_id');
         });
         Schema::create('ytcd', function(
@@ -80,7 +67,6 @@ class CreateUsersTable extends Migration
             $table->integer('ytcd_point');
             $table->string('note');
             $table->timestamps();
-
             $table->primary('ytcd_id');
             $table->foreign('mssv')->references('mssv')->on('users');
         });
@@ -92,7 +78,6 @@ class CreateUsersTable extends Migration
             $table->integer('ytsv_point');
             $table->string('note');
             $table->timestamps();
-
             $table->primary('ytsv_id');
             $table->foreign('mssv')->references('mssv')->on('users');
         });
@@ -104,7 +89,6 @@ class CreateUsersTable extends Migration
             $table->integer('hddt_point');
             $table->string('note');
             $table->timestamps();
-
             $table->primary('hddt_id');
             $table->foreign('mssv')->references('mssv')->on('users');
         });
