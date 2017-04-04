@@ -14,12 +14,12 @@
 Route::get('/', function () {
     return view('admin.login');
 });
-Route::get('/ctsv', function () {
-    return view('');
-});
+// Route::get('/ctsv', function () {
+//     return view('');
+// });
 
-Route::get('/getExcels',['as'=>'getExcels', 'uses'=>'AdminControler@getExcels']);
-// Route::post('/getExcels',['as'=>'getExcels', 'uses'=>'AdminControler@postExcels']);
+Route::get('readExcels',['as'=>'readExcels', 'uses'=>'AdminControler@readExcels']);
+Route::post('showExcels',['as'=>'showExcels', 'uses'=>'AdminControler@showExcels']);
 
 Route::group(['middleware' => ['web']], function () {
 
