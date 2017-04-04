@@ -116,12 +116,26 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('roles');
-        Schema::drop('users');
-        Schema::drop('point');
-        Schema::drop('nckh_point');
-        Schema::drop('ytsv_point');
-        Schema::drop('ytcd_point');
-        Schema::drop('hddt_point');
+        if(Schema::hasTable('nckh')){
+            Schema::drop('nckh');
+        }
+        if(Schema::hasTable('ytsv')){
+            Schema::drop('ytsv');
+        }
+        if(Schema::hasTable('ytcd')){
+            Schema::drop('ytcd');
+        }
+        if(Schema::hasTable('hddt')){
+            Schema::drop('hddt');
+        }
+        if(Schema::hasTable('point')){
+            Schema::drop('point');
+        }
+        if(Schema::hasTable('users')){
+            Schema::drop('users');
+        }
+        if(Schema::hasTable('roles')){
+            Schema::drop('roles');
+        }
     }
 }
