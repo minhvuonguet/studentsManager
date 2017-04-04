@@ -24,7 +24,9 @@ class AdminControler extends Controller {
         if (Auth::attempt([ 'name' => $request->username, 'password' => $request->password,'role_id'=>2 ]) ||
             Auth::attempt([ 'name' => $request->username, 'password' => $request->password,'role_id'=>1 ]) ) {
             $use_ = new User();
+
             return redirect()->route('list');
+
         }
         if (Auth::attempt([ 'name' => $request->username, 'password' => $request->password,'role_id'=>3 ])) {
             $use_ = new User();

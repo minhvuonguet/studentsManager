@@ -15,8 +15,9 @@ class User extends  Model
         return $this->hasOne();
     }
     public function getAllStudents () {
-
-
+    }
+    public function user_hocky () {
+    //    return $this->hasMany('hocky');
     }
     public function updateSumPoint ($sum, $id) {
         DB::table('users')->where('mssv', $id)

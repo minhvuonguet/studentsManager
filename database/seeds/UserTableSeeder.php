@@ -26,14 +26,20 @@ class UserTableSeeder extends Seeder
             'name'=>'member',
             'role_id'=>'3'
         ]);
-        $hocky = Hocky::create([
-            'ma_hk'=>'HK1_2017'
+        $user_point = User_Point::create([
+            'mssv'=>'13020706',
         ]);
+        Hocky::create([
+            'ma_hk'=>'HK1_2016',
+            'point_id' => $user_point->id
+        ]);
+
         User::create([
             'name'=>'admin1',
             'email'=>'admin@gmail.com',
             'password'=>\Hash::make('admin1'),
             'role_id'=>$role->id,
+            'hocky' => 0,
             'office'=>'Admin',
             'changePass'=>0
         ]);
@@ -70,6 +76,7 @@ class UserTableSeeder extends Seeder
             'mssv' => 13020706,
             'hoten' => 'nguyen Nhu Vuong',
             'lop' => 'k58cc',
+           // 'hocky' => $hocky_1_2016->id,
             'changePass'=>0,
         ]);
 
@@ -82,6 +89,7 @@ class UserTableSeeder extends Seeder
             'mssv' => 13020707,
             'hoten' => 'Nguyen Van A',
             'lop' => 'k58cc',
+        //    'hocky' => $hocky_1_2016->id,
             'changePass'=>0,
         ]);
         User::create([
@@ -92,6 +100,7 @@ class UserTableSeeder extends Seeder
             'office'=>'Students',
             'mssv' => 13020708,
             'hoten' => 'nguyen Van B',
+       //     'hocky' => $hocky_1_2016->id,
             'lop' => 'k58cc',
             'changePass'=>0,
         ]);
@@ -103,6 +112,7 @@ class UserTableSeeder extends Seeder
             'office'=>'Students',
             'mssv' => 13020709,
             'hoten' => 'nguyen Van C',
+         //   'hocky' => $hocky_1_2016->id,
             'lop' => 'k58cc',
             'changePass'=>0,
         ]);
@@ -114,6 +124,7 @@ class UserTableSeeder extends Seeder
             'office'=>'Students',
             'mssv' => 13020710,
             'hoten' => 'nguyen Van D',
+        //    'hocky' => $hocky_1_2016->id,
             'lop' => 'k58cc',
             'changePass'=>0,
         ]);
@@ -125,6 +136,7 @@ class UserTableSeeder extends Seeder
             'office'=>'Students',
             'mssv' => 13020711,
             'hoten' => 'nguyen Van E',
+      //      'hocky' => $hocky_1_2016->id,
             'lop' => 'k58cc',
             'changePass'=>0,
         ]);
@@ -136,6 +148,7 @@ class UserTableSeeder extends Seeder
             'office'=>'Students',
             'mssv' => 13020712,
             'hoten' => 'nguyen Van F',
+          //  'hocky' => $hocky_1_2016->id,
             'lop' => 'k58cc',
             'changePass'=>0,
         ]);
@@ -147,6 +160,7 @@ class UserTableSeeder extends Seeder
             'office'=>'Students',
             'mssv' => 13020713,
             'hoten' => 'nguyen Van G',
+         //   'hocky' => $hocky_1_2016->id,
             'lop' => 'k58cc',
             'changePass'=>0,
         ]);
@@ -158,6 +172,7 @@ class UserTableSeeder extends Seeder
             'office'=>'Students',
             'mssv' => 13020714,
             'hoten' => 'nguyen Van H',
+       //     'hocky' => $hocky_1_2016->id,
             'lop' => 'k58cc',
             'changePass'=>0,
         ]);

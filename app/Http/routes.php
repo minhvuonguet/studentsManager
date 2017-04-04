@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('admin.login');
 });
+Route::get('/ctsv', function () {
+    return view('');
+});
 
 
 Route::group(['middleware' => ['web']], function () {
@@ -23,6 +26,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('ViewUser', ['as'=>'ViewUser', 'uses' => 'AdminControler@ViewUser']);
     Route::get('sendmail', ['as'=>'sendmail', 'uses'=>'AdminControler@sendmail']);
     Route::post('testex', ['as'=>'testex', 'uses'=>'AdminControler@testEX']);
+
     Route::group(['middleware'=>'auth'], function(){
         Route::get('list', ['as' => 'list', 'uses' => 'AdminControler@listUser']);
         Route::get('caculate', ['as' => 'caculate', 'uses' => 'AdminControler@cacula_point']);
@@ -30,5 +34,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('logout', ['as' => 'logout', 'uses' => 'AdminControler@getLogout']);
         Route::get('feadback', ['as'=>'feadback', 'use'=>'AdminControler@feadback']);
     });
+
+   
 
 });

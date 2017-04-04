@@ -15,7 +15,7 @@
         <form action='postLogin' method="post" id="form_login_admin" name="form_login_admin" class="form-horizontal">
             {!! csrf_field() !!}
             <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-            <div class="form-group input_user ">
+                <div class="form-group input_user ">
                 <label for="username" class="col-lg-offset-1 col-sm-3 control-label"> Username </label>
                 <div class="col-sm-7">
                     <input type="text" name="username" id="username" class="form-control" placeholder="UserName" value="{{old('username')}}">
