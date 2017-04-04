@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Support\Facades\Mail;
 use Excel,Input,File;
+use Illuminate\Support\Collection;
 // use Illuminate\Http\Request;
 
 
@@ -64,20 +65,26 @@ class AdminControler extends Controller {
     }
 
     public function getExcels () {
-        Excel::load('T1.xls', function($reader) {
-            // echo "$reader";
+        //load file excels
+        Excel::load('T1.xlsx', function($reader){
             $reader->each(function($sheet){
-                // echo "$sheet"."<br>"."<br>"."<br>";
-                foreach($sheet as $row){
-                    // echo $row."<br>"."<br>"."<br>";
-                    foreach ($row as $column) {
-                        echo $column."<br>";
-                    }
-                    echo "<br>";
-                };
+                $sheet->each(function($row){
+                    // echo "$row"."</br>";
+                    $row->each(function($cell){
+                        echo "$cell"."</br>";
+                    });
+                });
+
+                // foreach($sheet as $row){
+                //     echo "$row"."<br>";
+                //     foreach ($row as $cell) {
+                //         echo $cell."<br>";
+                //     }
+                //     echo "<br>";
+                // };
             });
         });
-        return view('admin.getExcels');
+        // return view('admin.getExcels');
     }
 
     // public function postExcels (){
