@@ -14,7 +14,7 @@ use App\User;
 use Illuminate\Support\Facades\Mail;
 use Excel,Input,File;
 use Illuminate\Support\Collection;
-// use Illuminate\Http\Request;
+use DB;
 
 
 
@@ -64,18 +64,21 @@ class AdminControler extends Controller {
         });
     }
 
-    // public function readExcels () {
-    //     return view('admin.readExcels');
-    // }
 
-    public function showExcels (){
-        Excel::load('T1.xlsx', function($reader){
+    public function updateDB(Request $request) {
+        Excel::load($request->fileExcels, function($reader){
             $reader->each(function($sheet){
                 $sheet->each(function($row){
-                    // echo "$row"."</br>";
-                    $row->each(function($cell){
-                        echo "$cell"."</br>";
-                    });
+
+                    if ($row->mssv) {
+                    DB::table("users")->insert([
+                        "mssv" => $row->mssv,
+                        "username" => $row->name,
+                        "fullname" => $row->name,
+                        "role_id" =>3]);
+                    }
+                    
+                    echo $row->mssv."</br>"."</br>";
                 });
 
             });

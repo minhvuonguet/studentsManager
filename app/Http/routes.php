@@ -17,13 +17,14 @@ Route::get('/', function () {
 // });
 
 // Route::get('readExcels',['as'=>'readExcels', 'uses'=>'AdminControler@readExcels']);
-Route::post('showExcels',['as'=>'showExcels', 'uses'=>'AdminControler@showExcels']);
+// Route::post('showExcels',['as'=>'showExcels', 'uses'=>'AdminControler@showExcels']);
 
 Route::get('/ctsv', function () {
     return view('');
 });
-Route::get('/getExcels',['as'=>'getExcels', 'uses'=>'AdminControler@getExcels']);
-// Route::post('/getExcels',['as'=>'getExcels', 'uses'=>'AdminControler@postExcels']);
+
+Route::post('updateDB', ['as' => 'updateDB', 'uses' => 'AdminControler@updateDB']);
+
 Route::group(['middleware' => ['web']], function () {
     Route::get('/login', ['as' => 'login', 'uses' => 'AdminControler@getLogin']);
     Route::post('/postLogin', ['as' => 'postLogin', 'uses' => 'AdminControler@postLogin']);

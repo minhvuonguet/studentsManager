@@ -31,9 +31,7 @@ class CreateUsersTable extends Migration
             $table->date('birthday');
             $table->timestamps();
             $table->primary('username');
-            $table->foreign('role_id')
-                ->references('role_id')
-                ->on('roles');
+            $table->foreign('role_id')->references('role_id')->on('roles')->onDelete('cascade')->onUpdate('CASCADE');
         });
         Schema::create('point', function (Blueprint $table) {
             $table->engine = 'InnoDB';
@@ -47,7 +45,7 @@ class CreateUsersTable extends Migration
             $table->integer('total_point');//diem tong
             $table->timestamps();
             $table->primary('point_id');
-            $table->foreign('mssv')->references('mssv')->on('users');
+            $table->foreign('mssv')->references('mssv')->on('users')->onDelete('cascade')->onUpdate('CASCADE');
         });
         Schema::create('nckh', function(
             Blueprint $table){
@@ -58,6 +56,7 @@ class CreateUsersTable extends Migration
             $table->string('note');
             $table->timestamps();
             $table->primary('nckh_id');
+            $table->foreign('mssv')->references('mssv')->on('users')->onDelete('cascade')->onUpdate('CASCADE');
         });
         Schema::create('ytcd', function(
             Blueprint $table){
@@ -68,7 +67,7 @@ class CreateUsersTable extends Migration
             $table->string('note');
             $table->timestamps();
             $table->primary('ytcd_id');
-            $table->foreign('mssv')->references('mssv')->on('users');
+            $table->foreign('mssv')->references('mssv')->on('users')->onDelete('cascade')->onUpdate('CASCADE');
         });
         Schema::create('ytsv', function(
             Blueprint $table){
@@ -79,7 +78,7 @@ class CreateUsersTable extends Migration
             $table->string('note');
             $table->timestamps();
             $table->primary('ytsv_id');
-            $table->foreign('mssv')->references('mssv')->on('users');
+            $table->foreign('mssv')->references('mssv')->on('users')->onDelete('cascade')->onUpdate('CASCADE');
         });
         Schema::create('hddt', function(
             Blueprint $table){
@@ -90,7 +89,7 @@ class CreateUsersTable extends Migration
             $table->string('note');
             $table->timestamps();
             $table->primary('hddt_id');
-            $table->foreign('mssv')->references('mssv')->on('users');
+            $table->foreign('mssv')->references('mssv')->on('users')->onDelete('cascade')->onUpdate('CASCADE');
         });
     }
     /**
