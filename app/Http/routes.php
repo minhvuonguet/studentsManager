@@ -23,7 +23,7 @@ Route::get('/ctsv', function () {
     return view('');
 });
 
-Route::post('updateDB', ['as' => 'updateDB', 'uses' => 'AdminControler@updateDB']);
+Route::post('updateDB', ['as' => 'updateDB', 'uses' => 'DatabaseController@updateDB']);
 
 Route::group(['middleware' => ['web']], function () {
     Route::get('/login', ['as' => 'login', 'uses' => 'AdminControler@getLogin']);

@@ -69,16 +69,7 @@ class AdminControler extends Controller {
         Excel::load($request->fileExcels, function($reader){
             $reader->each(function($sheet){
                 $sheet->each(function($row){
-
-                    if ($row->mssv) {
-                    DB::table("users")->insert([
-                        "mssv" => $row->mssv,
-                        "username" => $row->name,
-                        "fullname" => $row->name,
-                        "id_role" =>3]);
-                    }
-
-                    echo $row->mssv."</br>"."</br>";
+                    echo $row->ma_so_sv."</br>"."</br>";
                 });
 
             });
