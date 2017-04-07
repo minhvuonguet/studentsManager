@@ -4,8 +4,8 @@ use Illuminate\Database\Eloquent\Model;
 class User extends  Model
 {
     protected $table = 'users';
-
-    protected $fillable = ['username','email','password', 'image'];
+    protected $primaryKey = 'username';
+    protected $fillable = ['username','email','password'];
     public function role(){
         return $this->hasOne();
     }

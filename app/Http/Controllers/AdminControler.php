@@ -63,16 +63,4 @@ class AdminControler extends Controller {
             $message->to('minhvuonguet@gmail.com', 'minh')->subject('wft');
         });
     }
-
-
-    public function updateDB(Request $request) {
-        Excel::load($request->fileExcels, function($reader){
-            $reader->each(function($sheet){
-                $sheet->each(function($row){
-                    echo $row->ma_so_sv."</br>"."</br>";
-                });
-
-            });
-        });
-    }
 }
