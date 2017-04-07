@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Points extends Model
 {
   protected $table = 'points';
-  protected $fillable = [];
+  // protected $fillable = [];
 }

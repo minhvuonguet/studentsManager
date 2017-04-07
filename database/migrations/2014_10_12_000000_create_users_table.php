@@ -16,7 +16,6 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('mssv')->unique();
             $table->integer('id_role');
-            $table->timestamps();
             $table->primary('username');
 
             $table->foreign('id_role')
@@ -30,6 +29,8 @@ class CreateUsersTable extends Migration
             ->on('sinh_vien')
             ->onDelete('cascade')
             ->onUpdate('cascade');
+            $table->timestamps();
+            
         });
     }
     /**

@@ -17,8 +17,9 @@ class CreateRolesTable extends Migration
           $table->integer('id_role')->unique();
           $table->string('name');
           $table->string('note');
-          $table->timestamps();
           $table->primary('id_role');
+          $table->timestamps();
+
         });
     }
 

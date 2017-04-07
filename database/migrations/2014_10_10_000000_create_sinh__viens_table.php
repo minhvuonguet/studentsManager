@@ -21,6 +21,7 @@ class CreateSinhViensTable extends Migration
             $table->string('email');
             $table->date('birthday');
             // $table->primary('mssv');
+            $table->timestamps();
         });
     }
 

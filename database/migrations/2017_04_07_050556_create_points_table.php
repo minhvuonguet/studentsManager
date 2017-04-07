@@ -16,7 +16,7 @@ class CreatePointsTable extends Migration
           $table->engine = 'InnoDB';
           $table->integer('id_point')->unique();//ma so diem sinh vien trong tung hoc ky
           $table->integer('mssv');//ma so sinh vien
-          $table->integer('id_hk');//ma so hoc ky
+          $table->integer('id_hoc_ky');//ma so hoc ky
           $table->integer('point_total');//diem tong
           $table->integer('point_khoa_hoc_cn');//nghien cuu khoa hoc
           $table->integer('point_cong_tac_sv');//y thuc sinh vien
@@ -29,6 +29,11 @@ class CreatePointsTable extends Migration
           $table->foreign('mssv')
           ->references('mssv')
           ->on('sinh_vien')
+          ->onDelete('cascade')
+          ->onUpdate('cascade');
+          $table->foreign('id_hoc_ky')
+          ->references('id_hoc_ky')
+          ->on('hoc_ky')
           ->onDelete('cascade')
           ->onUpdate('cascade');
         });

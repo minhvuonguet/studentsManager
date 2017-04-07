@@ -4,7 +4,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 class Roles extends Model
 {
-    protected $table = 'roles';
-    protected $fillable = ['name','role_id'];
-
+  protected $table = 'roles';
+  // protected $fillable = ['name','id_role'];
 }

@@ -14,8 +14,7 @@ class CreateHocKiesTable extends Migration
     {
         Schema::create('hoc_ky', function (Blueprint $table) {
           $table->engine = 'InnoDB';
-          
-            $table->integer('id_hoc_ky');
+            $table->integer('id_hoc_ky')->primary()->unique();
             $table->string('note');
             $table->timestamps();
         });

@@ -28,14 +28,14 @@ class AdminControler extends Controller {
 //        Mail::send('admin.sendMail', array('email' => 'minhvuonguet@gmail.com'), function ($message) {
 //            $message->to('minhvuonguet@gmail.com', 'Visitor')->subject('Welcome to Employee Directory. !');
 //        });
-        if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'role_id'=>2 ]) ||
-            Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'role_id'=>1 ]) ) {
+        if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>2 ]) ||
+            Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>1 ]) ) {
             $use_ = new User();
 
 
             return view('admin.adminManager');
         }
-        if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'role_id'=>3 ])) {
+        if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>3 ])) {
             $use_ = new User();
 
             return redirect()->route('ViewUser');
@@ -75,9 +75,9 @@ class AdminControler extends Controller {
                         "mssv" => $row->mssv,
                         "username" => $row->name,
                         "fullname" => $row->name,
-                        "role_id" =>3]);
+                        "id_role" =>3]);
                     }
-                    
+
                     echo $row->mssv."</br>"."</br>";
                 });
 
