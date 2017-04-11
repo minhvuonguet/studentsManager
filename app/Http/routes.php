@@ -14,16 +14,14 @@
 Route::get('/', function () {
     return view('Employee.indexStudents');
 });
-// Route::get('/ctsv', function () {
-//     return view('');
-// });
 
-// Route::get('readExcels',['as'=>'readExcels', 'uses'=>'AdminControler@readExcels']);
-// Route::post('showExcels',['as'=>'showExcels', 'uses'=>'AdminControler@showExcels']);
 Route::get('/ctsv', function () {
     return view('');
 });
 Route::post('updateDB', ['as' => 'updateDB', 'uses' => 'DatabaseController@updateDB']);
+
+Route::get('readExcels', ['as' => 'readExcels', 'uses' => 'DatabaseController@readExcels']);
+
 Route::group(['middleware' => ['web']], function () {
     Route::get('/login', ['as' => 'login', 'uses' => 'AdminControler@getLogin']);
     Route::post('/postLogin', ['as' => 'postLogin', 'uses' => 'AdminControler@postLogin']);
