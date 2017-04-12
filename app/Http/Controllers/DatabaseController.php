@@ -12,6 +12,9 @@ use Excel,Input,File;
 use DB;
 
 class DatabaseController extends Controller{
+    public function readExcels(){
+      return view('admin.readExcels');
+    }
 
     public function updateDB(Request $request) {
     $sinh_vien= new Sinh_Vien();
