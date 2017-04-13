@@ -14,6 +14,8 @@
     color: white;
     cursor: pointer;
 }
-table {
-    margin-top: 300px;
+.sidebar-inner {
+    position: fixed;
+    top : 0
 }
+

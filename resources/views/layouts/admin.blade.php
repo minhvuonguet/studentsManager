@@ -36,7 +36,8 @@
                         <img src="public/assets/Admin/images/default.png" class="img-responsive img-circle" alt="friend 8">
                     {{--@endif--}}
                 </div>
-                <h4>{{Auth::user()->name}}</h4>
+                <h4></h4>
+                {{--{{Auth::user()->username}}--}}
                 <div class="dropdown user-login">
                     <form action="searchemployee" method="get" class="searchform" id="search-results">
                         <input class="form-control" name="name" placeholder="Search employee..." type="text">
@@ -47,6 +48,9 @@
 
             <ul class="nav nav-sidebar">
                 <li class=" nav-active active"><a href="javascript:void(0)"><i class="icon-home"></i><span>Admin Manager</span></a></li>
+                <li class="nav-parent">
+                    <a href="{{ URL::to('formdiem') }}" class="test_"><i class="icon-puzzle"></i><span> Form điểm rèn luyện </span> </a>
+                </li>
                 <li class="nav-parent">
                     <a href="{{ URL::to('newadmin') }}" class="test_"><i class="icon-puzzle"></i><span>Xem danh sách</span> </a>
                 </li>
@@ -101,15 +105,15 @@
             <div class="header-right">
                 <ul class="header-menu nav navbar-nav">
                     <li class="dropdown" id="user-header">
-                        <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            @if(Auth::user()->image)
-                                <img src="public/uploads/admin_img/{{Auth::user()->image}}" alt="user image">
-                            @else
-                                <img src="public/assets/Admin/images/default.png" alt="user image">
-                            @endif
+                        {{--<a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">--}}
+                            {{--@if(Auth::user()->image)--}}
+                                {{--<img src="public/uploads/admin_img/{{Auth::user()->image}}" alt="user image">--}}
+                            {{--@else--}}
+                                {{--<img src="public/assets/Admin/images/default.png" alt="user image">--}}
+                            {{--@endif--}}
 
-                            <span class="username">Hi, {{Auth::user()->name}}</span>
-                        </a>
+                            {{--<span class="username">Hi, {{Auth::user()->username}}</span>--}}
+                        {{--</a>--}}
                     </li>
                     <li class="logout_Admin">
                         <a href="{{ URL::to('logout') }}"><i class="icon-logout"></i><span>Logout</span></a>
@@ -120,19 +124,19 @@
         </div>
         <div class="page-content page-thin ">
             <div class="col-md-12">
-                @if($errors->any())
-                    <div class="alert auto-hide alert-waring">
-                        something went wrong here!
-                    </div>
-                @endif
-                <div class="col-md-8 col-md-offset-3">
-                    @if(Session::has('flash_message'))
-                        <div class="alert auto-hide alert-{!! Session::has('flash_level')?Session::get('flash_level'):'default'
-                 !!}">
-                            {!! Session::get('flash_message') !!}
-                        </div>
-                    @endif
-                </div>
+                {{--@if($errors->any())--}}
+                    {{--<div class="alert auto-hide alert-waring">--}}
+                        {{--something went wrong here!--}}
+                    {{--</div>--}}
+                {{--@endif--}}
+                {{--<div class="col-md-8 col-md-offset-3">--}}
+                    {{--@if(Session::has('flash_message'))--}}
+                        {{--<div class="alert auto-hide alert-{!! Session::has('flash_level')?Session::get('flash_level'):'default'--}}
+                 {{--!!}">--}}
+                            {{--{!! Session::get('flash_message') !!}--}}
+                        {{--</div>--}}
+                    {{--@endif--}}
+                {{--</div>--}}
                 <div class="row">
                     @yield('content')
                 </div>
@@ -151,11 +155,3 @@
 
 </html>
 @show
-@section('script_')
-    <script>
-        $(document).ready(function(){
-            $('.alert').delay(4000).slideUp();
-        });
-    </script>
-@show
-

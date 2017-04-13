@@ -28,6 +28,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('ViewUser', ['as' => 'ViewUser', 'uses' => 'AdminControler@ViewUser']);
     Route::get('sendmail', ['as' => 'sendmail', 'uses' => 'AdminControler@sendmail']);
 
+    Route::get('formdiem', ['as' => 'formdiem', 'uses' => 'AdminControler@formdiem']);
     Route::get('tinhdiem', ['as' => 'tinhdiem', 'uses' => 'CacularPoint@tinhdiem']);
 
    // Route::get('tinhdiem', ['as'=>'tinhdiem', 'use'=>'CacularPont@tinhdiem']);

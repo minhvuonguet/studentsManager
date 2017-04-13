@@ -52,4 +52,7 @@ class AdminControler extends Controller {
             $message->to('minhvuonguet@gmail.com', 'minh')->subject('wft');
         });
     }
+    public function formdiem () {
+        return View('Employee.mau_diem');
+    }
 }

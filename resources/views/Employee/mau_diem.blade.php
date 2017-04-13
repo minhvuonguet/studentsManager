@@ -1,12 +1,7 @@
 @extends('layouts.admin')
-@section('main-parent')
-<style>
-    table {
-        margin-top: 150px;
-    }
-</style>
-<div class="container">
-    <div class="row">
+@section('title',' form điểm rèn luyện')
+@section('content')
+
         <table class="table table-bordered">
             <tr>
                 <th class="col-md-9"> Nội dung đánh giá </th>
@@ -213,7 +208,7 @@
             </tr>
             <tr>
                 <td><strong>Tổng cộng (1.+2.+3.+4.+5.) [0, 100]</strong></td>
-                <td><a href="{{URL::to('feadback')}}">{{$sum_point}}</a></td>
+                <td><a href="{{URL::to('feadback')}}"></a></td>
             </tr>
 
             <tr>
@@ -221,6 +216,5 @@
                 <td></td>
             </tr>
         </table>
-    </div>
-</div>
+
         @stop
