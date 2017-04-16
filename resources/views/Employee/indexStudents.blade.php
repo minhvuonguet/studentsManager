@@ -35,7 +35,10 @@
                 <div class="row">
                     <div class="header col-sm-12">
                         <div class="logo col-sm-3">
-                            <img src="public/assets/Admin/images/uet_logo.png" alt="UET">
+                            <img src="public/assets/Admin/images/uet_logo3.png" 
+                            alt="UET"
+                            width="90"
+                            height="90">
                         </div>
                         <div class="headContent col-sm-6">
                             <h4 class="text-center "> Hệ thống Xem Điểm Rèn Luyện Của Sinh Viên  </h4>
