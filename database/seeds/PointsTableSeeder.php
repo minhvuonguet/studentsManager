@@ -12,7 +12,7 @@ class PointsTableSeeder extends Seeder
      */
     public function run()
     {
-     Points::create([
+    // Points::create([
          // 'id_point'=>1302055311,
          // 'mssv'=>13020553,
          // 'id_hoc_ky'=>1020162017,
@@ -23,6 +23,6 @@ class PointsTableSeeder extends Seeder
          // 'point_doan' => 22,
          // 'point_khoa' => 21,
          // 'point_co_van_hoc_tap' => 20
-     ]);
+  //   ]);
     }
 }
