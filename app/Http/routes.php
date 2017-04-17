@@ -27,7 +27,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/postLogin', ['as' => 'postLogin', 'uses' => 'AdminControler@postLogin']);
     Route::get('ViewUser', ['as' => 'ViewUser', 'uses' => 'AdminControler@ViewUser']);
     Route::get('sendmail', ['as' => 'sendmail', 'uses' => 'AdminControler@sendmail']);
-
+    Route::post('/message/send', ['uses' => 'FrontController@addFeedback', 'as' => 'front.fb']);
     Route::get('formdiem', ['as' => 'formdiem', 'uses' => 'AdminControler@formdiem']);
     Route::get('tinhdiem', ['as' => 'tinhdiem', 'uses' => 'CacularPoint@tinhdiem']);
 

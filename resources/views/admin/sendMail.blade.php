@@ -1,5 +1,4 @@
 
-
 {!! Form::open(array('route' => 'front.fb', 'class' => '')) !!}
 <div>
     <label  class="email">Your name</label>

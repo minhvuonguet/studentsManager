@@ -13,7 +13,9 @@ use App\User;
 use Illuminate\Support\Facades\Mail;
 use Excel,Input,File;
 use Illuminate\Support\Collection;
+
 use DB;
+
 class AdminControler extends Controller {
     public function getLogin() {
         return view('admin.login');
@@ -45,12 +47,8 @@ class AdminControler extends Controller {
         Auth::logout(); // logout user
         return Redirect()->route('login'); //redirect back to login
     }
-    public function sendmail () {
-        $data = ['abc'];
-        Mail::send('admin.sendMail', $data , function($message) {
-            $message->from('minhvuongeup@gmail.com','minh vuong');
-            $message->to('minhvuonguet@gmail.com', 'minh')->subject('wft');
-        });
+    public function sendmail (Request $request) {
+
     }
     public function formdiem () {
         return View('Employee.mau_diem');
