@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CoVanHocTapTableSeeder::class);
 
         $this->call(PointsTableSeeder::class);
+        $this->call(FormDiemSeeder::class);
         Model::reguard();
     }
 }

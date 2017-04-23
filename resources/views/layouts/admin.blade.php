@@ -52,7 +52,10 @@
                     <a href="{{ URL::to('formdiem') }}" class="test_"><i class="icon-puzzle"></i><span> Form điểm rèn luyện </span> </a>
                 </li>
                 <li class="nav-parent">
-                    <a href="{{ URL::to('newadmin') }}" class="test_"><i class="icon-puzzle"></i><span>Xem danh sách</span> </a>
+                    <a href="{{ URL::to('newclass') }}" class="test_"><i class="icon-puzzle"></i><span>Thêm danh sách lớp</span> </a>
+                </li>
+                <li class="nav-parent">
+                    <a href="{{ URL::to('listclass') }}" class="test_"><i class="icon-puzzle"></i><span>Xem danh sách</span> </a>
                 </li>
                 <li class="nav-parent">
                     <a href="{{URL::to('ListAdmin')}}"><i class="icon-bulb"></i><span> Thêm file điểm </span> </a>
@@ -91,17 +94,17 @@
     <div class="main-content">
         <!-- BEGIN TOPBAR -->
         <div class="topbar">
-            <div class="header-left">
-                <div class="topnav">
-                    <a class="menutoggle" href="#" data-toggle="sidebar-collapsed"><span class="menu__handle"><span>Menu</span></span></a>
-                    <ul class="nav nav-icons">
-                        <li><a href="#" class="toggle-sidebar-top"><span class="icon-user-following"></span></a></li>
-                        <li><a href="mailbox.html"><span class="octicon octicon-mail-read"></span></a></li>
-                        <li><a href="#"><span class="octicon octicon-flame"></span></a></li>
-                        <li><a href="builder-page.html"><span class="octicon octicon-rocket"></span></a></li>
-                    </ul>
-                </div>
-            </div>
+            {{--<div class="header-left">--}}
+                {{--<div class="topnav">--}}
+                    {{--<a class="menutoggle" href="#" data-toggle="sidebar-collapsed"><span class="menu__handle"><span>Menu</span></span></a>--}}
+                    {{--<ul class="nav nav-icons">--}}
+                        {{--<li><a href="#" class="toggle-sidebar-top"><span class="icon-user-following"></span></a></li>--}}
+                        {{--<li><a href="mailbox.html"><span class="octicon octicon-mail-read"></span></a></li>--}}
+                        {{--<li><a href="#"><span class="octicon octicon-flame"></span></a></li>--}}
+                        {{--<li><a href="builder-page.html"><span class="octicon octicon-rocket"></span></a></li>--}}
+                    {{--</ul>--}}
+                {{--</div>--}}
+            {{--</div>--}}
             <div class="header-right">
                 <ul class="header-menu nav navbar-nav">
                     <li class="dropdown" id="user-header">
@@ -154,4 +157,11 @@
 </body>
 
 </html>
+@show
+@section('script_')
+    <script>
+        $(document).ready(function(){
+            $('.alert').delay(4000).slideUp();
+        });
+    </script>
 @show

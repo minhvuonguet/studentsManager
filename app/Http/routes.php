@@ -29,8 +29,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('sendmail', ['as' => 'sendmail', 'uses' => 'AdminControler@sendmail']);
     Route::post('/message/send', ['uses' => 'FrontController@addFeedback', 'as' => 'front.fb']);
     Route::get('formdiem', ['as' => 'formdiem', 'uses' => 'AdminControler@formdiem']);
+    Route::get('newclass', ['as' => 'newclass', 'uses' => 'AdminControler@newclass']);
+    Route::post('postnewclass', ['as'=>'postnewclass','uses'=>'AdminControler@postnewclass']);
     Route::get('tinhdiem', ['as' => 'tinhdiem', 'uses' => 'CacularPoint@tinhdiem']);
-
+    Route::post('update/{id}/{chu_de}', ['as'=>'update', 'uses'=>'AdminControler@updatePoint']);
+    Route::get('listclass', ['as'=>'listclass', 'uses'=>'AdminControler@listclass']);
+    Route::post('listofclass/{class}', ['as'=>'listclass', 'uses'=>'AdminControler@listofclass']);
    // Route::get('tinhdiem', ['as'=>'tinhdiem', 'use'=>'CacularPont@tinhdiem']);
 
     Route::group(['middleware' => 'auth'], function () {
