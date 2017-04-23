@@ -15,7 +15,7 @@ use App\Models\P_Khoa_Hoc_CN;
 use App\Models\P_Khoa;
 use App\Models\Points;
 use App\Models\Sinh_Vien;
-use App\Models\User;
+use App\Models\Form_Diem;
 
 
 class CacularPoint extends Controller
@@ -28,6 +28,24 @@ class CacularPoint extends Controller
     }
     public function tinhdiem () {
         $Students = Sinh_Vien::all();
+        $Point = new Points();
+        $hocky = Hoc_Ky::all();
+
+//        for($i = 0; $i < count($Students); $i++) {
+//            $form_diem = Form_Diem::all();
+//
+//            $point_base = $form_diem[0]->tong_hoc_tap + $form_diem[0]->tong_chap_hanh + $form_diem[0]->tong_pham_chat;
+//            $Point::updateOrCreate(
+//                [
+//                    'mssv'=>$Students[$i]->mssv,
+//                ],
+//                [
+//                    'id_hoc_ky' => $hocky[0]->id_hoc_ky,
+//                    'point_total' => $point_base
+//                ]
+//            );
+//        }
+
         $covan = new Co_Van_Hoc_Tap();
         $Hocky = Hoc_Ky::all();
         $P_ctsv = new P_Cong_Tac_SV();
@@ -43,7 +61,7 @@ class CacularPoint extends Controller
         $this->diem($P_khcn, 'khcn');
         $this->diem($P_khoa, 'khoa');
 
-
+        return Redirect()->route('listclass');
     }
     public function diem ($table, $type) {
         // neu khong co thi ghi vao dong moi. neu co roi thi update.
@@ -66,16 +84,20 @@ class CacularPoint extends Controller
                 }
                 break;
             case "ctsv" :
+
                 for($i = 0; $i < count($instanceTable); $i++) {
+
+                    echo ($instanceTable[$i]->mssv);
                     $Point::updateOrCreate(
                         [
                             'mssv'=>$instanceTable[$i]->mssv,
                         ],
                         [
                             'id_hoc_ky' => $hocky[0]->id_hoc_ky,
-                            'point_cong_tac_sv' => $instanceTable[$i]->point_cong_tac_sv,
+                            'point_cong_tac_sv' =>  $instanceTable[$i]->point_cong_tac_sv,
                         ]
                     );
+                    echo $instanceTable[$i]->point_cong_tac_sv;
                 }
                 break;
             case "daotao" :
@@ -131,7 +153,6 @@ class CacularPoint extends Controller
                         [
                             'id_hoc_ky' => $hocky[0]->id_hoc_ky,
                             'point_khoa' => $instanceTable[$i]->point_khoa,
-
                         ]
                     );
                 }
@@ -141,13 +162,19 @@ class CacularPoint extends Controller
 
         $instancePoint = Points::all();
         for($i = 0; $i < count($instancePoint); $i++) {
+            $total_point = 0;
+            echo ($instancePoint[$i]->point_total );
             $total_point =
+                $instancePoint[$i]->point_total +
                 $instancePoint[$i]->point_co_van_hoc_tap +
                 $instancePoint[$i]->point_cong_tac_sv +
                 $instancePoint[$i]->point_dao_tao +
                 $instancePoint[$i]->point_doan +
                 $instancePoint[$i]->point_khoa_hoc_cn +
                 $instancePoint[$i]->point_khoa ;
+            echo $total_point;
+            if($total_point > 100)
+                $total_point = 100;
             $Point::updateOrCreate(
                 [
                     'mssv'=>$instancePoint[$i]->mssv,

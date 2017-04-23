@@ -20,11 +20,7 @@ class CreatePCongTacSVsTable extends Migration
           $table->integer('mssv');
           $table->string('note');
        //   $table->primary('id_cong_tac_sv');
-          $table->foreign('mssv')
-          ->references('mssv')
-          ->on('users')
-          ->onDelete('cascade')
-          ->onUpdate('cascade');
+
           $table->timestamps();
         });
     }

@@ -57,9 +57,9 @@
                 <li class="nav-parent">
                     <a href="{{ URL::to('listclass') }}" class="test_"><i class="icon-puzzle"></i><span>Xem danh sách</span> </a>
                 </li>
-                <li class="nav-parent">
-                    <a href="{{URL::to('ListAdmin')}}"><i class="icon-bulb"></i><span> Thêm file điểm </span> </a>
-                </li>
+                {{--<li class="nav-parent">--}}
+                    {{--<a href="{{URL::to('adstudents')}}"><i class="icon-bulb"></i><span> Thêm danh sách cán bộ lớp </span> </a>--}}
+                {{--</li>--}}
                 <li class="nav-parent">
                     <a href="{{URL::to('tinhdiem')}}"><i class="icon-screen-desktop"></i><span>Tính điểm</span> </a>
 

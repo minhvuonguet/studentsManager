@@ -34,7 +34,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('tinhdiem', ['as' => 'tinhdiem', 'uses' => 'CacularPoint@tinhdiem']);
     Route::post('update/{id}/{chu_de}', ['as'=>'update', 'uses'=>'AdminControler@updatePoint']);
     Route::get('listclass', ['as'=>'listclass', 'uses'=>'AdminControler@listclass']);
-    Route::post('listofclass/{class}', ['as'=>'listclass', 'uses'=>'AdminControler@listofclass']);
+
+    Route::post('listofclass/{class}', ['as'=>'listofclass', 'uses'=>'AdminControler@listofclass']);
    // Route::get('tinhdiem', ['as'=>'tinhdiem', 'use'=>'CacularPont@tinhdiem']);
 
     Route::group(['middleware' => 'auth'], function () {

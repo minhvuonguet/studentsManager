@@ -20,6 +20,14 @@ use DB;
 use App\Models\Form_Diem;
 use App\Models\Sinh_Vien;
 use App\Models\Points;
+use App\Models\Co_Van_Hoc_Tap;
+use App\Models\Hoc_Ky;
+use App\Models\P_Cong_Tac_SV;
+use App\Models\P_Dao_Tao;
+use App\Models\P_Doan;
+use App\Models\P_Khoa_Hoc_CN;
+use App\Models\P_Khoa;
+
 
 class AdminControler extends Controller {
     public function getLogin() {
@@ -217,23 +225,66 @@ class AdminControler extends Controller {
     }
     public function postnewclass (Request $request) {
         $classname = $request->clasname;
-        echo $classname;
         $sinh_vien= new Sinh_Vien();
 
-        Excel::load($request->fileExcels, function($reader){
-            $results = $reader->all();
-            foreach ($results as $key=>$value) {
-                if($value != null && $value->id != null) {
-                    $sinh_vien_new = new Sinh_Vien();
-                    $sinh_vien_new->mssv = $value->mssv;
-                    $sinh_vien_new->fullname = $value->name;
-                    $sinh_vien_new->office = 'Sinh Viên';
-                    $sinh_vien_new->birthday = $value->birthday;
-                    $sinh_vien_new->class = $value->class;
-                    $sinh_vien_new->save();
+        if($request->type_file == 'list_class'){
+            Excel::load($request->fileExcels, function($reader){
+                $results = $reader->all();
+                $Point = new Points();
+                $form_diem = Form_Diem::all();
+                $hocky = Hoc_Ky::all();
+                $point_base = $form_diem[0]->tong_hoc_tap + $form_diem[0]->tong_chap_hanh + $form_diem[0]->tong_pham_chat;
+                foreach ($results as $key=>$value) {
+                    if($value != null && $value->id != null) {
+                        $sinh_vien_new = new Sinh_Vien();
+                        $sinh_vien_new->mssv = $value->mssv;
+                        $sinh_vien_new->fullname = $value->name;
+                        $sinh_vien_new->office = 'Sinh Viên';
+                        $sinh_vien_new->birthday = $value->birthday;
+                        $sinh_vien_new->class = $value->class;
+                        $sinh_vien_new->save();
+
+                        $Point::updateOrCreate(
+                            [
+                                'mssv'=>$value->mssv
+                            ],
+                            [
+                                'id_hoc_ky' => $hocky[0]->id_hoc_ky,
+                                'point_total' => $point_base
+                            ]
+                        );
+                    }
                 }
-            }
-        });
+            });
+        }
+        else if($request->type_file == 'list_ad_class') {
+
+            Excel::load($request->fileExcels, function($reader){
+                $results = $reader->all();
+                foreach ($results as $key=>$value) {
+                    $tmp = Sinh_Vien::find($value->mssv);
+                    if($tmp ) {
+
+                        $ctsv = new P_Cong_Tac_SV();
+                        $form_diem = Form_Diem::all();
+                        $diem_cong = $form_diem[0]->cong_giu_chuc_vu;
+
+                        $ctsv::updateOrCreate(
+                            [ 'mssv'=> $value->mssv, ],
+                            [
+                                'point_cong_tac_sv'=> $diem_cong,
+                                'mssv'=> $value->mssv,
+                                'note' => $value-> office
+                            ]
+                        );
+
+                        $sinhvien = new Sinh_Vien();
+                        $sinhvien::updateOrCreate(  [ 'mssv'=> $value->mssv, ], [ 'chuc_vu'=> $value->office, ] );
+                    }
+                }
+            });
+        }
+        return Redirect()->route('listclass');
     }
     public function listclass() {
         $sinhvien = Sinh_Vien::all();
@@ -256,7 +307,51 @@ class AdminControler extends Controller {
             'list_class' =>$listClass
         ]);
     }
-    public function listofclass ($name) {
+    public function listofclass ($class) {
+        $sinhvien = Sinh_Vien::all();
+        $diem = Points::all();
+        $listClass = [];
+        $listSinhVienLop = [];
+
+        if($class == 'tatca') {
+            for($i = 0; $i < count($sinhvien); $i++){
+                $sinhvien[$i]->point = 0;
+                for($j = 0; $j < count($diem)-1 ; $j++) {
+                    if($diem[$j]->mssv == $sinhvien[$i]->mssv){
+                        $sinhvien[$i]->point = $diem[$j]->point_total;
+                    }
+                }
+                $listClass[$i] = $sinhvien[$i]->class;
+            }
+            $listClass = array_unique($listClass);
+
+            return [
+                'list_sinh_vien' =>$sinhvien,
+                'list_diem_ren_luyen' =>$diem,
+                'list_class' =>$listClass
+            ];
+        }
+        else {
+            for($i = 0; $i < count($sinhvien); $i++){
+                if($sinhvien[$i]->class == $class){
+                    $listSinhVienLop[$i] = $sinhvien[$i];
+                    $listSinhVienLop[$i]->point = 0;
+                    for($j = 0; $j < count($diem)-1 ; $j++) {
+                        if($diem[$j]->mssv == $listSinhVienLop[$i]->mssv){
+                            $listSinhVienLop[$i]->point = $diem[$j]->point_total;
+                        }
+                    }
+                    $listClass[$i] = $sinhvien[$i]->class;
+                }
+
+            }
+            $listSinhVienLop = array_unique($listSinhVienLop);
+            return [
+                'list_sinh_vien' =>$listSinhVienLop,
+                'list_diem_ren_luyen' =>$diem,
+                'list_class' =>$listClass
+            ];
+        }
 
     }
 }
