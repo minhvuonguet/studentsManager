@@ -30,20 +30,29 @@ use App\Models\P_Khoa;
 
 
 class AdminControler extends Controller {
+   
+
     public function getLogin() {
         return view('admin.login');
     }
+    
     public function postLogin(Request $request){ 
-        if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>2 ]) ||
-            Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>1 ]) ) {
+        if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>1 ]) ) {
             $use_ = new User();
             echo ("abc");
             return view('admin.adminManager');
         }
+        if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>2 ]) ) {
+            $use_ = new User();
+            echo ("abc");
+            return view('layouts.van_phong_doan');
+        }
         else if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>3 ])) {
             $use_ = new User();
             return redirect()->route('ViewUser');
-        } else {
+        }
+
+        else {
             return redirect()->route('login')->with(
                 ['flash_level' => 'danger', 'flash_message' => 'login error, Please check your name or password and try again']
             )->withInput();
@@ -54,8 +63,10 @@ class AdminControler extends Controller {
         return view('admin.adminManager');
     }
     public function ViewUser() {
-        return view('Employee.indexStudents');
+        return view('layouts.sinh_vien');
     }
+
+
     public function getLogout() {
         Auth::logout(); // logout user
         return Redirect()->route('login'); //redirect back to login
@@ -242,6 +253,9 @@ class AdminControler extends Controller {
                         $sinh_vien_new->office = 'Sinh Viên';
                         $sinh_vien_new->birthday = $value->birthday;
                         $sinh_vien_new->class = $value->class;
+
+
+
                         $sinh_vien_new->save();
 
                         $Point::updateOrCreate(
@@ -274,7 +288,7 @@ class AdminControler extends Controller {
                             [
                                 'point_cong_tac_sv'=> $diem_cong,
                                 'mssv'=> $value->mssv,
-                                'note' => $value-> office
+                                'note' => $value-> office,
                             ]
                         );
 
@@ -284,6 +298,143 @@ class AdminControler extends Controller {
                 }
             });
         }
+
+        // khen thuong
+
+        else if($request->type_file == 'list_ad_class_khen_thuong') {
+
+            Excel::load($request->fileExcels, function($reader){
+                $results = $reader->all();
+                foreach ($results as $key=>$value) {
+                    $tmp = Sinh_Vien::find($value->mssv);
+                    if($tmp ) {
+
+                        $ctsv = new P_Cong_Tac_SV();
+                        $form_diem = Form_Diem::all();
+                        $diem_cong = $form_diem[0]->cong_giu_chuc_vu;
+
+                        $ctsv::updateOrCreate(
+                            [ 'mssv'=> $value->mssv, ],
+                            [
+                                'point_cong_tac_sv'=> $diem_cong,
+                                'mssv'=> $value->mssv,
+                                'khen_thuong' => $value->khen_thuong,
+                            ]
+                        );
+
+                        $sinhvien = new Sinh_Vien();
+                        $sinhvien::updateOrCreate(  [ 'mssv'=> $value->mssv, ], [ 'khen_thuong'=> $value->khen_thuong, ] );
+                    }
+                }
+            });
+        }
+
+
+
+
+
+        // bang diem
+
+        else if($request->type_file == 'list_ad_class_bang_diem') {
+
+            Excel::load($request->fileExcels, function($reader){
+                $results = $reader->all();
+                foreach ($results as $key=>$value) {
+                    $tmp = Sinh_Vien::find($value->mssv);
+                    if($tmp ) {
+
+                        $ctsv = new P_Cong_Tac_SV();
+                        $form_diem = Form_Diem::all();
+                        $diem_cong = $form_diem[0]->cong_giu_chuc_vu;
+
+                        $ctsv::updateOrCreate(
+                            [ 'mssv'=> $value->mssv, ],
+                            [
+                                'point_cong_tac_sv'=> $diem_cong,
+                                'mssv'=> $value->mssv,
+                                'trung_binh' => $value-> trung_binh,
+                                'tich_luy' => $value-> tich_luy,
+                                'xep_loai' => $value-> xep_loai,
+
+                            ]
+                        );
+
+                        $sinhvien = new Sinh_Vien();
+                        $sinhvien::updateOrCreate(  [ 'mssv'=> $value->mssv, ], [ 'trung_binh'=> $value->trung_binh, ] );
+                        $sinhvien::updateOrCreate(  [ 'mssv'=> $value->mssv, ], [ 'tich_luy'=> $value->tich_luy, ] );
+                        $sinhvien::updateOrCreate(  [ 'mssv'=> $value->mssv, ], [ 'xep_loai'=> $value->xep_loai, ] );
+                    }
+                }
+            });
+        }
+
+        else if($request->type_file == 'list_nghien_cuu_khoa_hoc') {
+
+            Excel::load($request->fileExcels, function($reader){
+                $results = $reader->all();
+                foreach ($results as $key=>$value) {
+                    $tmp = Sinh_Vien::find($value->mssv);
+                    if($tmp ) {
+
+                        $ctsv = new P_Cong_Tac_SV();
+                        $form_diem = Form_Diem::all();
+                        $diem_cong = $form_diem[0]->cong_giu_chuc_vu;
+
+                        $ctsv::updateOrCreate(
+                            [ 'mssv'=> $value->mssv, ],
+                            [
+                                'point_cong_tac_sv'=> $diem_cong,
+                                'mssv'=> $value->mssv,
+                                'de_tai' => $value-> de_tai,
+                                'giai_thuong' => $value-> giai_thuong,
+
+
+                            ]
+                        );
+
+                        $sinhvien = new Sinh_Vien();
+                        $sinhvien::updateOrCreate(  [ 'mssv'=> $value->mssv, ], [ 'de_tai'=> $value->de_tai, ] );
+                        $sinhvien::updateOrCreate(  [ 'mssv'=> $value->mssv, ], [ 'giai_thuong'=> $value->giai_thuong, ] );
+                    }
+                }
+            });
+        }
+
+        else if($request->type_file == 'list_vi_pham_quyche_thi') {
+
+            Excel::load($request->fileExcels, function($reader){
+                $results = $reader->all();
+                foreach ($results as $key=>$value) {
+                    $tmp = Sinh_Vien::find($value->mssv);
+                    if($tmp ) {
+
+                        $ctsv = new P_Cong_Tac_SV();
+                        $form_diem = Form_Diem::all();
+                        $diem_cong = $form_diem[0]->cong_giu_chuc_vu;
+
+                        $ctsv::updateOrCreate(
+                            [ 'mssv'=> $value->mssv, ],
+                            [
+                                'point_cong_tac_sv'=> $diem_cong,
+                                'mssv'=> $value->mssv,
+                                'mon_vi_pham' => $value-> mon_vi_pham,
+                                'ngay_vp' => $value-> ngay_vp,
+
+
+                            ]
+                        );
+
+                        $sinhvien = new Sinh_Vien();
+                        $sinhvien::updateOrCreate(  [ 'mssv'=> $value->mssv, ], [ 'mon_vi_pham'=> $value->mon_vi_pham, ] );
+                        $sinhvien::updateOrCreate(  [ 'mssv'=> $value->mssv, ], [ 'ngay_vp'=> $value->ngay_vp, ] );
+                        $sinhvien::updateOrCreate(  [ 'mssv'=> $value->mssv, ], [ 'xep_loai'=> $value->xep_loai, ] );
+                    }
+                }
+            });
+        }
+
+
+
         return Redirect()->route('listclass');
     }
     public function listclass() {
@@ -307,6 +458,150 @@ class AdminControler extends Controller {
             'list_class' =>$listClass
         ]);
     }
+
+    public function list_sinh_vien() {
+        $sinhvien = Sinh_Vien::all();
+        $diem = Points::all();
+        $listClass = [];
+        for($i = 0; $i < count($sinhvien); $i++){
+            $sinhvien[$i]->point = 0;
+            for($j = 0; $j < count($diem)-1 ; $j++) {
+                if($diem[$j]->mssv == $sinhvien[$i]->mssv){
+                    $sinhvien[$i]->point = $diem[$j]->point_total;
+                }
+            }
+            $listClass[$i] = $sinhvien[$i]->class;
+        }
+        $listClass = array_unique($listClass);
+
+        return View('admin.done_import')->with([
+            'list_sinh_vien' =>$sinhvien,
+            'list_diem_ren_luyen' =>$diem,
+            'list_class' =>$listClass
+        ]);
+    }
+
+
+    // danh sach doan vien
+
+    public function listDoanVien() {
+        $sinhvien = Sinh_Vien::all();
+        $diem = Points::all();
+        $listClass = [];
+        for($i = 0; $i < count($sinhvien); $i++){
+            $sinhvien[$i]->point = 0;
+            for($j = 0; $j < count($diem)-1 ; $j++) {
+                if($diem[$j]->mssv == $sinhvien[$i]->mssv){
+                    $sinhvien[$i]->point = $diem[$j]->point_total;
+                }
+            }
+            $listClass[$i] = $sinhvien[$i]->class;
+        }
+        $listClass = array_unique($listClass);
+
+        return View('admin.doanVien.listDoanVien')->with([
+            'list_sinh_vien' =>$sinhvien,
+            'list_diem_ren_luyen' =>$diem,
+            'list_class' =>$listClass
+        ]);
+    }
+
+    // demo new
+    public function demo() {
+        $sinhvien = Sinh_Vien::all();
+        $diem = Points::all();
+        $listClass = [];
+        for($i = 0; $i < count($sinhvien); $i++){
+            $sinhvien[$i]->point = 0;
+            for($j = 0; $j < count($diem)-1 ; $j++) {
+                if($diem[$j]->mssv == $sinhvien[$i]->mssv){
+                    $sinhvien[$i]->point = $diem[$j]->point_total;
+                }
+            }
+            $listClass[$i] = $sinhvien[$i]->class;
+        }
+        $listClass = array_unique($listClass);
+
+        return View('admin.doanvien')->with([
+            'list_sinh_vien' =>$sinhvien,
+            'list_diem_ren_luyen' =>$diem,
+            'list_class' =>$listClass
+        ]);
+    }
+    
+    // co van hoc tap 
+
+    public function listCoVanHocTap() {
+        $sinhvien = Sinh_Vien::all();
+        $diem = Points::all();
+        $listClass = [];
+        for($i = 0; $i < count($sinhvien); $i++){
+            $sinhvien[$i]->point = 0;
+            for($j = 0; $j < count($diem)-1 ; $j++) {
+                if($diem[$j]->mssv == $sinhvien[$i]->mssv){
+                    $sinhvien[$i]->point = $diem[$j]->point_total;
+                }
+            }
+            $listClass[$i] = $sinhvien[$i]->class;
+        }
+        $listClass = array_unique($listClass);
+
+        return View('admin.coVanHocTap.listCoVanHocTap')->with([
+            'list_sinh_vien' =>$sinhvien,
+            'list_diem_ren_luyen' =>$diem,
+            'list_class' =>$listClass
+        ]);
+    }
+
+    public function khenThuong() {
+        $sinhvien = Sinh_Vien::all();
+        $diem = Points::all();
+        $listClass = [];
+        for($i = 0; $i < count($sinhvien); $i++){
+//            $sinhvien[$i]->point = 0;
+//            for($j = 0; $j < count($diem)-1 ; $j++) {
+//                if($diem[$j]->mssv == $sinhvien[$i]->mssv){
+//                    $sinhvien[$i]->point = $diem[$j]->point_total;
+//                }
+//            }
+            $listClass[$i] = $sinhvien[$i]->class;
+        }
+        $listClass = array_unique($listClass);
+
+        return View('admin.khenThuong.khen_thuong')->with([
+            'list_sinh_vien' =>$sinhvien,
+            'list_diem_ren_luyen' =>$diem,
+            'list_class' =>$listClass
+        ]);
+    }
+//    public function khenThuong() {
+//        $sinhvien = Sinh_Vien::all();
+//        $diem = Points::all();
+//        $listClass = [];
+//        for($i = 0; $i < count($sinhvien); $i++){
+//            $sinhvien[$i]->point = 0;
+//            for($j = 0; $j < count($diem)-1 ; $j++) {
+//                if($diem[$j]->mssv == $sinhvien[$i]->mssv){
+//                    $sinhvien[$i]->point = $diem[$j]->point_total;
+//                }
+//            }
+//            $listClass[$i] = $sinhvien[$i]->khen_thuong;
+//        }
+//        $listClass = array_unique($listClass);
+//
+//        return View('admin.khenThuong.khen_thuong')->with([
+//            'list_sinh_vien' =>$sinhvien,
+//            'list_diem_ren_luyen' =>$diem,
+//            'list_class' =>$listClass
+//        ]);
+//    }
+    
+    // xu ly phan hoi 
+    
+    public function phanhoi(){
+        return view('admin.phanHoi.phan_hoi');
+    }
+
     public function listofclass ($class) {
         $sinhvien = Sinh_Vien::all();
         $diem = Points::all();

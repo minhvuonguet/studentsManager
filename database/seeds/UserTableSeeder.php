@@ -21,7 +21,7 @@ class UserTableSeeder extends Seeder
             'username'=>'phongctsv',
             'password'=>Hash::make('phongctsv'),
             'mssv' => 13000001,
-            'id_role'=>2
+            'id_role'=>1
         ]);
         User::create([
             'username'=>'vanphongdoan',
@@ -36,28 +36,28 @@ class UserTableSeeder extends Seeder
             'id_role'=>3
         ]);
         User::create([
-            'username'=>'phuongdd_58',
-            'password'=>Hash::make('phuongdd_58'),
+            'username'=>'phongKHCN',
+            'password'=>Hash::make('phongKHCN'),
             'mssv' => 13020553,
             'id_role'=>2
         ]);
         User::create([
-            'username'=>'taikhoancap1',
-            'password'=>Hash::make('taikhoancap1'),
+            'username'=>'vanphongkhoa',
+            'password'=>Hash::make('vanphongkhoa'),
             'mssv' => 13020554,
-            'id_role'=>1
+            'id_role'=>2
         ]);
         User::create([
-            'username'=>'taikhoancap2',
-            'password'=>Hash::make('taikhoancap2'),
+            'username'=>'covanhoctap',
+            'password'=>Hash::make('covanhoctap'),
             'mssv' => 13020555,
             'id_role'=>2
         ]);
         User::create([
-            'username'=>'taikhoancap3',
-            'password'=>Hash::make('taikhoancap3'),
+            'username'=>'phongdaotao',
+            'password'=>Hash::make('phongdaotao'),
             'mssv' => 13020556,
-            'id_role'=>3
+            'id_role'=>2
         ]);
     }
 }

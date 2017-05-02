@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.index')
 @section('title',' List Admin')
 @section('content')
 
@@ -24,8 +24,19 @@
                 <th class="col-md-1"> Lớp </th>
                 <th class="col-md-1"> Chức vụ </th>
                 <th class="col-md-2"> Ngày Sinh</th>
-                <th class="col-md-2"> email </th>
+                {{--<th class="col-md-2"> email </th>--}}
                 <th class="col-md-1"> Điểm rèn luyện </th>
+                <th class="col-md-1"> Khen Thưởng  </th>
+                {{--<th class="col-md-1">Điểm TB  </th>--}}
+                {{--<th class="col-md-1">Điểm TL  </th>--}}
+                {{--<th class="col-md-1">Xếp Loại  </th>--}}
+                {{--<th class="col-md-1">Môn VP </th>--}}
+                {{--<th class="col-md-1">Ngày VP  </th>--}}
+                <th class="col-md-1"> Đề Tài  </th>
+                <th class="col-md-1"> Giải Thưởng  </th>
+                <th class="col-md-1"> Vi Pham SHL </th>
+
+
             </tr>
             {{--*/  $dem = 1 /*--}}
             @foreach($list_sinh_vien as $sinh_vien)
@@ -37,8 +48,20 @@
                     <td >{{$sinh_vien->class}} </td>
                     <td >{{$sinh_vien->chuc_vu}} </td>
                     <td >{{$sinh_vien->birthday}} </td>
-                    <td >{{$sinh_vien->email}} </td>
+                    {{--<td >{{$sinh_vien->email}} </td>--}}
                     <td> {{$sinh_vien->point}} </td>
+                    <td >{{$sinh_vien->khen_thuong}} </td>
+                    {{--<td >{{$sinh_vien->trung_binh}} </td>--}}
+                    {{--<td >{{$sinh_vien->tich_luy}} </td>--}}
+                    {{--<td >{{$sinh_vien->xep_loai}} </td>--}}
+                    {{--<td >{{$sinh_vien->mon_vi_pham}} </td>--}}
+                    {{--<td >{{$sinh_vien->ngay_vp}} </td>--}}
+                    <td >{{$sinh_vien->de_tai}} </td>
+                    <td >{{$sinh_vien->giai_thuong}} </td>
+                    <td >{{$sinh_vien->vi_pham_shl}} </td>
+
+
+
                 </tr>
                 {{--*/ $dem++ /*--}}
 
@@ -79,6 +102,15 @@
                                     '<td>' + value.birthday + '</td>' +
                                     '<td>' + value.email + '</td>' +
                                     '<td>' + value.point + '</td>' +
+                                    '<td>' + value.khen_thuong + '</td>' +
+//                                    '<td>' + value.trung_binh + '</td>' +
+//                                     '<td>' + value.tich_luy + '</td>' +
+//                                '<td>' + value.mon_vi_pham + '</td>' +
+//                                '<td>' + value.ngay_vp + '</td>' +
+                                '<td>' + value.de_tai + '</td>' +
+                                '<td>' + value.giai_thuong + '</td>' +
+
+
                                 '</tr>' );
                         });
                         $('.tong_sinh_vien').text('Tổng số sinh viên trong danh sách này:' +length);

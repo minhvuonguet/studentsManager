@@ -13,4 +13,7 @@ class P_Khoa extends Model
     public static function getTableName() {
         return with(new static)->getTable();
     }
+
+
+
 }

@@ -47,76 +47,48 @@
             </div>
 
             <ul class="nav nav-sidebar">
+
                 <li class=" nav-active active"><a href="javascript:void(0)"><i class="icon-home"></i><span>Admin Manager</span></a></li>
                 <li class="nav-parent">
                     <a href="{{ URL::to('formdiem') }}" class="test_"><i class="icon-puzzle"></i><span> Form điểm rèn luyện </span> </a>
                 </li>
                 <li class="nav-parent">
-                    <a href="{{ URL::to('newclass') }}" class="test_"><i class="icon-puzzle"></i><span>Thêm danh sách lớp</span> </a>
+                    <a href="{{ URL::to('newclass') }}" class="test_"><i class="icon-puzzle"></i><span> Import Danh Sách</span> </a>
                 </li>
                 <li class="nav-parent">
-                    <a href="{{ URL::to('listclass') }}" class="test_"><i class="icon-puzzle"></i><span>Xem danh sách</span> </a>
+                    <a href="{{ URL::to('done_import') }}" class="test_"><i class="icon-puzzle"></i><span>Xem danh sách</span> </a>
                 </li>
-                {{--<li class="nav-parent">--}}
-                    {{--<a href="{{URL::to('adstudents')}}"><i class="icon-bulb"></i><span> Thêm danh sách cán bộ lớp </span> </a>--}}
-                {{--</li>--}}
+                <li class="nav-parent">
+                    <a href="{{ URL::to('coVanHocTap.listCoVanHocTap') }}" class="test_"><i class="icon-puzzle"></i><span>Danh Sách Cố Vấn Học Tập </span> </a>
+                </li>
+                <li class="nav-parent">
+                    <a href="{{ URL::to('doanVien.listDoanVien') }}" class="test_"><i class="icon-puzzle"></i><span>Danh Sách Vi Phạm </span> </a>
+                </li>
+                <li class="nav-parent">
+                    <a href="{{ URL::to('phanHoi.phan_hoi') }}" class="test_"><i class="icon-puzzle"></i><span>Xử Lý Phản Hồi </span> </a>
+                </li>
+                <li class="nav-parent">
+                    <a href="{{ URL::to('khenThuong.khen_thuong') }}" class="test_"><i class="icon-puzzle"></i><span>Khen Thưởng </span> </a>
+                </li>
+
                 <li class="nav-parent">
                     <a href="{{URL::to('tinhdiem')}}"><i class="icon-screen-desktop"></i><span>Tính điểm</span> </a>
 
                 </li>
             </ul>
 
-            {{--<ul class="nav nav-sidebar">--}}
-                {{--<li class=" nav-active active"><a href="javascript:void(0)"><i class="icon-home"></i><span>Department management </span></a></li>--}}
-                {{--<li class="nav-parent ">--}}
-                    {{--<a href="{{URL::to('newdepartment')}}"><i class="icon-puzzle "></i><span class="menu_active_border" >Add department</span> </a>--}}
-                {{--</li>--}}
-                {{--<li class="nav-parent">--}}
-                    {{--<a href="{{URL::to('listdepartment')}}"><i class="icon-bulb"></i><span> List departments</span> </a>--}}
-                {{--</li>--}}
 
-
-            {{--</ul>--}}
-
-            {{--<ul class="nav nav-sidebar">--}}
-                {{--<li class=" nav-active active"><a href="javascript:void(0)"><i class="icon-home"></i><span>Employee management  </span></a></li>--}}
-                {{--<li class="nav-parent">--}}
-                    {{--<a href="newemployee"><i class="icon-puzzle"></i><span>New employee</span> </a>--}}
-                {{--</li>--}}
-                {{--<li class="nav-parent">--}}
-                    {{--<a href="{{URL::to('listemployee')}}"><i class="icon-bulb"></i><span> List Employee</span> </a>--}}
-                {{--</li>--}}
-
-            {{--</ul>--}}
         </div>
     </div>
 
     <div class="main-content">
         <!-- BEGIN TOPBAR -->
         <div class="topbar">
-            {{--<div class="header-left">--}}
-                {{--<div class="topnav">--}}
-                    {{--<a class="menutoggle" href="#" data-toggle="sidebar-collapsed"><span class="menu__handle"><span>Menu</span></span></a>--}}
-                    {{--<ul class="nav nav-icons">--}}
-                        {{--<li><a href="#" class="toggle-sidebar-top"><span class="icon-user-following"></span></a></li>--}}
-                        {{--<li><a href="mailbox.html"><span class="octicon octicon-mail-read"></span></a></li>--}}
-                        {{--<li><a href="#"><span class="octicon octicon-flame"></span></a></li>--}}
-                        {{--<li><a href="builder-page.html"><span class="octicon octicon-rocket"></span></a></li>--}}
-                    {{--</ul>--}}
-                {{--</div>--}}
-            {{--</div>--}}
+
             <div class="header-right">
                 <ul class="header-menu nav navbar-nav">
                     <li class="dropdown" id="user-header">
-                        {{--<a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">--}}
-                            {{--@if(Auth::user()->image)--}}
-                                {{--<img src="public/uploads/admin_img/{{Auth::user()->image}}" alt="user image">--}}
-                            {{--@else--}}
-                                {{--<img src="public/assets/Admin/images/default.png" alt="user image">--}}
-                            {{--@endif--}}
 
-                            {{--<span class="username">Hi, {{Auth::user()->username}}</span>--}}
-                        {{--</a>--}}
                     </li>
                     <li class="logout_Admin">
                         <a href="{{ URL::to('logout') }}"><i class="icon-logout"></i><span>Logout</span></a>
@@ -127,31 +99,13 @@
         </div>
         <div class="page-content page-thin ">
             <div class="col-md-12">
-                {{--@if($errors->any())--}}
-                    {{--<div class="alert auto-hide alert-waring">--}}
-                        {{--something went wrong here!--}}
-                    {{--</div>--}}
-                {{--@endif--}}
-                {{--<div class="col-md-8 col-md-offset-3">--}}
-                    {{--@if(Session::has('flash_message'))--}}
-                        {{--<div class="alert auto-hide alert-{!! Session::has('flash_level')?Session::get('flash_level'):'default'--}}
-                 {{--!!}">--}}
-                            {{--{!! Session::get('flash_message') !!}--}}
-                        {{--</div>--}}
-                    {{--@endif--}}
-                {{--</div>--}}
+
                 <div class="row">
                     @yield('content')
                 </div>
             </div> <!-- end .page-content-->
         </div> <!-- end .main-content-->
-        {{--<footer>--}}
-            {{--<div class="F_infor">--}}
-                {{--<h4 class="text-center"> Developed by MVH Team!</h4>--}}
-                {{--<h5 class="text-center"> Contact us: luk.mink@gmail.com </h5>--}}
-                {{--<h5 class="text-center"> Phone: 0972 114 187</h5>--}}
-            {{--</div>--}}
-        {{--</footer>--}}
+
     </div>
 
 </body>
