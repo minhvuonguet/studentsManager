@@ -47,7 +47,27 @@ class AdminControler extends Controller {
             echo ("abc");
             return view('layouts.van_phong_doan');
         }
-        else if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>3 ])) {
+        if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>3 ]) ) {
+            $use_ = new User();
+            echo ("abc");
+            return view('layouts.van_phong_khoa');
+        }
+        if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>4 ]) ) {
+            $use_ = new User();
+            echo ("abc");
+            return view('layouts.phong_khcn');
+        }
+        if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>5 ]) ) {
+            $use_ = new User();
+            echo ("abc");
+            return view('layouts.co_van_hoc_tap');
+        }
+        if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>6 ]) ) {
+            $use_ = new User();
+            echo ("abc");
+            return view('layouts.phong_dao_tao');
+        }
+        else if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>7 ])) {
             $use_ = new User();
             return redirect()->route('ViewUser');
         }
