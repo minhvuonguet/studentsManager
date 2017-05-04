@@ -21,7 +21,17 @@ class CreateSinhViensTable extends Migration
             $table->string('email');
             $table->string('chuc_vu');
             $table->date('birthday');
-            // $table->primary('mssv');
+            $table->string('khen_thuong');
+            $table->string('trung_binh');
+            $table->string('tich_luy');
+            $table->string('xep_loai');
+            $table->string('mon_vi_pham');
+            $table->date('ngay_vp');
+            $table->string('de_tai');
+            $table->string('giai_thuong');
+            $table->string('vi_pham_shl');
+
+
             $table->timestamps();
         });
     }

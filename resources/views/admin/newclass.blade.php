@@ -8,8 +8,17 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
         <h1> Thêm mới danh sách </h1>
         <select name="type_file">
-            <option selected value="list_class" > Danh sách lớp</option>
-            <option value="list_ad_class"> Danh sách cán bộ lớp</option>
+
+            {{--@if(Auth::user()->username == 'vanphongdoan')--}}
+                <option selected value="list_class" > Danh sách lớp</option>
+                <option value="list_ad_class"> Danh sách cán bộ lớp</option>
+            {{--@endif--}}
+
+            <option value="list_ad_class_bang_diem"> Kết Quả Học Tập </option>
+            <option value="list_ad_class_khen_thuong"> Khen Thưởng </option>
+            <option value="list_vi_pham_quyche_thi"> Vi Phạm Quy Chế Thi </option>
+            <option value="list_nghien_cuu_khoa_hoc"> Nghiên Cứu Khoa Học </option>
+            <option value="list_vi_pham_sh_lop"> Vi Phạm Sinh Hoạt Lớp  </option>
         </select>
         {{--<div class="form-group">--}}
             {{--<label for="classname">Tên lớp</label>--}}
@@ -22,6 +31,8 @@
         </div>
 
     </form>
+
+
 </div>
 
 @stop

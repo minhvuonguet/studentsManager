@@ -23,7 +23,9 @@ class UserTableSeeder extends Seeder
             'password'=>Hash::make('phongctsv'),
             'email'=>'phongctsv@gmail.com',
             'mssv' => 2,
-            'id_role'=>2
+            'id_role'=>2,
+            'mssv' => 13000001,
+            'id_role'=>1
         ]);
 
 
@@ -61,7 +63,11 @@ class UserTableSeeder extends Seeder
             'password'=>Hash::make('covank58cc'),
             'email'=>'covank58cc@gmail.com',
             'mssv' => 7,
-            'id_role'=>4
+            'id_role'=>4,
+            'username'=>'phongKHCN',
+            'password'=>Hash::make('phongKHCN'),
+            'mssv' => 13020553,
+            'id_role'=>2
         ]);
 
         User::create([
@@ -80,8 +86,25 @@ class UserTableSeeder extends Seeder
             'username'=>'students3',
             'password'=>Hash::make('students3'),
             'mssv' => 13000005,
-            'id_role'=>3
+            'id_role'=>3,
+            'username'=>'vanphongkhoa',
+            'password'=>Hash::make('vanphongkhoa'),
+            'mssv' => 13020554,
+            'id_role'=>2
         ]);
+//        User::create([
+//            'username'=>'covanhoctap',
+//            'password'=>Hash::make('covanhoctap'),
+//            'mssv' => 13020555,
+//            'id_role'=>2
+//        ]);
+//        User::create([
+//            'username'=>'phongdaotao',
+//            'password'=>Hash::make('phongdaotao'),
+//            'mssv' => 13020556,
+//            'id_role'=>2
+//>>>>>>> bbddd39cd7253dfbc7f2ebdbecec57d1e02db489
+//        ]);
 
     }
 }
