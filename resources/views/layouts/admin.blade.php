@@ -36,8 +36,9 @@
                         <img src="public/assets/Admin/images/default.png" class="img-responsive img-circle" alt="friend 8">
                     {{--@endif--}}
                 </div>
-                <h4></h4>
-                {{--{{Auth::user()->username}}--}}
+                <h4>
+                {{Auth::user()->username}}
+                </h4>
                 <div class="dropdown user-login">
                     <form action="searchemployee" method="get" class="searchform" id="search-results">
                         <input class="form-control" name="name" placeholder="Search employee..." type="text">
@@ -48,22 +49,95 @@
 
             <ul class="nav nav-sidebar">
                 <li class=" nav-active active"><a href="javascript:void(0)"><i class="icon-home"></i><span>Admin Manager</span></a></li>
-                <li class="nav-parent">
-                    <a href="{{ URL::to('formdiem') }}" class="test_"><i class="icon-puzzle"></i><span> Form điểm rèn luyện </span> </a>
-                </li>
-                <li class="nav-parent">
-                    <a href="{{ URL::to('newclass') }}" class="test_"><i class="icon-puzzle"></i><span>Thêm danh sách lớp</span> </a>
-                </li>
+
+                @if(Auth::user()->username == 'admin1' || Auth::user()->username == 'phongctsv')
+                    <li class="nav-parent">
+                        <a href="{{ URL::to('formdiem') }}" class="test_"><i class="icon-puzzle"></i><span> Form điểm rèn luyện </span> </a>
+                    </li>
+
+                    <li class="nav-parent">
+                        <a href="{{ URL::to('newclass') }}" class="test_"><i class="icon-puzzle"></i><span>Thêm danh sách lớp</span> </a>
+                    </li>
+
+                    {{--Danh sách sinh viên vi phạm ý thức công dân và vi phạm ý thức sinh viên--}}
+                    <li class="nav-parent">
+                        <a href="{{ URL::to('newclass') }}" class="test_"><i class="icon-puzzle"></i><span>Thêm Danh sách vi phạm </span> </a>
+                    </li>
+
+                    <li class="nav-parent">
+                        <a href="{{ URL::to('newclass') }}" class="test_"><i class="icon-puzzle"></i><span>Thêm Danh sách khen thưởng</span> </a>
+                    </li>
+
+                    <li class="nav-parent">
+                        <a href="{{ URL::to('newclass') }}" class="test_"><i class="icon-puzzle"></i><span>Phản hồi từ sinh viên </span> </a>
+                    </li>
+
+                    <li class="nav-parent">
+                        <a href="{{URL::to('tinhdiem')}}"><i class="icon-screen-desktop"></i><span>Tính điểm</span> </a>
+                    </li>
+                @endif
+
+                @if(Auth::user()->username == 'phongdaotao')
+
+                    <li class="nav-parent">
+                        <a href="{{URL::to('tinhdiem')}}"><i class="icon-screen-desktop"></i><span>Thêm danh sách điểm trung bình</span> </a>
+                    </li>
+
+                    <li class="nav-parent">
+                        <a href="{{URL::to('tinhdiem')}}"><i class="icon-screen-desktop"></i><span>Thêm danh sách vi phạm quy chế thi</span> </a>
+                    </li>
+
+                @endif
+
+                @if(Auth::user()->username == 'khoahoccongnghe')
+
+                    <li class="nav-parent">
+                        <a href="{{URL::to('tinhdiem')}}"><i class="icon-screen-desktop"></i><span>Thêm danh sách nghiên cứu khoa học</span> </a>
+                    </li>
+
+                    <li class="nav-parent">
+                        <a href="{{URL::to('tinhdiem')}}"><i class="icon-screen-desktop"></i><span> Thêm danh sách sinh viên đạt giải </span> </a>
+                    </li>
+
+                @endif
+
+                @if(Auth::user()->username == 'vanphongdoan')
+
+                    <li class="nav-parent">
+                        <a href="{{URL::to('tinhdiem')}}"><i class="icon-screen-desktop"></i><span>Thêm sinh viên tham gia các hoạt động</span> </a>
+                    </li>
+
+                    <li class="nav-parent">
+                        <a href="{{URL::to('tinhdiem')}}"><i class="icon-screen-desktop"></i><span>Thêm danh sách sinh viên được khen thưởng </span> </a>
+                    </li>
+
+                @endif
+
+                @if(Auth::user()->username == 'vanphongkhoa')
+
+                    <li class="nav-parent">
+                        <a href="{{URL::to('tinhdiem')}}"><i class="icon-screen-desktop"></i><span>Thêm danh sách sinh viên vi phạm</span> </a>
+                    </li>
+
+
+                @endif
+
+                @if(Auth::user()->id_role == 4)
+
+                    <li class="nav-parent">
+                        <a href="{{URL::to('tinhdiem')}}"><i class="icon-screen-desktop"></i><span>Thêm danh sách vi phạm sinh hoạt lớp </span> </a>
+                    </li>
+
+
+                @endif
+
                 <li class="nav-parent">
                     <a href="{{ URL::to('listclass') }}" class="test_"><i class="icon-puzzle"></i><span>Xem danh sách</span> </a>
                 </li>
-                {{--<li class="nav-parent">--}}
-                    {{--<a href="{{URL::to('adstudents')}}"><i class="icon-bulb"></i><span> Thêm danh sách cán bộ lớp </span> </a>--}}
-                {{--</li>--}}
                 <li class="nav-parent">
-                    <a href="{{URL::to('tinhdiem')}}"><i class="icon-screen-desktop"></i><span>Tính điểm</span> </a>
-
+                    <a href="{{URL::to('adstudents')}}"><i class="icon-bulb"></i><span> Thống kê </span> </a>
                 </li>
+
             </ul>
 
             {{--<ul class="nav nav-sidebar">--}}
@@ -119,6 +193,7 @@
                         {{--</a>--}}
                     </li>
                     <li class="logout_Admin">
+                        {{--{{Auth::user()->username}}--}}
                         <a href="{{ URL::to('logout') }}"><i class="icon-logout"></i><span>Logout</span></a>
                     </li>
                 </ul>
@@ -161,7 +236,9 @@
 @section('script_')
     <script>
         $(document).ready(function(){
-            $('.alert').delay(4000).slideUp();
+            $('.nav-parent').click( function(){
+               console.log($(this));
+            });
         });
     </script>
 @show

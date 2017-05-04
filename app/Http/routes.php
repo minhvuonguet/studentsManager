@@ -13,7 +13,9 @@
 
 Route::get('/', function () {
     return view('Employee.indexStudents');
+
 });
+
 
 Route::get('/ctsv', function () {
     return view('');
@@ -23,6 +25,7 @@ Route::post('updateDB', ['as' => 'updateDB', 'uses' => 'DatabaseController@updat
 Route::get('readExcels', ['as' => 'readExcels', 'uses' => 'DatabaseController@readExcels']);
 
 Route::group(['middleware' => ['web']], function () {
+
     Route::get('/login', ['as' => 'login', 'uses' => 'AdminControler@getLogin']);
     Route::post('/postLogin', ['as' => 'postLogin', 'uses' => 'AdminControler@postLogin']);
     Route::get('ViewUser', ['as' => 'ViewUser', 'uses' => 'AdminControler@ViewUser']);
@@ -39,8 +42,12 @@ Route::group(['middleware' => ['web']], function () {
    // Route::get('tinhdiem', ['as'=>'tinhdiem', 'use'=>'CacularPont@tinhdiem']);
 
     Route::group(['middleware' => 'auth'], function () {
+     //   Route::get('/', ['as' => '/', 'uses' => 'AdminControler@ViewUser']);
         Route::get('list', ['as' => 'list', 'uses' => 'AdminControler@listUser']);
         Route::get('logout', ['as' => 'logout', 'uses' => 'AdminControler@getLogout']);
 
     });
 });
+//Route::auth();
+//
+//Route::get('/home', 'HomeController@index');

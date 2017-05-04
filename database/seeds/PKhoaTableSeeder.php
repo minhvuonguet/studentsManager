@@ -13,15 +13,15 @@ class PKhoaTableSeeder extends Seeder
     {
         P_Khoa::create([
             'point_khoa' =>5,
-            'mssv' => 13000001,
+            'mssv' => 13000003,
         ]);
         P_Khoa::create([
             'point_khoa' =>5,
-            'mssv' => 13000002,
+            'mssv' => 13000004,
         ]);
         P_Khoa::create([
             'point_khoa' =>10,
-            'mssv' => 13000003,
+            'mssv' => 13000005,
         ]);
     }
 }

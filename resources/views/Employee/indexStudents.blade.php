@@ -81,7 +81,7 @@
 
 
 
-
+                    {{--{{Auth::user()->username}}--}}
                     <table class="table table-bordered">
 
                         <thead>

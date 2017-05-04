@@ -13,17 +13,17 @@ class PDoanTableSeeder extends Seeder
     {
         P_Doan::create([
             'point_doan' =>5,
-            'mssv' => 13000001,
+            'mssv' => 13000003,
 
         ]);
         P_Doan::create([
             'point_doan' =>0,
-            'mssv' => 13000002,
+            'mssv' => 13000004,
 
         ]);
         P_Doan::create([
             'point_doan' =>10,
-            'mssv' => 13000003,
+            'mssv' => 13000005,
 
         ]);
     }

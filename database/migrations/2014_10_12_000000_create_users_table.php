@@ -12,12 +12,14 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->engine = 'InnoDB';
+            $table->bigIncrements('id');
             $table->string('username')->unique();
+            $table->string('email');
             $table->string('password');
-            $table->integer('mssv')->unique();
+            $table->integer('mssv');
             $table->integer('id_role');
-            $table->primary('username');
-
+//            $table->primary('username');
+            $table->rememberToken();
             $table->foreign('id_role')
             ->references('id_role')
             ->on('roles')

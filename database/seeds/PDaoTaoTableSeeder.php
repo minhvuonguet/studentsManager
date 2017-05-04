@@ -13,12 +13,12 @@ class PDaoTaoTableSeeder extends Seeder
     {
         P_Dao_Tao::create([
             'point_dao_tao' =>0,
-            'mssv' => 13000000,
+            'mssv' => 13000003,
 
         ]);
         P_Dao_Tao::create([
             'point_dao_tao' =>5,
-            'mssv' => 13000001,
+            'mssv' => 13000004,
 
         ]);
     }
