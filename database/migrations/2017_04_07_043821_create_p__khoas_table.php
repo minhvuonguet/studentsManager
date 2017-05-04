@@ -18,13 +18,13 @@ class CreatePKhoasTable extends Migration
             $table->increments('id_p_khoa');
             $table->integer('point_khoa');
             $table->integer('mssv');
-            $table->string('note');
+            $table->string('vi_pham_sh_khoa');
        //     $table->primary('id_p_khoa');
-            $table->foreign('mssv')
-            ->references('mssv')
-            ->on('users')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
+//            $table->foreign('mssv')
+//            ->references('mssv')
+//            ->on('users')
+//            ->onDelete('cascade')
+//            ->onUpdate('cascade');
             $table->timestamps();
         });
     }

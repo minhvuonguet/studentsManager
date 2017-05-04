@@ -1,4 +1,4 @@
-@extends('layouts.van_phong_khoa')
+@extends('layouts.admin')
 @section('title',' List Admin')
 @section('content')
 
@@ -22,9 +22,11 @@
                 <th class="col-md-1"> MSSV </th>
                 <th class="col-md-3"> Họ Têm</th>
                 <th class="col-md-1"> Lớp </th>
-                <th class="col-md-1"> Chức vụ </th>
+
                 <th class="col-md-2"> Ngày Sinh</th>
-                <th class="col-md-2"> email </th>
+                <th class="col-md-1"> Điểm Trung Bình </th>
+                <th class="col-md-1"> Điểm Tích Lũy  </th>
+                <th class="col-md-1"> Điểm Xếp Loại  </th>
                 <th class="col-md-1"> Điểm rèn luyện </th>
             </tr>
             {{--*/  $dem = 1 /*--}}
@@ -35,9 +37,11 @@
                     <td>{{$sinh_vien->mssv}}</td>
                     <td >{{$sinh_vien->fullname}} </td>
                     <td >{{$sinh_vien->class}} </td>
-                    <td >{{$sinh_vien->chuc_vu}} </td>
+
                     <td >{{$sinh_vien->birthday}} </td>
-                    <td >{{$sinh_vien->email}} </td>
+                    <td> {{$sinh_vien->trung_binh}} </td>
+                    <td> {{$sinh_vien->tich_luy}} </td>
+                    <td> {{$sinh_vien->xep_loai}} </td>
                     <td> {{$sinh_vien->point}} </td>
 
                 </tr>
@@ -76,9 +80,11 @@
                                     '<td>' + value.mssv + '</td>' +
                                     '<td>' + value.fullname + '</td>' +
                                     '<td>' + value.class + '</td>' +
-                                    '<td>' + value.chuc_vu + '</td>' +
+
                                     '<td>' + value.birthday + '</td>' +
-                                    '<td>' + value.email + '</td>' +
+                                '<td>' + value.trung_binh + '</td>' +
+                                '<td>' + value.tich_luy + '</td>' +
+                                '<td>' + value.xep_loai + '</td>' +
                                     '<td>' + value.point + '</td>' +
                                 '</tr>' );
                         });

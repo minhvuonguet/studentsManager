@@ -1,4 +1,4 @@
-@extends('layouts.phong_dao_tao')
+@extends('layouts.admin')
 @section('title',' List Admin')
 @section('content')
 
@@ -22,8 +22,10 @@
             <th class="col-md-1"> MSSV </th>
             <th class="col-md-3"> Họ Têm</th>
             <th class="col-md-1"> Lớp </th>
-            <th class="col-md-1"> Môn Vi Phạm  </th>
             <th class="col-md-2"> Ngày Sinh</th>
+            <th class="col-md-1"> Môn Vi Phạm  </th>
+            <th class="col-md-1"> Ngày Vi Phạm  </th>
+
 
 
         </tr>
@@ -35,8 +37,10 @@
                 <td>{{$sinh_vien->mssv}}</td>
                 <td >{{$sinh_vien->fullname}} </td>
                 <td >{{$sinh_vien->class}} </td>
-                <td >{{$sinh_vien->chuc_vu}} </td>
+
                 <td >{{$sinh_vien->birthday}} </td>
+                <td >{{$sinh_vien->mon_vi_pham}} </td>
+                <td >{{$sinh_vien->ngay_vp}} </td>
 
 
 
@@ -76,8 +80,10 @@
                                     '<td>' + value.mssv + '</td>' +
                                     '<td>' + value.fullname + '</td>' +
                                     '<td>' + value.class + '</td>' +
-                                    '<td>' + value.chuc_vu + '</td>' +
+
                                     '<td>' + value.birthday + '</td>' +
+                                    '<td>' + value.mon_vi_pham + '</td>' +
+                                    '<td>' + value.ngay_vp + '</td>' +
 
 
                                     '</tr>' );

@@ -14,17 +14,15 @@ class CreatePDaoTaosTable extends Migration
     {
         Schema::create('p_dao_tao', function (Blueprint $table) {
           $table->engine = 'InnoDB';
-
           $table->increments('id_dao_tao');
           $table->integer('point_dao_tao');
           $table->integer('mssv');
-          $table->string('note');
-        //  $table->primary('id_dao_tao');
-          $table->foreign('mssv')
-          ->references('mssv')
-          ->on('users')
-          ->onDelete('cascade')
-          ->onUpdate('cascade');
+          $table->string('trung_binh');
+          $table->string('tich_luy');
+          $table->string('xep_loai');
+          $table->string('canh_bao_hv');
+            $table->string('mon_vi_pham');
+            $table->string('ngay_vp');
           $table->timestamps();
         });
     }

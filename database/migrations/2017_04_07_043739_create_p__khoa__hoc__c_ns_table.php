@@ -20,11 +20,11 @@ class CreatePKhoaHocCNsTable extends Migration
           $table->integer('mssv');
           $table->string('note');
      //     $table->primary('id_khoa_hoc_cn');
-          $table->foreign('mssv')
-          ->references('mssv')
-          ->on('users')
-          ->onDelete('cascade')
-          ->onUpdate('cascade');
+//          $table->foreign('mssv')
+//          ->references('mssv')
+//          ->on('users')
+//          ->onDelete('cascade')
+//          ->onUpdate('cascade');
           $table->timestamps();
         });
     }

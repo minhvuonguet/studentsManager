@@ -53,6 +53,9 @@ class AdminControler extends Controller {
             $request->session()->put('avatar',Auth::user()->avatar);
             return view('admin.adminManager');
         }
+
+
+
         else if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>3 ])) {
             $this->use_ = new User();
             $request->session()->put('username',Auth::user()->username);
@@ -255,6 +258,7 @@ class AdminControler extends Controller {
         return View('admin.newclass');
     }
     public function postnewclass (Request $request) {
+
         $classname = $request->clasname;
         $sinh_vien= new Sinh_Vien();
 
@@ -339,6 +343,34 @@ class AdminControler extends Controller {
             });
         }
 
+        // nghien cuu khoa hoc
+        else if($request->type_file == 'list_nghien_cuu_khoa_hoc') {
+            echo ($request->type_file );
+            Excel::load($request->fileExcels, function($reader){
+                $results = $reader->all();
+
+                foreach ($results as $key=>$value) {
+
+
+                    $p_khoa_hoc_cn = new P_Khoa_Hoc_CN();
+                    $form_diem = Form_Diem::all();
+                    $diem_cong = $form_diem[0]->cong_nckh;
+                    //   $Note  = "de tai: " + $value->de_tai + "giai thuong: " + $value->giai_thuong;
+                    $p_khoa_hoc_cn::updateOrCreate(
+                        [ 'mssv'=> $value->mssv, ],
+                        [
+                            'point_khoa_hoc_cn'=> $diem_cong,
+
+                            'note' => $value-> note,
+
+                        ]
+                    );
+
+
+                }
+            });
+        }
+
         // khen thuong
 
         else if($request->type_file == 'list_ad_class_khen_thuong') {
@@ -380,83 +412,151 @@ class AdminControler extends Controller {
             Excel::load($request->fileExcels, function($reader){
                 $results = $reader->all();
                 foreach ($results as $key=>$value) {
-                    $tmp = Sinh_Vien::find($value->mssv);
-                    if($tmp ) {
+//                    $tmp = Sinh_Vien::find($value->mssv);
+//                    if($tmp ) {
 
-                        $ctsv = new P_Cong_Tac_SV();
+                        $p_dao_tao = new P_Dao_Tao();
                         $form_diem = Form_Diem::all();
-                        $diem_cong = $form_diem[0]->cong_giu_chuc_vu;
+                        $diem_cong = $form_diem[0]->cong_hoc_luc;
 
-                        $ctsv::updateOrCreate(
+                        $p_dao_tao::updateOrCreate(
                             [ 'mssv'=> $value->mssv, ],
                             [
-                                'point_cong_tac_sv'=> $diem_cong,
-                                'mssv'=> $value->mssv,
+                                'point_dao_tao'=> $diem_cong,
+                              //  'mssv'=> $value->mssv,
                                 'trung_binh' => $value-> trung_binh,
                                 'tich_luy' => $value-> tich_luy,
                                 'xep_loai' => $value-> xep_loai,
 
                             ]
                         );
-
-                        $sinhvien = new Sinh_Vien();
-                        $sinhvien::updateOrCreate(  [ 'mssv'=> $value->mssv, ], [ 'trung_binh'=> $value->trung_binh, ] );
-                        $sinhvien::updateOrCreate(  [ 'mssv'=> $value->mssv, ], [ 'tich_luy'=> $value->tich_luy, ] );
-                        $sinhvien::updateOrCreate(  [ 'mssv'=> $value->mssv, ], [ 'xep_loai'=> $value->xep_loai, ] );
+//
+//                        $sinhvien = new Sinh_Vien();
+//                        $sinhvien::updateOrCreate(  [ 'mssv'=> $value->mssv, ], [ 'trung_binh'=> $value->trung_binh, ] );
+//                        $sinhvien::updateOrCreate(  [ 'mssv'=> $value->mssv, ], [ 'tich_luy'=> $value->tich_luy, ] );
+//                        $sinhvien::updateOrCreate(  [ 'mssv'=> $value->mssv, ], [ 'xep_loai'=> $value->xep_loai, ] );
+//
                     }
-                }
+    //            }
             });
         }
 
-        else if($request->type_file == 'list_nghien_cuu_khoa_hoc') {
+
+        // canh bao hoc vu
+        else if($request->type_file == 'list_ad_canh_bao_hv') {
+//        if(Auth::user()->username == 'congtacsinhvien')
+            Excel::load($request->fileExcels, function($reader){
+                $results = $reader->all();
+                foreach ($results as $key=>$value) {
+//                    $tmp = Sinh_Vien::find($value->mssv);
+//                    if($tmp ) {
+
+                    $p_dao_tao = new P_Dao_Tao();
+                    $form_diem = Form_Diem::all();
+                    $tru_diem = $form_diem[0]->tru_canh_cao;
+
+                    $p_dao_tao::updateOrCreate(
+                        [ 'mssv'=> $value->mssv, ],
+                        [
+                            'point_dao_tao'=> $tru_diem,
+                              //'mssv'=> $value->mssv,
+                            'canh_bao_hv' => $value-> canh_bao_hv,
+
+
+                        ]
+                    );
+//
+ //                       $p_dao_tao = new P_Dao_Tao();
+ //                       $p_dao_tao::updateOrCreate(  [ 'mssv'=> $value->mssv, ], [ 'canh_bao_hv'=> $value->canh_bao_hv, ] );
+//                        $sinhvien::updateOrCreate(  [ 'mssv'=> $value->mssv, ], [ 'tich_luy'=> $value->tich_luy, ] );
+//                        $sinhvien::updateOrCreate(  [ 'mssv'=> $value->mssv, ], [ 'xep_loai'=> $value->xep_loai, ] );
+//
+                }
+                //            }
+            });
+        }
+
+
+        // hoat dong doan
+        else if($request->type_file == 'list_ad_class_tham_gia_hoatdong') {
 
             Excel::load($request->fileExcels, function($reader){
                 $results = $reader->all();
                 foreach ($results as $key=>$value) {
-                    $tmp = Sinh_Vien::find($value->mssv);
-                    if($tmp ) {
+                    //  $tmp = Sinh_Vien::find($value->mssv);
+                    //  if($tmp ) {
 
-                        $ctsv = new P_Cong_Tac_SV();
-                        $form_diem = Form_Diem::all();
-                        $diem_cong = $form_diem[0]->cong_giu_chuc_vu;
-                        $Note  = "de tai: " + $value->de_tai + "giai thuong: " + $value->giai_thuong;
-                        $ctsv::updateOrCreate(
-                            [ 'mssv'=> $value->mssv, ],
-                            [
-                                'point_cong_tac_sv'=> $diem_cong,
-                                'mssv'=> $value->mssv,
-//                                'de_tai' => $value-> de_tai,
-//                                'giai_thuong' => $value-> giai_thuong,
-                                'note' =>$Note
+                    $p_Doan = new P_Doan();
+                    $form_diem = Form_Diem::all();
+                    $tru_diem = $form_diem[0]->tru_khong_tham_gia;
 
-                            ]
-                        );
+                    $p_Doan::updateOrCreate(
+                        [ 'mssv'=> $value->mssv, ],
+                        [
+                            'point_doan'=> $tru_diem,
+                            //     'mssv'=> $value->mssv,
+                            'tham_gia' => $value-> tham_gia,
 
-                        $sinhvien = new Sinh_Vien();
-                        $sinhvien::updateOrCreate(  [ 'mssv'=> $value->mssv, ], [ 'de_tai'=> $value->de_tai, ] );
-                        $sinhvien::updateOrCreate(  [ 'mssv'=> $value->mssv, ], [ 'giai_thuong'=> $value->giai_thuong, ] );
-                    }
+
+
+                        ]
+                    );
+
+
                 }
             });
         }
+
+        //khen_thuong_doan
+
+        else if($request->type_file == 'list_ad_khen_thuong_doan') {
+
+            Excel::load($request->fileExcels, function($reader){
+                $results = $reader->all();
+                foreach ($results as $key=>$value) {
+                    //  $tmp = Sinh_Vien::find($value->mssv);
+                    //  if($tmp ) {
+
+                    $p_Doan = new P_Doan();
+                    $form_diem = Form_Diem::all();
+                    $cong_diem = $form_diem[0]->cong_tham_gia_truong;
+
+                    $p_Doan::updateOrCreate(
+                        [ 'mssv'=> $value->mssv, ],
+                        [
+                            'point_doan'=> $cong_diem,
+                            //     'mssv'=> $value->mssv,
+                            'khen_thuong_doan' => $value-> khen_thuong_doan,
+
+
+
+                        ]
+                    );
+
+
+                }
+            });
+        }
+
+        // vi pham quy che thi
 
         else if($request->type_file == 'list_vi_pham_quyche_thi') {
 
             Excel::load($request->fileExcels, function($reader){
                 $results = $reader->all();
                 foreach ($results as $key=>$value) {
-                    $tmp = Sinh_Vien::find($value->mssv);
-                    if($tmp ) {
+                  //  $tmp = Sinh_Vien::find($value->mssv);
+                  //  if($tmp ) {
 
-                        $ctsv = new P_Cong_Tac_SV();
+                        $p_dao_tao = new P_Dao_Tao();
                         $form_diem = Form_Diem::all();
-                        $diem_cong = $form_diem[0]->cong_giu_chuc_vu;
+                        $tru_diem = $form_diem[0]->tru_khien_trach_thi;
 
-                        $ctsv::updateOrCreate(
+                        $p_dao_tao::updateOrCreate(
                             [ 'mssv'=> $value->mssv, ],
                             [
-                                'point_cong_tac_sv'=> $diem_cong,
-                                'mssv'=> $value->mssv,
+                                'point_cong_tac_sv'=> $tru_diem,
+                           //     'mssv'=> $value->mssv,
                                 'mon_vi_pham' => $value-> mon_vi_pham,
                                 'ngay_vp' => $value-> ngay_vp,
 
@@ -464,14 +564,41 @@ class AdminControler extends Controller {
                             ]
                         );
 
-                        $sinhvien = new Sinh_Vien();
-                        $sinhvien::updateOrCreate(  [ 'mssv'=> $value->mssv, ], [ 'mon_vi_pham'=> $value->mon_vi_pham, ] );
-                        $sinhvien::updateOrCreate(  [ 'mssv'=> $value->mssv, ], [ 'ngay_vp'=> $value->ngay_vp, ] );
-                        $sinhvien::updateOrCreate(  [ 'mssv'=> $value->mssv, ], [ 'xep_loai'=> $value->xep_loai, ] );
-                    }
+
                 }
             });
         }
+
+// sinh vien vi pham sh  cap khoa
+
+        else if($request->type_file == 'list_ad_class_vi_pham_khoa') {
+
+            Excel::load($request->fileExcels, function($reader){
+                $results = $reader->all();
+                foreach ($results as $key=>$value) {
+
+
+                    $p_khoa = new P_Khoa();
+                    $form_diem = Form_Diem::all();
+                    $tru_diem = $form_diem[0]->tru_phe_binh;
+
+                    $p_khoa::updateOrCreate(
+                        [ 'mssv'=> $value->mssv, ],
+                        [
+                            'point_khoa'=> $tru_diem,
+                            //     'mssv'=> $value->mssv,
+                            'vi_pham_sh_khoa' => $value-> vi_pham_sh_khoa,
+
+
+
+                        ]
+                    );
+
+
+                }
+            });
+        }
+
 
 
 

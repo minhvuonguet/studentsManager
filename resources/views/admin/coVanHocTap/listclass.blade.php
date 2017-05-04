@@ -1,4 +1,4 @@
-@extends('layouts.co_van_hoc_tap')
+@extends('layouts.admin')
 @section('title',' List Admin')
 @section('content')
 

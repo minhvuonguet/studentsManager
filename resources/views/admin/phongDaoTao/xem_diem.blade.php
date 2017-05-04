@@ -22,10 +22,11 @@
             <th class="col-md-1"> MSSV </th>
             <th class="col-md-3"> Họ Têm</th>
             <th class="col-md-1"> Lớp </th>
-            <th class="col-md-1"> Chức vụ </th>
             <th class="col-md-2"> Ngày Sinh</th>
 
-            <th class="col-md-1"> Điểm rèn luyện </th>
+            <th class="col-md-1"> Điểm Trung Bình </th>
+            <th class="col-md-1"> Điểm Tích Lũy  </th>
+            <th class="col-md-1"> Điểm Xếp Loại  </th>
         </tr>
         {{--*/  $dem = 1 /*--}}
         @foreach($list_sinh_vien as $sinh_vien)
@@ -35,10 +36,11 @@
                 <td>{{$sinh_vien->mssv}}</td>
                 <td >{{$sinh_vien->fullname}} </td>
                 <td >{{$sinh_vien->class}} </td>
-                <td >{{$sinh_vien->chuc_vu}} </td>
                 <td >{{$sinh_vien->birthday}} </td>
 
-                <td> {{$sinh_vien->point}} </td>
+                <td> {{$sinh_vien->trung_binh}} </td>
+                <td> {{$sinh_vien->tich_luy}} </td>
+                <td> {{$sinh_vien->xep_loai}} </td>
 
             </tr>
             {{--*/ $dem++ /*--}}
@@ -76,10 +78,11 @@
                                     '<td>' + value.mssv + '</td>' +
                                     '<td>' + value.fullname + '</td>' +
                                     '<td>' + value.class + '</td>' +
-                                    '<td>' + value.chuc_vu + '</td>' +
                                     '<td>' + value.birthday + '</td>' +
 
-                                    '<td>' + value.point + '</td>' +
+                                    '<td>' + value.trung_binh + '</td>' +
+                                    '<td>' + value.tich_luy + '</td>' +
+                                    '<td>' + value.xep_loai + '</td>' +
                                     '</tr>' );
                         });
                         $('.tong_sinh_vien').text('Tổng số sinh viên trong danh sách này:' +length);

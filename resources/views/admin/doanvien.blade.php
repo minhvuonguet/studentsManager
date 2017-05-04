@@ -1,4 +1,4 @@
-@extends('layouts.van_phong_doan')
+@extends('layouts.admin')
 @section('title',' List Admin')
 @section('content')
 
@@ -24,7 +24,6 @@
             <th class="col-md-1"> Lớp </th>
             <th class="col-md-1"> Đảng Viên </th>
             <th class="col-md-2"> Ngày Sinh</th>
-            <th class="col-md-2"> email </th>
             <th class="col-md-2"> doan_vien </th>
 
 
@@ -37,7 +36,7 @@
                 <td>{{$sinh_vien->mssv}}</td>
                 <td >{{$sinh_vien->fullname}} </td>
                 <td >{{$sinh_vien->class}} </td>
-                <td >{{$sinh_vien->chuc_vu}} </td>
+
                 <td >{{$sinh_vien->birthday}} </td>
                 <td >{{$sinh_vien->email}} </td>
                 <td >{{$sinh_vien->dang_vien}} </td>
@@ -80,9 +79,9 @@
                                     '<td>' + value.mssv + '</td>' +
                                     '<td>' + value.fullname + '</td>' +
                                     '<td>' + value.class + '</td>' +
-                                    '<td>' + value.chuc_vu + '</td>' +
+
                                     '<td>' + value.birthday + '</td>' +
-                                    '<td>' + value.email + '</td>' +
+
                                     '<td>' + value.dang_vien + '</td>' +
                                     '</tr>' );
                         });
