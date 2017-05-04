@@ -41,7 +41,7 @@ class AdminControler extends Controller {
     public function postLogin(Request $request){ 
         $request->session()->forget('username');
         $request->session()->forget('mssv');
-        $request->session()->forget('role_id');
+        $request->session()->forget('id_role');
         $request->session()->forget('avatar');
 
         if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>2 ]) ||
@@ -49,7 +49,7 @@ class AdminControler extends Controller {
             $this->use_ = new User();
             $request->session()->put('username',Auth::user()->username);
             $request->session()->put('mssv',Auth::user()->mssv);
-            $request->session()->put('role_id',Auth::user()->role_id);
+            $request->session()->put('id_role',Auth::user()->id_role);
             $request->session()->put('avatar',Auth::user()->avatar);
             return view('admin.adminManager');
         }
@@ -60,7 +60,7 @@ class AdminControler extends Controller {
             $this->use_ = new User();
             $request->session()->put('username',Auth::user()->username);
             $request->session()->put('mssv',Auth::user()->mssv);
-            $request->session()->put('role_id',Auth::user()->role_id);
+            $request->session()->put('id_role',Auth::user()->id_role);
             $request->session()->put('avatar',Auth::user()->avatar);
             return redirect()->route('ViewUser');
         }
@@ -79,13 +79,17 @@ class AdminControler extends Controller {
         return view('Employee.indexStudents')->with([
             'username'=>$request->session()->get('username'),
             'mssv'=>$request->session()->get('mssv'),
-            'role_id'=>$request->session()->get('role_id'),
+            'id_role'=>$request->session()->get('id_role'),
             'avatar'=>$request->session()->get('avatar'),
             ]);
     }
 
 
-    public function getLogout() {
+    public function getLogout(Request $request) {
+        $request->session()->forget('username');
+        $request->session()->forget('mssv');
+        $request->session()->forget('id_role');
+        $request->session()->forget('avatar');
         Auth::logout(); // logout user
         return Redirect()->route('login'); //redirect back to login
     }

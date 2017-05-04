@@ -16,6 +16,24 @@ use App\Models\User_Point;
 use Illuminate\Support\Facades\DB;
 
 class StudentsControler extends Controller {
+    public function report(Request $request){
+        return view('Employee.report')->with([
+            'username'=>$request->session()->get('username'),
+            'mssv'=>$request->session()->get('mssv'),
+            'id_role'=>$request->session()->get('id_role'),
+            'avatar'=>$request->session()->get('avatar'),
+            ]);
+    }
+
+    public function showPoint(Request $request){
+        return view('Employee.showPoint')->with([
+            'username'=>$request->session()->get('username'),
+            'mssv'=>$request->session()->get('mssv'),
+            'id_role'=>$request->session()->get('id_role'),
+            'avatar'=>$request->session()->get('avatar'),
+            ]);
+    }
+
     public function getMauDiem () {
         $ad_us = User::find(Auth::user()->id);
 

@@ -13,7 +13,7 @@ class DatabaseController extends Controller{
       return view('admin.readExcels')->with([
             'username'=>$request->session()->get('username'),
             'mssv'=>$request->session()->get('mssv'),
-            'role_id'=>$request->session()->get('role_id'),
+            'id_role'=>$request->session()->get('id_role'),
             'avatar'=>$request->session()->get('avatar'),
             ]);
     }

@@ -2,7 +2,7 @@
 @section('title','Hi Student')
 
 @section('avatar')
-    <img src="public\assets\Admin\images\avatars\{{$avatar}}.png" class="img-responsive img-circle" alt="friend 8">
+    <img src="public\assets\Admin\images\avatars\{{$avatar}}.png" class="img-responsive img-circle" alt="friend 8" height="200" width="200">
 @endsection
 
 @section('username')

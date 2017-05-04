@@ -33,7 +33,7 @@
             <div class="sidebar-top big-img">
                 <div class="user-image">
                 		@section('avatar')
-                        <img src="public\assets\Admin\images\avatars\avatar7_big@2x.png" class="img-responsive img-circle" alt="friend 8">
+                        <img src="public\assets\Admin\images\avatars\avatar7_big@2x.png" class="img-responsive img-circle" alt="friend 8" height="200" width="200">
                         @show
                 </div>
                 <h4>
@@ -52,7 +52,7 @@
             <ul class="nav nav-sidebar">
 
                     <li class=" nav-active active">
-                        <a href="{{URL::to('ViewUser')}}">
+                        <a href="{{URL::to('home')}}">
                             <i class="icon-home"></i>
                             <span>Home</span>
                         </a>
@@ -63,17 +63,16 @@
                             <i class="icon-bulb"></i>
                             <span>Excels</span>
                         </a>
-                    </li>
 
                     <li class="nav-parent">
-                        <a href="{{URL::to('adstudents')}}">
+                        <a href="{{URL::to('showPoint')}}">
                             <i class="icon-bulb"></i>
                             <span>Xem Điểm</span>
                         </a>
                     </li>
 
                     <li class="nav-parent">
-                        <a href="{{URL::to('adstudents')}}">
+                        <a href="{{URL::to('report')}}">
                             <i class="icon-bulb"></i>
                             <span>Phản hồi</span>
                         </a>

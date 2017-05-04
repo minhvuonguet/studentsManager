@@ -12,18 +12,32 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
+    
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function goToHome(Request $request)
     {
-        return view('home');
+        switch ($request->session()->get('id_role')) {
+            case '3':
+                return view('Employee.indexStudents')->with([
+                'username'=>$request->session()->get('username'),
+                'mssv'=>$request->session()->get('mssv'),
+                'id_role'=>$request->session()->get('id_role'),
+                'avatar'=>$request->session()->get('avatar'),
+                ]);
+                break;
+            case '2':
+                return view('admin.adminManager');
+                break;
+            case '1':
+                return view('admin.adminManager');
+                break;
+            default:
+                return redirect()->route('login');
+                break;
+        }
     }
 }
