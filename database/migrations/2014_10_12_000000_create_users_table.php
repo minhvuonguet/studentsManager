@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->integer('id_role');
 //            $table->primary('username');
             $table->rememberToken();
+            $table->string('avatar');
             $table->foreign('id_role')
             ->references('id_role')
             ->on('roles')

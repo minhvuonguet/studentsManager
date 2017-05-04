@@ -28,6 +28,7 @@ class CreatePDoansTable extends Migration
 //          $table->timestamps();
 
             $table->integer('mssv')->primary()->unique();
+            $table->integer('point_doan');
             $table->string('fullname');
             $table->string('class');
             $table->string('office');

@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('Employee.indexStudents');
+    return view('admin.login');
 
 });
 

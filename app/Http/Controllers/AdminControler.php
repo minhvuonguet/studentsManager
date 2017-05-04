@@ -39,24 +39,26 @@ class AdminControler extends Controller {
     }
     
     public function postLogin(Request $request){ 
+        $request->session()->forget('username');
+        $request->session()->forget('mssv');
+        $request->session()->forget('role_id');
+        $request->session()->forget('avatar');
 
         if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>2 ]) ||
             Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>1 ]) ) {
             $this->use_ = new User();
+            $request->session()->put('username',Auth::user()->username);
+            $request->session()->put('mssv',Auth::user()->mssv);
+            $request->session()->put('role_id',Auth::user()->role_id);
+            $request->session()->put('avatar',Auth::user()->avatar);
             return view('admin.adminManager');
-//        if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>1 ]) ) {
-//            $use_ = new User();
-//
-//
-//
-//        }
-//        if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>2 ]) ) {
-//            $use_ = new User();
-//            echo ("abc");
-//            return view('layouts.van_phong_doan');
         }
         else if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>3 ])) {
             $this->use_ = new User();
+            $request->session()->put('username',Auth::user()->username);
+            $request->session()->put('mssv',Auth::user()->mssv);
+            $request->session()->put('role_id',Auth::user()->role_id);
+            $request->session()->put('avatar',Auth::user()->avatar);
             return redirect()->route('ViewUser');
         }
 
@@ -65,13 +67,18 @@ class AdminControler extends Controller {
                 ['flash_level' => 'danger', 'flash_message' => 'login error, Please check your name or password and try again']
             )->withInput();
         }
-//        echo ("asdfasdfsadf");
     }
     public function listUser(){
         return view('admin.adminManager');
     }
-    public function ViewUser() {
-        return view('layouts.sinh_vien');
+    public function ViewUser(Request $request) {
+
+        return view('Employee.indexStudents')->with([
+            'username'=>$request->session()->get('username'),
+            'mssv'=>$request->session()->get('mssv'),
+            'role_id'=>$request->session()->get('role_id'),
+            'avatar'=>$request->session()->get('avatar'),
+            ]);
     }
 
 

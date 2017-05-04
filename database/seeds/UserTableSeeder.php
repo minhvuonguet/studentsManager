@@ -12,10 +12,11 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         User::create([
-            'username'=>'admin1',
-            'password'=>Hash::make('admin1'),
-            'email'=>'admin1@gmail.com',
+            'username'=>'Administartor',
+            'password'=>Hash::make('Administartor'),
+            'email'=>'Administartor@gmail.com',
             'mssv' => 1,
+            'avatar' => 1,
             'id_role'=>1
         ]);
         User::create([
@@ -23,9 +24,8 @@ class UserTableSeeder extends Seeder
             'password'=>Hash::make('phongctsv'),
             'email'=>'phongctsv@gmail.com',
             'mssv' => 2,
+            'avatar' => 2,
             'id_role'=>2,
-            'mssv' => 13000001,
-            'id_role'=>1
         ]);
 
 
@@ -34,6 +34,7 @@ class UserTableSeeder extends Seeder
             'password'=>Hash::make('phongdaotao'),
             'email'=>'phongdaotao@gmail.com',
             'mssv' => 3,
+            'avatar' => 3,
             'id_role'=>2
         ]);
         User::create([
@@ -41,6 +42,7 @@ class UserTableSeeder extends Seeder
             'password'=>Hash::make('khoahoccongnghe'),
             'email'=>'khoahoccongnghe@gmail.com',
             'mssv' => 4,
+            'avatar' => 4,
             'id_role'=>1
         ]);
         User::create([
@@ -48,6 +50,7 @@ class UserTableSeeder extends Seeder
             'password'=>Hash::make('vanphongdoan'),
             'email'=>'vanphongdoan@gmail.com',
             'mssv' => 5,
+            'avatar' => 5,
             'id_role'=>2
         ]);
         User::create([
@@ -55,6 +58,7 @@ class UserTableSeeder extends Seeder
             'password'=>Hash::make('vanphongkhoa'),
             'email'=>'vanphongkhoa@gmail.com',
             'mssv' => 6,
+            'avatar' => 6,
             'id_role'=>2
         ]);
 
@@ -63,48 +67,43 @@ class UserTableSeeder extends Seeder
             'password'=>Hash::make('covank58cc'),
             'email'=>'covank58cc@gmail.com',
             'mssv' => 7,
+            'avatar' => 7,
             'id_role'=>4,
-            'username'=>'phongKHCN',
-            'password'=>Hash::make('phongKHCN'),
-            'mssv' => 13020553,
-            'id_role'=>2
         ]);
-
+        User::create([
+            'username'=>'students0',
+            'password'=>Hash::make('students0'),
+            'mssv' => 13000000,
+            'avatar' => 13000000,
+            'id_role'=>3
+        ]);
         User::create([
             'username'=>'students1',
             'password'=>Hash::make('students1'),
-            'mssv' => 13000003,
+            'mssv' => 13000001,
+            'avatar' => 13000001,
             'id_role'=>3
         ]);
         User::create([
             'username'=>'students2',
             'password'=>Hash::make('students2'),
-            'mssv' => 13000004,
+            'mssv' => 13000002,
+            'avatar' => 13000002,
             'id_role'=>3
         ]);
         User::create([
             'username'=>'students3',
             'password'=>Hash::make('students3'),
-            'mssv' => 13000005,
+            'mssv' => 13000003,
+            'avatar' => 13000003,
             'id_role'=>3,
-            'username'=>'vanphongkhoa',
-            'password'=>Hash::make('vanphongkhoa'),
-            'mssv' => 13020554,
-            'id_role'=>2
         ]);
-//        User::create([
-//            'username'=>'covanhoctap',
-//            'password'=>Hash::make('covanhoctap'),
-//            'mssv' => 13020555,
-//            'id_role'=>2
-//        ]);
-//        User::create([
-//            'username'=>'phongdaotao',
-//            'password'=>Hash::make('phongdaotao'),
-//            'mssv' => 13020556,
-//            'id_role'=>2
-//>>>>>>> bbddd39cd7253dfbc7f2ebdbecec57d1e02db489
-//        ]);
-
+        User::create([
+            'username'=>'phuongdd_58',
+            'password'=>Hash::make('phuongdd_58'),
+            'mssv' => 13020553,
+            'avatar' => 13020553,
+            'id_role'=>3,
+        ]);
     }
 }
