@@ -67,6 +67,27 @@ class vanphongkhoa extends Controller  {
         ]);
     }
 
+    public function xem_diem() {
+        $sinhvien = Sinh_Vien::all();
+        $diem = Points::all();
+        $listClass = [];
+        for($i = 0; $i < count($sinhvien); $i++){
+            $sinhvien[$i]->point = 0;
+            for($j = 0; $j < count($diem)-1 ; $j++) {
+                if($diem[$j]->mssv == $sinhvien[$i]->mssv){
+                    $sinhvien[$i]->point = $diem[$j]->point_total;
+                }
+            }
+            $listClass[$i] = $sinhvien[$i]->class;
+        }
+        $listClass = array_unique($listClass);
+
+        return View('admin.vanPhongKhoa.xem_diem')->with([
+            'list_sinh_vien' =>$sinhvien,
+            'list_diem_ren_luyen' =>$diem,
+            'list_class' =>$listClass
+        ]);
+    }
 
     // danh sách vi pham
 

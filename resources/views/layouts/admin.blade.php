@@ -36,8 +36,9 @@
                         <img src="public/assets/Admin/images/default.png" class="img-responsive img-circle" alt="friend 8">
                     {{--@endif--}}
                 </div>
-                <h4></h4>
-                {{--{{Auth::user()->username}}--}}
+                <h4>
+                {{Auth::user()->username}}
+                </h4>
                 <div class="dropdown user-login">
                     <form action="searchemployee" method="get" class="searchform" id="search-results">
                         <input class="form-control" name="name" placeholder="Search employee..." type="text">
@@ -49,32 +50,143 @@
             <ul class="nav nav-sidebar">
 
                 <li class=" nav-active active"><a href="javascript:void(0)"><i class="icon-home"></i><span>Admin Manager</span></a></li>
+
+
+                @if(Auth::user()->username == 'admin1' || Auth::user()->username == 'phongctsv')
+                    <li class="nav-parent">
+                        <a href="{{ URL::to('formdiem') }}" class="test_"><i class="icon-puzzle"></i><span> Form điểm rèn luyện </span> </a>
+                    </li>
+
+                    <li class="nav-parent">
+                        <a href="{{ URL::to('newclass') }}" class="test_"><i class="icon-puzzle"></i><span>Thêm danh sách lớp</span> </a>
+                    </li>
+                    <li class="nav-parent">
+                        <a href="{{ URL::to('done_import') }}" class="test_"><i class="icon-puzzle"></i><span>xem danh sách sv</span> </a>
+                    </li>
+
+                    {{--Danh sách sinh viên vi phạm ý thức công dân và vi phạm ý thức sinh viên--}}
+                    <li class="nav-parent">
+                        <a href="{{ URL::to('newclass') }}" class="test_"><i class="icon-puzzle"></i><span>Thêm Danh sách vi phạm </span> </a>
+                    </li>
+
+                    <li class="nav-parent">
+                        <a href="{{ URL::to('khenThuong.khen_thuong') }}" class="test_"><i class="icon-puzzle"></i><span>Danh sách khen thưởng</span> </a>
+                    </li>
+
+                    <li class="nav-parent">
+                        <a href="{{ URL::to('newclass') }}" class="test_"><i class="icon-puzzle"></i><span>Phản hồi từ sinh viên </span> </a>
+                    </li>
+
+                    <li class="nav-parent">
+                        <a href="{{URL::to('tinhdiem')}}"><i class="icon-screen-desktop"></i><span>Tính điểm</span> </a>
+                    </li>
+                @endif
+
+                @if(Auth::user()->username == 'phongdaotao')
+
+                    <li class="nav-parent">
+                        <a href="{{URL::to('newclass')}}"><i class="icon-screen-desktop"></i><span> Import Danh Sách </span> </a>
+                    </li>
+
+                    <li class="nav-parent">
+                        <a href="{{URL::to('phongDaoTao.xem_diem')}}"><i class="icon-screen-desktop"></i><span>Xem Điểm Sinh Viên </span> </a>
+                    </li>
+                    <li class="nav-parent">
+                        <a href="{{URL::to('phongDaoTao.vi_pham_quyche')}}"><i class="icon-screen-desktop"></i><span>Xem DS Vi Pham QC thi </span> </a>
+                    </li>
+
+                @endif
+
+                @if(Auth::user()->username == 'khoahoccongnghe')
+
+                    <li class="nav-parent">
+                        <a href="{{URL::to('newclass')}}"><i class="icon-screen-desktop"></i><span> Import Danh Sách </span> </a>
+                    </li>
+
+                    <li class="nav-parent">
+                        <a href="{{URL::to('phongkhcn.listclass')}}"><i class="icon-screen-desktop"></i><span>  sinh viên đạt giải </span> </a>
+                    </li>
+                    <li class="nav-parent">
+                        <a href="{{URL::to('phongkhcn.listclass')}}"><i class="icon-screen-desktop"></i><span> Xem Danh Sách </span> </a>
+                    </li>
+
+                @endif
+
+                @if(Auth::user()->username == 'vanphongdoan')
+
+                    <li class="nav-parent">
+                        <a href="{{URL::to('newclass')}}"><i class="icon-screen-desktop"></i><span>import sv  hoạt động</span> </a>
+                    </li>
+
+                    <li class="nav-parent">
+                        <a href="{{URL::to('newclass')}}"><i class="icon-screen-desktop"></i><span>import sv khen thưởng </span> </a>
+                    </li>
+                    <li class="nav-parent">
+                        <a href="{{URL::to('doanvien')}}"><i class="icon-screen-desktop"></i><span>khen thưởng </span> </a>
+                    </li>
+                    <li class="nav-parent">
+                        <a href="{{URL::to('doanVien.khen_thuong')}}"><i class="icon-screen-desktop"></i><span>Khen thuong doan vien </span> </a>
+                    </li>
+
+                @endif
+
+                @if(Auth::user()->username == 'vanphongkhoa')
+
+                    <li class="nav-parent">
+                        <a href="{{URL::to('newclass')}}"><i class="icon-screen-desktop"></i><span>import sinh viên vi phạm</span> </a>
+                    </li>
+                    <li class="nav-parent">
+                        <a href="{{URL::to('vanPhongKhoa.xem_diem')}}"><i class="icon-screen-desktop"></i><span>Xem Diem </span> </a>
+                    </li>
+
+
+                @endif
+
+
+                {{--cố vấn học tập--}}
+                @if(Auth::user()->id_role == 4)
+
+                    <li class="nav-parent">
+                        <a href="{{URL::to('newclass')}}"><i class="icon-screen-desktop"></i><span>Thêm danh sách vi phạm sinh hoạt lớp </span> </a>
+                    </li>
+                    <li class="nav-parent">
+                        <a href="{{URL::to('coVanHocTap.listclass')}}"><i class="icon-screen-desktop"></i><span>xem danh sách  </span> </a>
+                    </li>
+
+
+                @endif
+
+{{--=======--}}
+                {{--<li class="nav-parent">--}}
+                    {{--<a href="{{ URL::to('formdiem') }}" class="test_"><i class="icon-puzzle"></i><span> Form điểm rèn luyện </span> </a>--}}
+                {{--</li>--}}
+                {{--<li class="nav-parent">--}}
+                    {{--<a href="{{ URL::to('newclass') }}" class="test_"><i class="icon-puzzle"></i><span> Import Danh Sách</span> </a>--}}
+                {{--</li>--}}
+                {{--<li class="nav-parent">--}}
+                    {{--<a href="{{ URL::to('done_import') }}" class="test_"><i class="icon-puzzle"></i><span>Xem danh sách</span> </a>--}}
+                {{--</li>--}}
+                {{--<li class="nav-parent">--}}
+                    {{--<a href="{{ URL::to('coVanHocTap.listCoVanHocTap') }}" class="test_"><i class="icon-puzzle"></i><span>Danh Sách Cố Vấn Học Tập </span> </a>--}}
+                {{--</li>--}}
+{{-->>>>>>> bbddd39cd7253dfbc7f2ebdbecec57d1e02db489--}}
+                {{--<li class="nav-parent">--}}
+                    {{--<a href="{{ URL::to('doanVien.listDoanVien') }}" class="test_"><i class="icon-puzzle"></i><span>Danh Sách Vi Phạm </span> </a>--}}
+                {{--</li>--}}
+{{--<<<<<<< HEAD--}}
+{{--=======--}}
+                {{--<li class="nav-parent">--}}
+                    {{--<a href="{{ URL::to('phanHoi.phan_hoi') }}" class="test_"><i class="icon-puzzle"></i><span>Xử Lý Phản Hồi </span> </a>--}}
+                {{--</li>--}}
+                {{--<li class="nav-parent">--}}
+                    {{--<a href="{{ URL::to('khenThuong.khen_thuong') }}" class="test_"><i class="icon-puzzle"></i><span>Khen Thưởng </span> </a>--}}
+                {{--</li>--}}
+
+{{-->>>>>>> bbddd39cd7253dfbc7f2ebdbecec57d1e02db489--}}
                 <li class="nav-parent">
-                    <a href="{{ URL::to('formdiem') }}" class="test_"><i class="icon-puzzle"></i><span> Form điểm rèn luyện </span> </a>
-                </li>
-                <li class="nav-parent">
-                    <a href="{{ URL::to('newclass') }}" class="test_"><i class="icon-puzzle"></i><span> Import Danh Sách</span> </a>
-                </li>
-                <li class="nav-parent">
-                    <a href="{{ URL::to('done_import') }}" class="test_"><i class="icon-puzzle"></i><span>Xem danh sách</span> </a>
-                </li>
-                <li class="nav-parent">
-                    <a href="{{ URL::to('coVanHocTap.listCoVanHocTap') }}" class="test_"><i class="icon-puzzle"></i><span>Danh Sách Cố Vấn Học Tập </span> </a>
-                </li>
-                <li class="nav-parent">
-                    <a href="{{ URL::to('doanVien.listDoanVien') }}" class="test_"><i class="icon-puzzle"></i><span>Danh Sách Vi Phạm </span> </a>
-                </li>
-                <li class="nav-parent">
-                    <a href="{{ URL::to('phanHoi.phan_hoi') }}" class="test_"><i class="icon-puzzle"></i><span>Xử Lý Phản Hồi </span> </a>
-                </li>
-                <li class="nav-parent">
-                    <a href="{{ URL::to('khenThuong.khen_thuong') }}" class="test_"><i class="icon-puzzle"></i><span>Khen Thưởng </span> </a>
+                    <a href="{{URL::to('adstudents')}}"><i class="icon-bulb"></i><span> Thống kê </span> </a>
                 </li>
 
-                <li class="nav-parent">
-                    <a href="{{URL::to('tinhdiem')}}"><i class="icon-screen-desktop"></i><span>Tính điểm</span> </a>
-
-                </li>
             </ul>
 
 
@@ -91,6 +203,7 @@
 
                     </li>
                     <li class="logout_Admin">
+                        {{--{{Auth::user()->username}}--}}
                         <a href="{{ URL::to('logout') }}"><i class="icon-logout"></i><span>Logout</span></a>
                     </li>
                 </ul>
@@ -115,7 +228,9 @@
 @section('script_')
     <script>
         $(document).ready(function(){
-            $('.alert').delay(4000).slideUp();
+            $('.nav-parent').click( function(){
+               console.log($(this));
+            });
         });
     </script>
 @show

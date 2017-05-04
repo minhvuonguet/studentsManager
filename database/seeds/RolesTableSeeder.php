@@ -26,9 +26,12 @@ class RolesTableSeeder extends Seeder
           'id_role'=> 3,
           'name' =>'Member'
         ]);
+
+
         Roles::create([
             'id_role'=> 4,
-            'name' =>'khcn'
+            'name' =>'covanhoctap'
+
         ]);
     }
 }

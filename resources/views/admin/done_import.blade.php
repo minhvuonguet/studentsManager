@@ -23,8 +23,11 @@
             <th class="col-md-3"> Họ Têm</th>
             <th class="col-md-1"> Lớp </th>
             <th class="col-md-2"> Ngày Sinh</th>
-            <th class="col-md-1"> Email  </th>
-            <th class="col-md-1"> Điểm rèn luyện </th>
+            {{--<th class="col-md-2"> note</th>--}}
+            {{--<th class="col-md-1"> Chức Vụ </th>--}}
+            {{--<th class="col-md-1"> Email  </th>--}}
+            {{--<th class="col-md-1"> Điểm rèn luyện </th>--}}
+            <th class="col-md-2"> khen thuong</th>
 
 
 
@@ -39,8 +42,11 @@
                 <td >{{$sinh_vien->class}} </td>
 
                 <td >{{$sinh_vien->birthday}} </td>
-                <td >{{$sinh_vien->email}} </td>
-                <td> {{$sinh_vien->point}} </td>
+                <td >{{$sinh_vien->khen_thuong}} </td>
+                {{--<td >{{$sinh_vien->note}} </td>--}}
+                {{--<td >{{$sinh_vien->chuc_vu}} </td>--}}
+                {{--<td >{{$sinh_vien->email}} </td>--}}
+                {{--<td> {{$sinh_vien->point}} </td>--}}
 
 
             </tr>
@@ -81,8 +87,11 @@
                                 '<td>' + value.class + '</td>' +
 
                                 '<td>' + value.birthday + '</td>' +
-                                '<td>' + value.email + '</td>' +
-                                '<td>' + value.point + '</td>' +
+                                '<td>' + value.khen_thuong + '</td>' +
+//                                '<td>' + value.note + '</td>' +
+//                                '<td>' + value.chuc_vu + '</td>' +
+//                                '<td>' + value.email + '</td>' +
+//                                '<td>' + value.point + '</td>' +
 
                                 '</tr>' );
                         });

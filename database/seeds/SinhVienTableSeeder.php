@@ -14,76 +14,74 @@ class SinhVienTableSeeder extends Seeder
     {
         // DB::table('sinh_vien')->truncate();
         Sinh_Vien::create([
-          'mssv' => 13000000,
-          'fullname' => 'Đặng Danh Phương',
-          'class' => 'K58CC',
-          'office' => 'Học Sinh',
-          'email' => 'yanglong.ph@gmail.com',
-          'birthday' =>'1995-1-31'
+          'mssv' => 3,
+          'fullname' => 'Phòng đào tạo',
+          'class' => 'Phòng đào tạo',
+          'office' => 'Phòng đào tạo',
+          'email' => 'phongdaotao@gmail.com',
         ]);
         Sinh_Vien::create([
-          'mssv' => 13000001,
-          'fullname' => 'Đặng Danh Phương',
-          'class' => 'K58CC',
-          'office' => 'Học Sinh',
-          'email' => 'yanglong.ph@gmail.com',
-          'birthday' =>'1995-1-31'
+          'mssv' => 2,
+          'fullname' => 'Phòng CTSV',
+          'class' => 'Phòng CTSV',
+          'office' => 'Phòng CTSV',
+          'email' => 'phongctsv@gmail.com',
         ]);
         Sinh_Vien::create([
-          'mssv' => 13000002,
-          'fullname' => 'Đặng Danh Phương',
-          'class' => 'K58CC',
-          'office' => 'Học Sinh',
-          'email' => 'yanglong.ph@gmail.com',
-          'birthday' =>'1995-1-31'
+          'mssv' => 1,
+          'fullname' => 'Admin',
+          'class' => 'Admin',
+          'office' => 'Admin',
+          'email' => 'admin@gmail.com',
+        ]);
+        Sinh_Vien::create([
+          'mssv' => 4,
+          'fullname' => 'Phòng KHCN',
+          'class' => 'Phòng KHCN',
+          'office' => 'Phòng KHCN',
+          'email' => 'phongkhcn@gmail.com'
+        ]);
+        Sinh_Vien::create([
+          'mssv' => 5,
+          'fullname' => 'Văn phòng đoàn',
+          'class' => 'Văn phòng đoàn',
+          'office' => 'Văn phòng đoàn',
+          'email' => 'vanphongdoan@gmail.com',
+        ]);
+        Sinh_Vien::create([
+          'mssv' => 7,
+          'fullname' => 'Cố vấn học tập k58CC',
+          'class' => 'Cố vấn học tập',
+          'office' => 'Cố vấn học tập',
+          'email' => 'covanhoctap@gmail.com',
+        ]);
+        Sinh_Vien::create([
+            'mssv' => 6,
+            'fullname' => 'Văn phòng khoa',
+            'class' => 'Văn phòng khoa',
+            'office' => 'Văn phòng khoa',
+            'email' => 'vanphongkhoa@gmail.com',
         ]);
         Sinh_Vien::create([
           'mssv' => 13000003,
-          'fullname' => 'Đặng Danh Phương',
+          'fullname' => 'Sinh viên test',
           'class' => 'K58CC',
           'office' => 'Học Sinh',
-          'email' => 'yanglong.ph@gmail.com',
-          'birthday' =>'1995-1-31'
+          'email' => 'sinhvien@gmail.com',
         ]);
         Sinh_Vien::create([
-          'mssv' => 13000880,
-          'fullname' => 'Nguyễn thanh hải',
-          'class' => 'K59DC',
-          'office' => 'Giáo Viên',
-          'email' => 'haha.uet.vnu',
-          'birthday' =>'1995-1-31'
+            'mssv' => 13000004,
+            'fullname' => 'Sinh viên test1',
+            'class' => 'K58CC',
+            'office' => 'Học Sinh',
+            'email' => 'sinhvien@gmail.com',
         ]);
         Sinh_Vien::create([
-          'mssv' => 13020553,
-          'fullname' => 'Đặng Danh Phương',
-          'class' => 'K58CC',
-          'office' => 'Học Sinh',
-          'email' => 'yanglong.ph@gmail.com',
-          'birthday' =>'1995-1-31'
-        ]);
-        Sinh_Vien::create([
-          'mssv' => 13020554,
-          'fullname' => 'Đặng Danh Phương',
-          'class' => 'K58CC',
-          'office' => 'Học Sinh',
-          'email' => 'yanglong.ph@gmail.com',
-          'birthday' =>'1995-1-31'
-        ]);
-        Sinh_Vien::create([
-          'mssv' => 13020555,
-          'fullname' => 'Đặng Danh Phương',
-          'class' => 'K58CC',
-          'office' => 'Học Sinh',
-          'email' => 'yanglong.ph@gmail.com',
-          'birthday' =>'1995-1-31'
-        ]);
-        Sinh_Vien::create([
-          'mssv' => 13020556,
-          'fullname' => 'Đặng Danh Phương',
-          'class' => 'K58CC',
-          'office' => 'Học Sinh',
-          'email' => 'yanglong.ph@gmail.com',
-          'birthday' =>'1995-1-31'
+            'mssv' => 13000005,
+            'fullname' => 'Sinh viên test2',
+            'class' => 'K58CC',
+            'office' => 'Học Sinh',
+            'email' => 'sinhvien@gmail.com',
         ]);
 
     }

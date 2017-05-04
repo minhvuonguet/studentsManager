@@ -40,7 +40,14 @@
             </tr>
             {{--*/  $dem = 1 /*--}}
             @foreach($list_sinh_vien as $sinh_vien)
-
+                @if($sinh_vien->mssv != 1 &&
+                    $sinh_vien->mssv != 2 &&
+                    $sinh_vien->mssv != 3 &&
+                    $sinh_vien->mssv != 4 &&
+                    $sinh_vien->mssv != 5 &&
+                    $sinh_vien->mssv != 6 &&
+                    $sinh_vien->mssv != 7
+                )
                 <tr >
                     <td>{{$dem}}</td>
                     <td>{{$sinh_vien->mssv}}</td>
@@ -63,6 +70,7 @@
 
 
                 </tr>
+                @endif
                 {{--*/ $dem++ /*--}}
 
             @endforeach

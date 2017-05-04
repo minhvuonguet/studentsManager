@@ -128,7 +128,7 @@ class covanController extends Controller  {
         }
         $listClass = array_unique($listClass);
 
-        return View('admin.coVanHocTap.khen_thuong')->with([
+        return View('admin.khenThuong.khen_thuong')->with([
             'list_sinh_vien' =>$sinhvien,
             'list_diem_ren_luyen' =>$diem,
             'list_class' =>$listClass

@@ -13,17 +13,17 @@ class PCongTacSVTableSeeder extends Seeder
     {
         P_Cong_Tac_SV::create([
             'point_cong_tac_sv' =>10,
-            'mssv' => 13000000,
+            'mssv' => 13000003,
 
         ]);
         P_Cong_Tac_SV::create([
             'point_cong_tac_sv' =>0,
-            'mssv' => 13000001,
+            'mssv' => 13000004,
 
         ]);
         P_Cong_Tac_SV::create([
             'point_cong_tac_sv' =>5,
-            'mssv' => 13000002,
+            'mssv' => 13000005,
 
         ]);
     }

@@ -1,4 +1,4 @@
-@extends('layouts.phong_dao_tao')
+@extends('layouts.admin')
 @section('title',' List Admin')
 @section('content')
 

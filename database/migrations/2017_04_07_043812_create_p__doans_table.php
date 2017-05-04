@@ -18,13 +18,14 @@ class CreatePDoansTable extends Migration
             $table->increments('id_doan');
             $table->integer('point_doan');
             $table->integer('mssv');
-            $table->string('note');
+            $table->string('tham_gia');
+            $table->string('khen_thuong_doan');
             //     $table->primary('id_doan');
-            $table->foreign('mssv')
-                ->references('mssv')
-                ->on('users')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+//            $table->foreign('mssv')
+//                ->references('mssv')
+//                ->on('users')
+//                ->onDelete('cascade')
+//                ->onUpdate('cascade');
             $table->timestamps();
         });
     }

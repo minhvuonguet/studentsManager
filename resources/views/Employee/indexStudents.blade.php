@@ -19,6 +19,70 @@
     <script type="text/javascript" src="public/assets/Admin/plugins/noty/jquery.noty.packaged.min.js"></script>
     <script type="text/javascript" src="public/assets/Admin/js/main.js"></script>
 </head>
+{{--<<<<<<< HEAD--}}
+    {{--<body>--}}
+            {{--<div class="container-fuild">--}}
+                {{--<div class="row">--}}
+                    {{--<div class="header col-sm-12">--}}
+                        {{--<div class="logo col-sm-3">--}}
+                            {{--<img src="public/assets/Admin/images/uet_logo3.png" --}}
+                            {{--alt="UET"--}}
+                            {{--width="90"--}}
+                            {{--height="90">--}}
+                        {{--</div>--}}
+                        {{--<div class="headContent col-sm-6">--}}
+                            {{--<h4 class="text-center "> Hệ thống Xem Điểm Rèn Luyện Của Sinh Viên  </h4>--}}
+                        {{--</div>--}}
+
+                    {{--</div>--}}
+
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+
+            {{--<div class="panel panel-primary" style="margin-top: 20px">--}}
+                {{--<div class="row">--}}
+                    {{--<button style="margin-left: 15px" > Thông Tin Cá Nhân </button>--}}
+
+
+                {{--</div>--}}
+                {{--<div class="row">--}}
+                    {{--<button style="margin-left: 15px" > Xem Điểm </button>--}}
+
+
+                {{--</div>--}}
+
+            {{--</div>--}}
+
+
+
+    {{--</body>--}}
+
+
+    {{--<body>--}}
+
+
+        {{--<div class="form-group" style="margin-top: 100px">--}}
+
+            {{--<div class="panel panel-primary">--}}
+
+
+                {{--<div class="panel-body">--}}
+
+
+
+                    {{--{{Auth::user()->username}}--}}
+                    {{--<table class="table table-bordered">--}}
+
+                        {{--<thead>--}}
+
+                        {{--<button style="margin-left: 15px" > Thông Tin Cá Nhân </button>--}}
+                        {{--<button style="margin-left: 15px" > Xem Điểm </button>--}}
+
+                        {{--</thead>--}}
+
+                    {{--</table>--}}
+{{--=======--}}
 <body>
 @section('main-parent')
     <div class="sidebar">
@@ -30,6 +94,7 @@
         <div class="sidebar-inner">
             <div class="sidebar-top big-img">
                 <div class="user-image">
+{{-->>>>>>> bbddd39cd7253dfbc7f2ebdbecec57d1e02db489--}}
 
                     <img src="public/assets/Admin/images/default.png" class="img-responsive img-circle" alt="friend 8">
                     {{--@endif--}}

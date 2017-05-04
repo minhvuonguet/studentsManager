@@ -31,20 +31,6 @@ class CacularPoint extends Controller
         $Point = new Points();
         $hocky = Hoc_Ky::all();
 
-//        for($i = 0; $i < count($Students); $i++) {
-//            $form_diem = Form_Diem::all();
-//
-//            $point_base = $form_diem[0]->tong_hoc_tap + $form_diem[0]->tong_chap_hanh + $form_diem[0]->tong_pham_chat;
-//            $Point::updateOrCreate(
-//                [
-//                    'mssv'=>$Students[$i]->mssv,
-//                ],
-//                [
-//                    'id_hoc_ky' => $hocky[0]->id_hoc_ky,
-//                    'point_total' => $point_base
-//                ]
-//            );
-//        }
 
         $covan = new Co_Van_Hoc_Tap();
         $Hocky = Hoc_Ky::all();
@@ -163,7 +149,7 @@ class CacularPoint extends Controller
         $instancePoint = Points::all();
         for($i = 0; $i < count($instancePoint); $i++) {
             $total_point = 0;
-            echo ($instancePoint[$i]->point_total );
+         //   echo ($instancePoint[$i]->point_total );
             $total_point =
                 $instancePoint[$i]->point_total +
                 $instancePoint[$i]->point_co_van_hoc_tap +
@@ -172,9 +158,9 @@ class CacularPoint extends Controller
                 $instancePoint[$i]->point_doan +
                 $instancePoint[$i]->point_khoa_hoc_cn +
                 $instancePoint[$i]->point_khoa ;
-            echo $total_point;
-            if($total_point > 100)
-                $total_point = 100;
+          //  echo $total_point;
+//            if($total_point > 100)
+//                $total_point = 100;
             $Point::updateOrCreate(
                 [
                     'mssv'=>$instancePoint[$i]->mssv,

@@ -1,4 +1,4 @@
-@extends('layouts.phong_khcn')
+@extends('layouts.admin')
 @section('title',' List Admin')
 @section('content')
 
@@ -23,6 +23,7 @@
                 <th class="col-md-3"> Họ Têm</th>
                 <th class="col-md-1"> Lớp </th>
                 <th class="col-md-1"> Đề Tài  </th>
+                <th class="col-md-1"> Giải Thưởng </th>
 
 
 
@@ -35,7 +36,9 @@
                     <td>{{$sinh_vien->mssv}}</td>
                     <td >{{$sinh_vien->fullname}} </td>
                     <td >{{$sinh_vien->class}} </td>
-                    <td >{{$sinh_vien->chuc_vu}} </td>
+                    <td >{{$sinh_vien->note}} </td>
+                    <td >{{$sinh_vien->giai_thuong}} </td>
+
 
 
 
@@ -75,7 +78,8 @@
                                     '<td>' + value.mssv + '</td>' +
                                     '<td>' + value.fullname + '</td>' +
                                     '<td>' + value.class + '</td>' +
-                                    '<td>' + value.chuc_vu + '</td>' +
+                                    '<td>' + value.note + '</td>' +
+                                    '<td>' + value.giai_thuong + '</td>' +
 
 
                                 '</tr>' );
