@@ -9,9 +9,9 @@
         <h1> Thêm mới danh sách </h1>
         <select name="type_file">
 
-            @if(Auth::user()->username == 'admin1'))
+            @if(Auth::user()->username == 'admin1'|| Auth::user()->username == 'phongctsv'))
                 <option selected value="list_class" > Danh sách lớp</option>
-            <option value="list_nghien_cuu_khoa_hoc"> Nghiên Cứu Khoa Học </option>
+
                 <option value="list_ad_class"> Danh sách cán bộ lớp</option>
                 <option value="list_ad_vi_pham_ytcn"> Danh Sách Sinh viên vi phạm ý thức công dân </option>
                 <option value="list_ad_class_khen_thuong"> Khen Thưởng </option>
@@ -22,6 +22,8 @@
 
              <option value="list_ad_class_tham_gia_hoatdong"> SV tham gia cac hd </option>
                 <option value="list_ad_khen_thuong_doan"> SV khen thuong doan </option>
+                <option value="list_ad_dang_vien"> Danh Sach Dang Vien </option>
+                <option value="list_ad_vi_pham_doan"> Vi Pham SV Doan </option>
 
             @endif
             @if(Auth::user()->username == 'vanphongkhoa'))

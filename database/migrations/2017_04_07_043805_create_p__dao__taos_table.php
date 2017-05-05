@@ -17,6 +17,8 @@ class CreatePDaoTaosTable extends Migration
           $table->increments('id_dao_tao');
           $table->integer('point_dao_tao');
           $table->integer('mssv');
+            $table->string('fullname');
+            $table->string('class');
           $table->string('trung_binh');
           $table->string('tich_luy');
           $table->string('xep_loai');

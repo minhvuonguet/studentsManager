@@ -42,7 +42,7 @@ class DaoTaoController extends Controller  {
 //  danh sach sinh vien
 
     public function listclass() {
-        $sinhvien = Sinh_Vien::all();
+        $sinhvien = P_Dao_Tao::all();
         $diem = Points::all();
         $listClass = [];
         for($i = 0; $i < count($sinhvien); $i++){
@@ -67,7 +67,7 @@ class DaoTaoController extends Controller  {
     // danh sách vi pham
 
     public function vi_pham_quyche() {
-        $sinhvien = Sinh_Vien::all();
+        $sinhvien = P_Dao_Tao::all();
         $diem = Points::all();
         $listClass = [];
         for($i = 0; $i < count($sinhvien); $i++){
@@ -89,7 +89,7 @@ class DaoTaoController extends Controller  {
     }
 
     public function xem_diem() {
-        $sinhvien = Sinh_Vien::all();
+        $sinhvien = P_Dao_Tao::all();
         $diem = Points::all();
         $listClass = [];
         for($i = 0; $i < count($sinhvien); $i++){

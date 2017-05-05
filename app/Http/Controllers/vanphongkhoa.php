@@ -68,7 +68,7 @@ class vanphongkhoa extends Controller  {
     }
 
     public function xem_diem() {
-        $sinhvien = Sinh_Vien::all();
+        $sinhvien = P_Dao_Tao::all();
         $diem = Points::all();
         $listClass = [];
         for($i = 0; $i < count($sinhvien); $i++){
@@ -116,7 +116,7 @@ class vanphongkhoa extends Controller  {
     
     // 
     public function vi_pham() {
-        $sinhvien = Sinh_Vien::all();
+        $sinhvien = P_Khoa::all();
         $diem = Points::all();
         $listClass = [];
         for($i = 0; $i < count($sinhvien); $i++){
