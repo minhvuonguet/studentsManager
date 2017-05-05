@@ -18,6 +18,8 @@ class CreatePKhoasTable extends Migration
             $table->increments('id_p_khoa');
             $table->integer('point_khoa');
             $table->integer('mssv');
+            $table->string('fullname');
+            $table->string('class');
             $table->string('vi_pham_sh_khoa');
        //     $table->primary('id_p_khoa');
 //            $table->foreign('mssv')

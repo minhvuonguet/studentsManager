@@ -42,7 +42,7 @@ class PhongKHCNController extends Controller  {
 //  danh sach sinh vien
 
     public function listclass() {
-        $sinhvien = Sinh_Vien::all();
+        $sinhvien = P_Khoa_Hoc_CN::all();
         $diem = Points::all();
         $listClass = [];
         for($i = 0; $i < count($sinhvien); $i++){
@@ -67,7 +67,7 @@ class PhongKHCNController extends Controller  {
     // danh sách vi pham
 
     public function giai_thuong() {
-        $sinhvien = Sinh_Vien::all();
+        $sinhvien = P_Khoa_Hoc_CN::all();
         $diem = Points::all();
         $listClass = [];
         for($i = 0; $i < count($sinhvien); $i++){

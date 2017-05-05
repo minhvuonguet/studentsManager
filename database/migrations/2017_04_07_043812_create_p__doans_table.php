@@ -15,8 +15,12 @@ class CreatePDoansTable extends Migration
             $table->increments('id_doan');
             $table->integer('point_doan');
             $table->integer('mssv');
+            $table->string('fullname');
+            $table->string('class');
             $table->string('tham_gia');
+            $table->string('dang_vien');
             $table->string('khen_thuong_doan');
+            $table->string('vi_pham_doan');
             
             $table->timestamps();
         });

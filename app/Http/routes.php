@@ -46,7 +46,7 @@ Route::group(['middleware' => ['web']], function () {
 //    Route::get('doanVien.listDoanVien', ['as'=>'doanVien.listDoanVien', 'uses'=>'AdminControler@listDoanVien']);
 //    Route::get('coVanHocTap.listCoVanHocTap', ['as'=>'coVanHocTap.listCoVanHocTap', 'uses'=>'AdminControler@listCoVanHocTap']);
 //
-//    Route::get('phanHoi.phan_hoi', ['as'=>'phanHoi.phan_hoi', 'uses'=>'AdminControler@phanhoi']);
+    Route::get('phanHoi.phan_hoi', ['as'=>'phanHoi.phan_hoi', 'uses'=>'AdminControler@phanhoi']);
 //
 //    Route::get('khenThuong.khen_thuong', ['as'=>'khenThuong.khen_thuong', 'uses'=>'AdminControler@khenThuong']);
 //
@@ -54,10 +54,11 @@ Route::group(['middleware' => ['web']], function () {
 //
 //
     Route::get('doanvien', ['as'=>'doanvien', 'uses'=>'VPDoanController@demo']);
-//    Route::get('dangvien', ['as'=>'dangvien', 'uses'=>'VPDoanController@dangvien']);
+    Route::get('dangvien', ['as'=>'dangvien', 'uses'=>'VPDoanController@dangvien']);
+    Route::get('doanVien.listDoanVien', ['as'=>'doanVien.listDoanVien', 'uses'=>'AdminControler@xem_diem_ren_luyen']);
 //    Route::get('hoat_dong_doan', ['as'=>'hoat_dong_doan', 'uses'=>'VPDoanController@hoat_dong_doan']);
     Route::get('doanVien.khen_thuong', ['as'=>'doanVien.khen_thuong', 'uses'=>'VPDoanController@khen_thuong']);
-//    Route::get('doanVien.vi_pham', ['as'=>'doanVien.vi_pham', 'uses'=>'VPDoanController@vi_pham']);
+    Route::get('doanVien.vi_pham', ['as'=>'doanVien.vi_pham', 'uses'=>'VPDoanController@vi_pham']);
 //    Route::get('doanVien.newClass', ['as' => 'doanVien.newClass', 'uses' => 'VPDoanController@newclass']);
 //
 //
@@ -65,7 +66,7 @@ Route::group(['middleware' => ['web']], function () {
 //
 //    Route::get('coVanHocTap.khen_thuong', ['as' => 'coVanHocTap.khen_thuong', 'uses' => 'covanController@khen_thuong']);
     Route::get('coVanHocTap.listclass', ['as' => 'coVanHocTap.listclass', 'uses' => 'covanController@listclass']);
-//    Route::get('coVanHocTap.vi_pham', ['as' => 'coVanHocTap.vi_pham', 'uses' => 'covanController@vi_pham']);
+    Route::get('coVanHocTap.vi_pham', ['as' => 'coVanHocTap.vi_pham', 'uses' => 'covanController@vi_pham']);
 //    Route::get('coVanHocTap.xem_diem', ['as' => 'coVanHocTap.xem_diem', 'uses' => 'covanController@xem_diem']);
 //    Route::get('coVanHocTap.newimport', ['as' => 'coVanHocTap.newimport', 'uses' => 'covanController@newimport']);
 //
@@ -90,7 +91,7 @@ Route::group(['middleware' => ['web']], function () {
 //
 //
 //    Route::get('vanPhongKhoa.newimport', ['as' => 'vanPhongKhoa.newimport', 'uses' => 'vanphongkhoa@newimport']);
-//    Route::get('vanPhongKhoa.vi_pham', ['as' => 'vanPhongKho.vi_pham', 'uses' => 'vanphongkhoa@vi_pham']);
+    Route::get('vanPhongKhoa.vi_pham', ['as' => 'vanPhongKho.vi_pham', 'uses' => 'vanphongkhoa@vi_pham']);
 //    Route::get('vanPhongKhoa.khen_thuong', ['as' => 'vanPhongKhoa.khen_thuong', 'uses' => 'vanphongkhoa@giai_thuong']);
     Route::get('vanPhongKhoa.xem_diem', ['as' => 'vanPhongKhoa.xem_diem', 'uses' => 'vanphongkhoa@xem_diem']);
 //    Route::get('vanPhongKhoa.listclass', ['as' => 'vanPhongKhoa.listclass', 'uses' => 'vanphongkhoa@listclass']);
