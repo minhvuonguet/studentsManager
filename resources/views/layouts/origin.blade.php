@@ -25,16 +25,20 @@
 
         <div class="logopanel">
             <h1>
-                {{--<a href="#">Link Logo</a>--}}
+                <a href="{{URL::to('home')}}">
+                    <img src="public\assets\Admin\images\uet_logo.png" class="img-responsive img-circle" alt="friend 8" height="200" width="200">
+                </a>
             </h1>
         </div>
 
         <div class="sidebar-inner">
             <div class="sidebar-top big-img">
                 <div class="user-image">
+                    <a href="{{URL::to('home')}}">
                 		@section('avatar')
                         <img src="public\assets\Admin\images\avatars\avatar7_big@2x.png" class="img-responsive img-circle" alt="friend 8" height="200" width="200">
                         @show
+                    </a>
                 </div>
                 <h4>
                 @section('username')
@@ -50,33 +54,34 @@
             </div>
             @section('navbar')
             <ul class="nav nav-sidebar">
-
-                    <li class=" nav-active active">
+                    @section('navHome')
+                    <li class=" nav-parent">
                         <a href="{{URL::to('home')}}">
                             <i class="icon-home"></i>
                             <span>Home</span>
                         </a>
                     </li>
-
-                    <li class="nav-parent">
-                        <a href="{{URL::to('readExcels')}}">
-                            <i class="icon-bulb"></i>
-                            <span>Excels</span>
-                        </a>
-
+                    @show
+                    @section('navShowPoint')
                     <li class="nav-parent">
                         <a href="{{URL::to('showPoint')}}">
                             <i class="icon-bulb"></i>
                             <span>Xem Điểm</span>
                         </a>
                     </li>
+                    @show
 
+                    @section('navReport')
                     <li class="nav-parent">
                         <a href="{{URL::to('report')}}">
                             <i class="icon-bulb"></i>
                             <span>Phản hồi</span>
                         </a>
                     </li>
+                    @show
+
+                    @section('navExtra')
+                    @show
             </ul>
             @show
         </div>
@@ -85,11 +90,14 @@
     <div class="main-content">
         <!-- BEGIN TOPBAR -->
         <div class="topbar">
+             <center>
+                <strong><font size="6">@yield('title')</font></strong>
+            </center>
+        </div>
+        <div class="topbar">
             <div class="header-right">
                 <ul class="header-menu nav navbar-nav">
-                    <li class="dropdown" id="user-header">
-
-                    </li>
+                    <li class="dropdown" id="user-header"></li>
                     <li class="logout_Admin">
                         <a href="{{ URL::to('logout') }}">
                             <i class="icon-logout"></i>

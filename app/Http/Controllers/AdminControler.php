@@ -39,18 +39,17 @@ class AdminControler extends Controller {
     }
     
     public function postLogin(Request $request){ 
-        $request->session()->forget('username');
-        $request->session()->forget('mssv');
-        $request->session()->forget('id_role');
-        $request->session()->forget('avatar');
+
+        $request->session()->forget('user');
+        $request->session()->forget('sinhvien');
 
         if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>2 ]) ||
             Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>1 ]) ) {
             $this->use_ = new User();
-            $request->session()->put('username',Auth::user()->username);
-            $request->session()->put('mssv',Auth::user()->mssv);
-            $request->session()->put('id_role',Auth::user()->id_role);
-            $request->session()->put('avatar',Auth::user()->avatar);
+
+            $request->session()->put('user',Auth::user());
+            $request->session()->put('sinhvien',Sinh_Vien::find(Auth::user()->mssv));
+
             return view('admin.adminManager');
         }
 
@@ -58,10 +57,10 @@ class AdminControler extends Controller {
 
         else if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>3 ])) {
             $this->use_ = new User();
-            $request->session()->put('username',Auth::user()->username);
-            $request->session()->put('mssv',Auth::user()->mssv);
-            $request->session()->put('id_role',Auth::user()->id_role);
-            $request->session()->put('avatar',Auth::user()->avatar);
+
+            $request->session()->put('user',Auth::user());
+            $request->session()->put('sinhvien',Sinh_Vien::find(Auth::user()->mssv));
+            
             return redirect()->route('ViewUser');
         }
 
@@ -74,22 +73,11 @@ class AdminControler extends Controller {
     public function listUser(){
         return view('admin.adminManager');
     }
-    public function ViewUser(Request $request) {
-
-        return view('Employee.indexStudents')->with([
-            'username'=>$request->session()->get('username'),
-            'mssv'=>$request->session()->get('mssv'),
-            'id_role'=>$request->session()->get('id_role'),
-            'avatar'=>$request->session()->get('avatar'),
-            ]);
-    }
+    
 
 
     public function getLogout(Request $request) {
-        $request->session()->forget('username');
-        $request->session()->forget('mssv');
-        $request->session()->forget('id_role');
-        $request->session()->forget('avatar');
+        $request->session()->forget('user');
         Auth::logout(); // logout user
         return Redirect()->route('login'); //redirect back to login
     }
@@ -205,7 +193,7 @@ class AdminControler extends Controller {
         return  [$id, $chu_de];
     }
     public function formdiem () {
-        if(Auth::user()->username == 'admin1') {
+        if(Auth::user()->username == 'Administartor') {
             $data = Form_Diem::all();
             echo $data[0]->tong_hoc_tap;
             return View('Employee.mau_diem')->With([

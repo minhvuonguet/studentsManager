@@ -49,12 +49,29 @@
 
             <ul class="nav nav-sidebar">
 
-                <li class=" nav-active active"><a href="javascript:void(0)"><i class="icon-home"></i><span>Admin Manager</span></a></li>
+                <li class=" nav-active active">
+                    <a href="javascript:void(0)">
+                        <i class="icon-home"></i>
+                        <span>Admin Manager</span>
+                    </a>
+                </li>
+
+                
 
 
-                @if(Auth::user()->username == 'admin1' || Auth::user()->username == 'phongctsv')
+                @if(Auth::user()->username == 'Administartor' || Auth::user()->username == 'phongctsv')
                     <li class="nav-parent">
-                        <a href="{{ URL::to('formdiem') }}" class="test_"><i class="icon-puzzle"></i><span> Form điểm rèn luyện </span> </a>
+                        <a href="{{ URL::to('readExcels') }}" class="test_">
+                            <i class="icon-puzzle"></i>
+                            <span>Thêm file </span> 
+                        </a>
+                    </li>
+                    <li class="nav-parent">
+                        <a href="{{ URL::to('formdiem') }}" class="test_">
+                            <i class="icon-puzzle">
+                            </i>
+                            <span> Form điểm rèn luyện </span> 
+                        </a>
                     </li>
 
                     <li class="nav-parent">

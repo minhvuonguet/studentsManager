@@ -10,17 +10,14 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-// Route::get('/', function () {
-//     return view('admin.login');
-// });
-
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@goToHome']);
 
 Route::get('home', ['as' => 'home', 'uses' => 'HomeController@goToHome']);
 
+Route::get('ViewUser', ['as' => 'ViewUser', 'uses' => 'StudentsControler@ViewUser']);
 Route::get('showPoint', ['as' => 'showPoint', 'uses' => 'StudentsControler@showPoint']);
 Route::get('report', ['as' => 'report', 'uses' => 'StudentsControler@report']);
+
 
 Route::post('updateDB', ['as' => 'updateDB', 'uses' => 'DatabaseController@updateDB']);
 Route::get('readExcels', ['as' => 'readExcels', 'uses' => 'DatabaseController@readExcels']);
@@ -29,7 +26,6 @@ Route::group(['middleware' => ['web']], function () {
     // admin va phong cong tac sinh vien
     Route::get('/login', ['as' => 'login', 'uses' => 'AdminControler@getLogin']);
     Route::post('/postLogin', ['as' => 'postLogin', 'uses' => 'AdminControler@postLogin']);
-    Route::get('ViewUser', ['as' => 'ViewUser', 'uses' => 'AdminControler@ViewUser']);
     Route::get('sendmail', ['as' => 'sendmail', 'uses' => 'AdminControler@sendmail']);
     Route::post('/message/send', ['uses' => 'FrontController@addFeedback', 'as' => 'front.fb']);
     Route::get('formdiem', ['as' => 'formdiem', 'uses' => 'AdminControler@formdiem']);

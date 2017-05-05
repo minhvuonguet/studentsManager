@@ -14,24 +14,40 @@ use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Models\User_Point;
 use Illuminate\Support\Facades\DB;
+use App\Models\Form_Diem;
+
 
 class StudentsControler extends Controller {
+    public function ViewUser(Request $request) {
+        $data = Form_Diem::all();
+        $user= $request->session()->get('user');
+        $sinhvien = $request->session()->get('sinhvien');
+        return View('Employee.indexStudents')->With([
+            'data' => $data,
+            'user' => $user,
+            'sinhvien' => $sinhvien
+        ]);
+    }
+
     public function report(Request $request){
+        $user= $request->session()->get('user');
+        $sinhvien = $request->session()->get('sinhvien');
+        
         return view('Employee.report')->with([
-            'username'=>$request->session()->get('username'),
-            'mssv'=>$request->session()->get('mssv'),
-            'id_role'=>$request->session()->get('id_role'),
-            'avatar'=>$request->session()->get('avatar'),
+            'user' => $user,
+            'sinhvien' => $sinhvien
             ]);
     }
 
     public function showPoint(Request $request){
-        return view('Employee.showPoint')->with([
-            'username'=>$request->session()->get('username'),
-            'mssv'=>$request->session()->get('mssv'),
-            'id_role'=>$request->session()->get('id_role'),
-            'avatar'=>$request->session()->get('avatar'),
-            ]);
+        $data = Form_Diem::all();
+        $user= $request->session()->get('user');
+        $sinhvien = $request->session()->get('sinhvien');
+        return View('Employee.showPoint')->With([
+            'data' => $data,
+            'user' => $user,
+            'sinhvien' => $sinhvien
+        ]);
     }
 
     public function getMauDiem () {

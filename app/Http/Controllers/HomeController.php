@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Models\Form_Diem;
+
 
 class HomeController extends Controller
 {
@@ -18,15 +20,30 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function goStudents(Request $request){
+        $data = Form_Diem::all();
+        $user= $request->session()->get('user');
+        return View('Employee.indexStudents')->With([
+            'data' => $data,
+            'user' => $user
+        ]);
+    }
+
     public function goToHome(Request $request)
     {
         switch ($request->session()->get('id_role')) {
+            // case '4':
+            //     HomeController::goStudents($request);
+            //     break;
             case '3':
-                return view('Employee.indexStudents')->with([
-                'username'=>$request->session()->get('username'),
-                'mssv'=>$request->session()->get('mssv'),
-                'id_role'=>$request->session()->get('id_role'),
-                'avatar'=>$request->session()->get('avatar'),
+                $data = Form_Diem::all();
+                $user= $request->session()->get('user');
+                $sinhvien = $request->session()->get('sinhvien');
+
+                return View('Employee.indexStudents')->With([
+                    'data' => $data,
+                    'user' => $user,
+                    'sinhvien' => $sinhvien
                 ]);
                 break;
             case '2':

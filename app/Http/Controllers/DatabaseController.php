@@ -10,11 +10,11 @@ use Excel,Input,File;
 use DB;
 class DatabaseController extends Controller{
     public function readExcels(Request $request){
+      $user     = $request->session()->get('user');
+      $sinhvien = $request->session()->get('sinhvien');
       return view('admin.readExcels')->with([
-            'username'=>$request->session()->get('username'),
-            'mssv'=>$request->session()->get('mssv'),
-            'id_role'=>$request->session()->get('id_role'),
-            'avatar'=>$request->session()->get('avatar'),
+            'user'=>$user,
+            'sinhvien' => $sinhvien
             ]);
     }
     public function updateDB(Request $request) {
