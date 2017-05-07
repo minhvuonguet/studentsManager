@@ -8,16 +8,15 @@
 @endsection
 
 @section('username')
-    <center>{{$sinhvien->fullname}}</center>
 @endsection
 
 @section('navHome')
-                <li class="nav-active active">
-                    <a href="{{URL::to('home')}}">
-                        <i class="icon-home"></i>
-                        <span>Home</span>
-                    </a>
-                </li>
+                    <li class="nav-active active">
+                        <a href="{{URL::to('home')}}">
+                            <i class="glyphicon glyphicon-home fa-2x"></i>
+                            <span style="font-size: 200%">Trang Chủ</span>
+                        </a>
+                    </li>
 @endsection
 
 @section('content')

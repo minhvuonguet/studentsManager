@@ -29,14 +29,13 @@ class StudentsControler extends Controller {
         ]);
     }
 
-    public function report(Request $request){
+    public function account(Request $request){
         $user= $request->session()->get('user');
         $sinhvien = $request->session()->get('sinhvien');
-        
-        return view('Employee.report')->with([
+        return View('Employee.account')->With([
             'user' => $user,
             'sinhvien' => $sinhvien
-            ]);
+        ]);
     }
 
     public function showPoint(Request $request){
@@ -49,6 +48,18 @@ class StudentsControler extends Controller {
             'sinhvien' => $sinhvien
         ]);
     }
+
+    public function report(Request $request){
+        $user= $request->session()->get('user');
+        $sinhvien = $request->session()->get('sinhvien');
+        
+        return view('Employee.report')->with([
+            'user' => $user,
+            'sinhvien' => $sinhvien
+            ]);
+    }
+
+    
 
     public function getMauDiem () {
         $ad_us = User::find(Auth::user()->id);

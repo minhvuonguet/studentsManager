@@ -31,15 +31,11 @@ class HomeController extends Controller
 
     public function goToHome(Request $request)
     {
-        switch ($request->session()->get('id_role')) {
-            // case '4':
-            //     HomeController::goStudents($request);
-            //     break;
+        $user= $request->session()->get('user');
+        $sinhvien = $request->session()->get('sinhvien');
+        switch ($user->id_role) {
             case '3':
                 $data = Form_Diem::all();
-                $user= $request->session()->get('user');
-                $sinhvien = $request->session()->get('sinhvien');
-
                 return View('Employee.indexStudents')->With([
                     'data' => $data,
                     'user' => $user,
@@ -52,9 +48,9 @@ class HomeController extends Controller
             case '1':
                 return view('admin.adminManager');
                 break;
-            default:
-                return redirect()->route('login');
-                break;
+            // default:
+            //     return redirect()->route('login');
+            //     break;
         }
     }
 }

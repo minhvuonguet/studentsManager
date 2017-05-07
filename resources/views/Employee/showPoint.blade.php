@@ -14,12 +14,11 @@
 @section('navShowPoint')
                     <li class="nav-active active">
                         <a href="{{URL::to('showPoint')}}">
-                            <i class="icon-bulb"></i>
-                            <span>Xem Điểm</span>
+                            <i class="glyphicon glyphicon-list-alt fa-2x"></i>
+                            <span style="font-size: 200%">Xem Điểm</span>
                         </a>
                     </li>
 @endsection
-
 @section('content')
 	<h1 class="text-center">Điểm rèn luyện của {{$sinhvien->fullname}}</h1>
     <form>

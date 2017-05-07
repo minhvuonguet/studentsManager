@@ -1,5 +1,5 @@
 @extends('layouts.origin')
-@section('title','Phản Hồi')
+@section('title','Tài Khoản')
 
 @section('avatar')
     <center>
@@ -11,11 +11,11 @@
 	<center>{{$sinhvien->fullname}}</center>
 @endsection
 
-@section('navReport')
+@section('navAccount')
                     <li class="nav-active active">
-                        <a href="{{URL::to('report')}}">
-                            <i class="glyphicon glyphicon-send fa-2x"></i>
-                            <span style="font-size: 200%">Phản hồi</span>
+                        <a href="{{URL::to('account')}}">
+                            <i class="glyphicon glyphicon-user fa-2x"></i>
+                            <span style="font-size: 200%">Tài Khoản</span>
                         </a>
                     </li>
 @endsection

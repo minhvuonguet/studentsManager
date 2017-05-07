@@ -15,6 +15,7 @@ Route::get('/', ['as' => 'home', 'uses' => 'HomeController@goToHome']);
 Route::get('home', ['as' => 'home', 'uses' => 'HomeController@goToHome']);
 
 Route::get('ViewUser', ['as' => 'ViewUser', 'uses' => 'StudentsControler@ViewUser']);
+Route::get('account', ['as' => 'account', 'uses' => 'StudentsControler@account']);
 Route::get('showPoint', ['as' => 'showPoint', 'uses' => 'StudentsControler@showPoint']);
 Route::get('report', ['as' => 'report', 'uses' => 'StudentsControler@report']);
 
