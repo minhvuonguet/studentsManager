@@ -43,10 +43,16 @@ class HomeController extends Controller
                 ]);
                 break;
             case '2':
-                return view('admin.adminManager');
+                return view('admin.adminManager')->With([
+                    'user' => $user,
+                    'sinhvien' => $sinhvien
+                ]);
                 break;
             case '1':
-                return view('admin.adminManager');
+                return view('admin.adminManager')->With([
+                    'user' => $user,
+                    'sinhvien' => $sinhvien
+                ]);
                 break;
             // default:
             //     return redirect()->route('login');

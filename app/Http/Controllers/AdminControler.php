@@ -50,7 +50,8 @@ class AdminControler extends Controller {
             $request->session()->put('user',Auth::user());
             $request->session()->put('sinhvien',Sinh_Vien::find(Auth::user()->mssv));
 
-            return view('admin.adminManager');
+            // return view('admin.adminManager');
+            return redirect()->route('home');
         }
 
 
@@ -61,7 +62,8 @@ class AdminControler extends Controller {
             $request->session()->put('user',Auth::user());
             $request->session()->put('sinhvien',Sinh_Vien::find(Auth::user()->mssv));
             
-            return redirect()->route('ViewUser');
+            // return redirect()->route('ViewUser');
+            return redirect()->route('home');
         }
 
         else {
@@ -71,13 +73,15 @@ class AdminControler extends Controller {
         }
     }
     public function listUser(){
-        return view('admin.adminManager');
+        // return view('admin.adminManager');
+        return redirect()->route('home');
     }
     
 
 
     public function getLogout(Request $request) {
         $request->session()->forget('user');
+        $request->session()->forget('sinhvien');
         Auth::logout(); // logout user
         return Redirect()->route('login'); //redirect back to login
     }

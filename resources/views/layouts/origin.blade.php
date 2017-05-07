@@ -26,9 +26,9 @@
             <div class="sidebar-top big-img">
                 <div class="user-image">
                     <a href="{{URL::to('account')}}">
-                		@section('avatar')
-                        <img src="public\assets\Admin\images\avatars\avatar7_big@2x.png" class="img-responsive img-circle" alt="friend 8" height="200" width="200">
-                        @show
+                		<center>
+                            <img src="public\assets\Admin\images\avatars\{{$user->avatar}}.png" class="img-responsive img-circle" alt="friend 8" height="200" width="200">
+                        </center>
                     </a>
                 </div>
 
@@ -40,58 +40,77 @@
                     </form>
                 </div>
             </div>
-            @section('navbar')
             <ul class="nav nav-sidebar">
-                    @section('navHome')
+            @section('navHome')
                     <li class=" nav-parent">
                         <a href="{{URL::to('home')}}">
                             <i class="glyphicon glyphicon-home fa-2x"></i>
                             <span style="font-size: 200%">Trang Chủ</span>
                         </a>
                     </li>
-                    @show
+            @show
 
-                    @section('navAccount')
+            @section('navAccount')
                     <li class=" nav-parent">
                         <a href="{{URL::to('account')}}">
                             <i class="glyphicon glyphicon-user fa-2x"></i>
                             <span style="font-size: 200%">Tài Khoản</span>
                         </a>
                     </li>
-                    @show
+            @show
 
-                    @section('navShowPoint')
+            @section('navAddExcels')
                     <li class="nav-parent">
                         <a href="{{URL::to('showPoint')}}">
-                            <i class="glyphicon glyphicon-list-alt fa-2x"></i>
+                            <i class="glyphicon glyphicon-circle-arrow-up fa-2x"></i>
+                            <span style="font-size: 200%">Excels</span>
+                        </a>
+                    </li>
+            @show
+
+            @section('navShowPoint')
+                    <li class="nav-parent">
+                        <a href="{{URL::to('showPoint')}}">
+                            <i class="glyphicon glyphicon-flash fa-2x"></i>
                             <span style="font-size: 200%">Xem Điểm</span>
                         </a>
                     </li>
-                    @show
+            @show
 
-                    @section('navReport')
+            @section('navShowExcels')
+                    <li class="nav-parent">
+                        <a href="{{URL::to('showPoint')}}">
+                            <i class="glyphicon glyphicon-briefcase fa-2x"></i>
+                            <span style="font-size: 200%">Xem Danh Sách</span>
+                        </a>
+                    </li>
+            @show
+
+            @section('navReport')
                     <li class="nav-parent">
                         <a href="{{URL::to('report')}}">
                             <i class="glyphicon glyphicon-send fa-2x"></i>
                             <span style="font-size: 200%">Phản hồi</span>
                         </a>
                     </li>
-                    @show
-
-                    @section('navExtra')
-                    @show
-            </ul>
             @show
+
+            @section('navAdmin')
+            @show
+
+            </ul>
         </div>
     </div>
 
     <div class="main-content">
         <!-- BEGIN TOPBAR -->
+        <!-- Cần sửa kích cỡ -->
         <div class="topbar">
              <center>
                 <strong><font size="6">@yield('title')</font></strong>
             </center>
         </div>
+        <!-- Cần sửa kích cỡ -->
         <div class="topbar">
             <div class="header-right">
                 <ul class="header-menu nav navbar-nav">
@@ -106,6 +125,7 @@
             </div>
             <!-- header-right -->
         </div>
+        <!-- Cần sửa kích cỡ -->
         <div class="page-content page-thin ">
             <div class="col-md-12">
                 <div class="row">

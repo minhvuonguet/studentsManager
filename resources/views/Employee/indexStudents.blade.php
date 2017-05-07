@@ -1,15 +1,6 @@
 @extends('layouts.origin')
 @section('title','Home')
 
-@section('avatar')
-    <center>
-        <img src="public\assets\Admin\images\avatars\{{$user->avatar}}.png" class="img-responsive img-circle" alt="friend 8" height="200" width="200">
-    </center>
-@endsection
-
-@section('username')
-@endsection
-
 @section('navHome')
                     <li class="nav-active active">
                         <a href="{{URL::to('home')}}">
@@ -17,6 +8,11 @@
                             <span style="font-size: 200%">Trang Chủ</span>
                         </a>
                     </li>
+@endsection
+
+@section('navAddExcels')
+@endsection
+@section('navShowExcels')
 @endsection
 
 @section('content')

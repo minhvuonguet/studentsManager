@@ -38,8 +38,8 @@ class UserTableSeeder extends Seeder
             'id_role'=>2
         ]);
         User::create([
-            'username'=>'khoahoccongnghe',
-            'password'=>Hash::make('khoahoccongnghe'),
+            'username'=>'phongkhcn',
+            'password'=>Hash::make('phongkhcn'),
             'email'=>'khoahoccongnghe@gmail.com',
             'mssv' => 4,
             'avatar' => 4,
