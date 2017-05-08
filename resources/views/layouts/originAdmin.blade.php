@@ -60,9 +60,9 @@
                     </li>
                     @show
 
-                    @section('navShowPoint')
+                    @section('navview')
                     <li class="nav-parent">
-                        <a href="{{URL::to('showPoint')}}">
+                        <a href="{{URL::to('view')}}">
                             <i class="glyphicon glyphicon-list-alt fa-2x"></i>
                             <span style="font-size: 200%">Xem Điểm</span>
                         </a>

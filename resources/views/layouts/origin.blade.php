@@ -76,10 +76,10 @@
                 @show
             @endif
 
-            @if($user->username!='phongdaotao' && $user->username!='phongkhcn' && $user->username!='vanphongdoan')
-                @section('navShowPoint')
+            @if($user->id_role==1)
+                @section('navCreateNew')
                         <li class="nav-parent">
-                            <a href="{{URL::to('showPoint')}}">
+                            <a href="{{URL::to('createNew')}}">
                                 <i class="glyphicon glyphicon-grain fa-2x"></i>
                                 <span style="font-size: 200%">Tạo Mới</span>
                             </a>
@@ -87,11 +87,11 @@
                 @show
             @endif
 
-            @if($user->id_role!=3)
-                @section('navShowExcels')
+            @if(true)
+                @section('navView')
                         <li class="nav-parent">
-                            <a href="{{URL::to('showPoint')}}">
-                                <i class="glyphicon glyphicon-briefcase fa-2x"></i>
+                            <a href="{{URL::to('view')}}">
+                                <i class="glyphicon glyphicon-book fa-2x"></i>
                                 <span style="font-size: 200%">Xem Danh Sách</span>
                             </a>
                         </li>
@@ -114,7 +114,7 @@
             @if($user->id_role==1)
                 @section('navForm')
                         <li class="nav-parent">
-                            <a href="{{URL::to('showPoint')}}">
+                            <a href="{{URL::to('view')}}">
                                 <i class="glyphicon glyphicon-list-alt fa-2x"></i>
                                 <span style="font-size: 200%">Quản Lý Form</span>
                             </a>
@@ -123,7 +123,7 @@
 
                 @section('navPoint')
                         <li class="nav-parent">
-                            <a href="{{URL::to('showPoint')}}">
+                            <a href="{{URL::to('view')}}">
                                 <i class="glyphicon glyphicon-plus fa-2x"></i>
                                 <span style="font-size: 200%">Tính Điểm</span>
                             </a>
@@ -132,7 +132,7 @@
 
                 @section('navStat')
                         <li class="nav-parent">
-                            <a href="{{URL::to('showPoint')}}">
+                            <a href="{{URL::to('view')}}">
                                 <i class="glyphicon glyphicon-stats fa-2x"></i>
                                 <span style="font-size: 200%">Thống kê</span>
                             </a>

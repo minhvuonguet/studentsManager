@@ -15,13 +15,18 @@ Route::get('/', ['as' => 'home', 'uses' => 'HomeController@goToHome']);
 Route::get('home', ['as' => 'home', 'uses' => 'HomeController@goToHome']);
 
 Route::get('ViewUser', ['as' => 'ViewUser', 'uses' => 'StudentsControler@ViewUser']);
+//accout  Hiển thị thông tin tài khoản
 Route::get('account', ['as' => 'account', 'uses' => 'StudentsControler@account']);
-Route::get('showPoint', ['as' => 'showPoint', 'uses' => 'StudentsControler@showPoint']);
+//report báo cáo lỗi hay khiếu nại, thắc mắc
 Route::get('report', ['as' => 'report', 'uses' => 'StudentsControler@report']);
+//view hiển thị điểm, danh sách Excels tùy tài khoản
+Route::get('view', ['as' => 'view', 'uses' => 'ViewController@view']);
 
-
-Route::post('updateDB', ['as' => 'updateDB', 'uses' => 'DatabaseController@updateDB']);
+//readExcels Đọc file Excels theo từng tài khoản
 Route::get('readExcels', ['as' => 'readExcels', 'uses' => 'DatabaseController@readExcels']);
+Route::post('updateDB', ['as' => 'updateDB', 'uses' => 'DatabaseController@updateDB']);
+//createNew Tạo Học Kỳ mới, lớp mới, học sinh mới...
+Route::get('createNew', ['as' => 'createNew', 'uses' => 'DatabaseController@createNew']);
 
 Route::group(['middleware' => ['web']], function () {
     // admin va phong cong tac sinh vien

@@ -10,14 +10,20 @@ use Excel,Input,File;
 use Hash;
 use DB;
 class DatabaseController extends Controller{
-    public function Excels(Request $request){
-      $user     = $request->session()->get('user');
-      $sinhvien = $request->session()->get('sinhvien');
-      return view('admin.Excels')->with([
-            'user'=>$user,
-            'sinhvien' => $sinhvien
+    public function readExcels(Request $request){
+      return view('admin.readExcels')->with([
+            'user'=> $request->session()->get('user'),
+            'sinhvien' => $request->session()->get('sinhvien')
             ]);
     }
+
+    public function createNew(Request $request){
+      return view('admin.createNew')->with([
+        'user' => $request->session()->get('user'),
+        'sinhvien' => $request->session()->get('sinhvien')
+        ]);
+    }
+    
     public function updateDB(Request $request) {
     switch ($request->choseTable) {
       case 'students':
@@ -46,31 +52,31 @@ class DatabaseController extends Controller{
               break;
 
       case 'point.average':
-              return $this->Excels($request);
+              return $this->ExcelsPointAverage($request);
               break;
       case 'violate.pass':
-              return $this->Excels($request);
+              return $this->ExcelsViolatePass($request);
               break;
 
       case 'study.science':
-              return $this->Excels($request);
+              return $this->ExcelsStudyScience($request);
               break;
       case 'have.prize':
-              return $this->Excels($request);
+              return $this->ExcelsHavePrize($request);
               break;
       case 'join.activity':
-              return $this->Excels($request);
+              return $this->ExcelsJoinActivity($request);
               break;
       case 'have.praise':
-              return $this->Excels($request);
+              return $this->ExcelsHavePraise($request);
               break;
 
       case 'violate.department':
-              return $this->Excels($request);
+              return $this->ExcelsViolateDepartment($request);
               break;
 
       case 'violate.activity':
-              return $this->Excels($request);
+              return $this->ExcelsViolateActivity($request);
               break;
     }
   }
@@ -104,7 +110,7 @@ class DatabaseController extends Controller{
 
       $S2=Sinh_Vien::all()->count();
       $S2=$S2-$S1;
-      return view('admin.Excels')->with([
+      return view('admin.readExcels')->with([
           'user' => $request->session()->get('user'),
           'sinhvien' => $request->session()->get('sinhvien'),
           'dcount' => $S2,
@@ -113,7 +119,27 @@ class DatabaseController extends Controller{
   }
 
   public function ExcelsClass($request){
-    echo $request->choseTable;
+      $S1=Sinh_Vien::all()->count();
+      Excel::selectSheets('Sheet1')->load($request->fileExcels, function($reader){
+        $reader->each(function($row){
+            if (Sinh_Vien::find($row->mssv) == null ) {
+              echo $row;
+              // $sinh_vien_new = new Sinh_Vien();
+              // $sinh_vien_new->save();
+              // $user = new User();
+              // $user->save();
+            }
+        });
+      });
+
+      $S2=Sinh_Vien::all()->count();
+      $S2=$S2-$S1;
+      return view('admin.readExcels')->with([
+          'user' => $request->session()->get('user'),
+          'sinhvien' => $request->session()->get('sinhvien'),
+          'dcount' => $S2,
+          'chosetable' => $request->choseTable
+          ]);
   }
 
   public function ExcelsPresidentClass($request){
@@ -132,7 +158,7 @@ class DatabaseController extends Controller{
 
       $S2=Sinh_Vien::all()->count();
       $S2=$S2-$S1;
-      return view('admin.Excels')->with([
+      return view('admin.readExcels')->with([
           'user' => $request->session()->get('user'),
           'sinhvien' => $request->session()->get('sinhvien'),
           'dcount' => $S2,
@@ -156,7 +182,7 @@ class DatabaseController extends Controller{
 
       $S2=Sinh_Vien::all()->count();
       $S2=$S2-$S1;
-      return view('admin.Excels')->with([
+      return view('admin.readExcels')->with([
           'user' => $request->session()->get('user'),
           'sinhvien' => $request->session()->get('sinhvien'),
           'dcount' => $S2,
@@ -181,7 +207,7 @@ class DatabaseController extends Controller{
 
       $S2=Sinh_Vien::all()->count();
       $S2=$S2-$S1;
-      return view('admin.Excels')->with([
+      return view('admin.readExcels')->with([
           'user' => $request->session()->get('user'),
           'sinhvien' => $request->session()->get('sinhvien'),
           'dcount' => $S2,
@@ -206,7 +232,7 @@ class DatabaseController extends Controller{
 
       $S2=Sinh_Vien::all()->count();
       $S2=$S2-$S1;
-      return view('admin.Excels')->with([
+      return view('admin.readExcels')->with([
           'user' => $request->session()->get('user'),
           'sinhvien' => $request->session()->get('sinhvien'),
           'dcount' => $S2,
@@ -231,7 +257,7 @@ class DatabaseController extends Controller{
 
       $S2=Sinh_Vien::all()->count();
       $S2=$S2-$S1;
-      return view('admin.Excels')->with([
+      return view('admin.readExcels')->with([
           'user' => $request->session()->get('user'),
           'sinhvien' => $request->session()->get('sinhvien'),
           'dcount' => $S2,
@@ -256,7 +282,7 @@ class DatabaseController extends Controller{
 
       $S2=Sinh_Vien::all()->count();
       $S2=$S2-$S1;
-      return view('admin.Excels')->with([
+      return view('admin.readExcels')->with([
           'user' => $request->session()->get('user'),
           'sinhvien' => $request->session()->get('sinhvien'),
           'dcount' => $S2,
@@ -281,7 +307,7 @@ class DatabaseController extends Controller{
 
       $S2=Sinh_Vien::all()->count();
       $S2=$S2-$S1;
-      return view('admin.Excels')->with([
+      return view('admin.readExcels')->with([
           'user' => $request->session()->get('user'),
           'sinhvien' => $request->session()->get('sinhvien'),
           'dcount' => $S2,
@@ -306,7 +332,7 @@ class DatabaseController extends Controller{
 
       $S2=Sinh_Vien::all()->count();
       $S2=$S2-$S1;
-      return view('admin.Excels')->with([
+      return view('admin.readExcels')->with([
           'user' => $request->session()->get('user'),
           'sinhvien' => $request->session()->get('sinhvien'),
           'dcount' => $S2,
@@ -331,7 +357,7 @@ class DatabaseController extends Controller{
 
       $S2=Sinh_Vien::all()->count();
       $S2=$S2-$S1;
-      return view('admin.Excels')->with([
+      return view('admin.readExcels')->with([
           'user' => $request->session()->get('user'),
           'sinhvien' => $request->session()->get('sinhvien'),
           'dcount' => $S2,
@@ -356,7 +382,7 @@ class DatabaseController extends Controller{
 
       $S2=Sinh_Vien::all()->count();
       $S2=$S2-$S1;
-      return view('admin.Excels')->with([
+      return view('admin.readExcels')->with([
           'user' => $request->session()->get('user'),
           'sinhvien' => $request->session()->get('sinhvien'),
           'dcount' => $S2,
@@ -381,7 +407,7 @@ class DatabaseController extends Controller{
 
       $S2=Sinh_Vien::all()->count();
       $S2=$S2-$S1;
-      return view('admin.Excels')->with([
+      return view('admin.readExcels')->with([
           'user' => $request->session()->get('user'),
           'sinhvien' => $request->session()->get('sinhvien'),
           'dcount' => $S2,
@@ -406,7 +432,7 @@ class DatabaseController extends Controller{
 
       $S2=Sinh_Vien::all()->count();
       $S2=$S2-$S1;
-      return view('admin.Excels')->with([
+      return view('admin.readExcels')->with([
           'user' => $request->session()->get('user'),
           'sinhvien' => $request->session()->get('sinhvien'),
           'dcount' => $S2,
@@ -415,7 +441,7 @@ class DatabaseController extends Controller{
     
   }
 
-  public func
+  public function ExcelsViolateDepartment($request){
       $S1=Sinh_Vien::all()->count();
       Excel::selectSheets('Sheet1')->load($request->fileExcels, function($reader){
         $reader->each(function($row){
@@ -431,34 +457,12 @@ class DatabaseController extends Controller{
 
       $S2=Sinh_Vien::all()->count();
       $S2=$S2-$S1;
-      return view('admin.Excels')->with([
-          'user' => $request->session()->get('user'),
-          'sinhvien' => $request->session()->get('sinhvien'),
-          'dcount' => $S2,
-          'chosetable' => $request->choseTable
-          ]);tion ExcelsViolateDepartment($request){
-      $S1=Sinh_Vien::all()->count();
-      Excel::selectSheets('Sheet1')->load($request->fileExcels, function($reader){
-        $reader->each(function($row){
-            if (Sinh_Vien::find($row->mssv) == null ) {
-              echo $row;
-              // $sinh_vien_new = new Sinh_Vien();
-              // $sinh_vien_new->save();
-              // $user = new User();
-              // $user->save();
-            }
-        });
-      });
-
-      $S2=Sinh_Vien::all()->count();
-      $S2=$S2-$S1;
-      return view('admin.Excels')->with([
+      return view('admin.readExcels')->with([
           'user' => $request->session()->get('user'),
           'sinhvien' => $request->session()->get('sinhvien'),
           'dcount' => $S2,
           'chosetable' => $request->choseTable
           ]);
-    
   }
 
   public function ExcelsViolateActivity($request){
@@ -477,7 +481,7 @@ class DatabaseController extends Controller{
 
       $S2=Sinh_Vien::all()->count();
       $S2=$S2-$S1;
-      return view('admin.Excels')->with([
+      return view('admin.readExcels')->with([
           'user' => $request->session()->get('user'),
           'sinhvien' => $request->session()->get('sinhvien'),
           'dcount' => $S2,

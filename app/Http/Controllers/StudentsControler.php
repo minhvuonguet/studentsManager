@@ -38,17 +38,6 @@ class StudentsControler extends Controller {
         ]);
     }
 
-    public function showPoint(Request $request){
-        $data = Form_Diem::all();
-        $user= $request->session()->get('user');
-        $sinhvien = $request->session()->get('sinhvien');
-        return View('Employee.showPoint')->With([
-            'data' => $data,
-            'user' => $user,
-            'sinhvien' => $sinhvien
-        ]);
-    }
-
     public function report(Request $request){
         $user= $request->session()->get('user');
         $sinhvien = $request->session()->get('sinhvien');

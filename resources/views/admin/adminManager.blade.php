@@ -17,21 +17,21 @@
 
 @section('navAdmin')
                     <li class="nav-parent">
-                        <a href="{{URL::to('showPoint')}}">
+                        <a href="{{URL::to('view')}}">
                             <i class="glyphicon glyphicon-list-alt fa-2x"></i>
                             <span style="font-size: 200%">Quản Lý Form</span>
                         </a>
                     </li>
 
                     <li class="nav-parent">
-                        <a href="{{URL::to('showPoint')}}">
+                        <a href="{{URL::to('view')}}">
                             <i class="glyphicon glyphicon-plus fa-2x"></i>
                             <span style="font-size: 200%">Tính Điểm</span>
                         </a>
                     </li>
 
                     <li class="nav-parent">
-                        <a href="{{URL::to('showPoint')}}">
+                        <a href="{{URL::to('view')}}">
                             <i class="glyphicon glyphicon-stats fa-2x"></i>
                             <span style="font-size: 200%">Thống kê</span>
                         </a>
