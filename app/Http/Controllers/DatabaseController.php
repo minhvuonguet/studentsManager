@@ -10,10 +10,10 @@ use Excel,Input,File;
 use Hash;
 use DB;
 class DatabaseController extends Controller{
-    public function readExcels(Request $request){
+    public function Excels(Request $request){
       $user     = $request->session()->get('user');
       $sinhvien = $request->session()->get('sinhvien');
-      return view('admin.readExcels')->with([
+      return view('admin.Excels')->with([
             'user'=>$user,
             'sinhvien' => $sinhvien
             ]);
@@ -21,76 +21,468 @@ class DatabaseController extends Controller{
     public function updateDB(Request $request) {
     switch ($request->choseTable) {
       case 'students':
-        $this->readExcelsStudents($request);
-        break;
+              return $this->ExcelsStudents($request);
+              break;
       case 'class':
-        # code...
-        break;
-      default:
-        # code...
-        break;
+              return $this->ExcelsClass($request);
+              break;
+      case 'president.class':
+              return $this->ExcelsPresidentClass($request);
+              break;
+      case 'president.group':
+              return $this->ExcelsPresidentGroup($request);
+              break;
+      case 'adviser':
+              return $this->ExcelsAdviser($request);
+              break;
+      case 'violate.ytsv':
+              return $this->ExcelsViolateYTSV($request);
+              break;
+      case 'violate.ytcd':
+              return $this->ExcelsViolateYTCD($request);
+              break;
+      case 'bonus':
+              return $this->ExcelsBonus($request);
+              break;
+
+      case 'point.average':
+              return $this->Excels($request);
+              break;
+      case 'violate.pass':
+              return $this->Excels($request);
+              break;
+
+      case 'study.science':
+              return $this->Excels($request);
+              break;
+      case 'have.prize':
+              return $this->Excels($request);
+              break;
+      case 'join.activity':
+              return $this->Excels($request);
+              break;
+      case 'have.praise':
+              return $this->Excels($request);
+              break;
+
+      case 'violate.department':
+              return $this->Excels($request);
+              break;
+
+      case 'violate.activity':
+              return $this->Excels($request);
+              break;
     }
   }
 
-  public function readExcelsClass($request){
-    echo $request->choseTable;
-  }
 
-  public function readExcelsStudents($request){
+  public function ExcelsStudents($request){
       $S1=Sinh_Vien::all()->count();
       Excel::selectSheets('Sheet1')->load($request->fileExcels, function($reader){
         $reader->each(function($row){
             if (Sinh_Vien::find($row->mssv) != null ) {
-              echo "</br>"."Haved: ".$row->name;
+              // echo "</br>"."Haved: ".$row->name;
             }else {
               $sinh_vien_new = new Sinh_Vien();
-              $user = new User();
-
               $sinh_vien_new->mssv = $row->mssv;
               $sinh_vien_new->fullname = $row->name;
               $sinh_vien_new->birthday = $row->birthday;
               $sinh_vien_new->class = $row->class;
+              $sinh_vien_new->save();
 
+              $user = new User();
               $user->username = $row->mssv;
               $user->email = "$row->mssv"."@vnu.edu.vn";
               $user->password = Hash::make($row->mssv);
               $user->mssv = $row->mssv;
               $user->id_role =3;
               $user->avatar = $row->mssv;
-
               $user->save();
-              $sinh_vien_new->save();
             }
         });
       });
+
       $S2=Sinh_Vien::all()->count();
-      echo "</br>"."Before: ".$S1;
-      echo "</br>"."Later: ".$S2;
-      echo "</br>"."Đã thêm ".($S2-$S1)." Sinh Viên";
-      return view('admin.readExcels');
+      $S2=$S2-$S1;
+      return view('admin.Excels')->with([
+          'user' => $request->session()->get('user'),
+          'sinhvien' => $request->session()->get('sinhvien'),
+          'dcount' => $S2,
+          'chosetable' => $request->choseTable
+          ]);
   }
 
-  public function readExcelsPresidentClass(Request $request){
+  public function ExcelsClass($request){
+    echo $request->choseTable;
+  }
+
+  public function ExcelsPresidentClass($request){
+      $S1=Sinh_Vien::all()->count();
+      Excel::selectSheets('Sheet1')->load($request->fileExcels, function($reader){
+        $reader->each(function($row){
+            if (Sinh_Vien::find($row->mssv) == null ) {
+              echo $row;
+              // $sinh_vien_new = new Sinh_Vien();
+              // $sinh_vien_new->save();
+              // $user = new User();
+              // $user->save();
+            }
+        });
+      });
+
+      $S2=Sinh_Vien::all()->count();
+      $S2=$S2-$S1;
+      return view('admin.Excels')->with([
+          'user' => $request->session()->get('user'),
+          'sinhvien' => $request->session()->get('sinhvien'),
+          'dcount' => $S2,
+          'chosetable' => $request->choseTable
+          ]);
+  }
+
+  public function ExcelsPresidentGroup($request){
+      $S1=Sinh_Vien::all()->count();
+      Excel::selectSheets('Sheet1')->load($request->fileExcels, function($reader){
+        $reader->each(function($row){
+            if (Sinh_Vien::find($row->mssv) == null ) {
+              echo $row;
+              // $sinh_vien_new = new Sinh_Vien();
+              // $sinh_vien_new->save();
+              // $user = new User();
+              // $user->save();
+            }
+        });
+      });
+
+      $S2=Sinh_Vien::all()->count();
+      $S2=$S2-$S1;
+      return view('admin.Excels')->with([
+          'user' => $request->session()->get('user'),
+          'sinhvien' => $request->session()->get('sinhvien'),
+          'dcount' => $S2,
+          'chosetable' => $request->choseTable
+          ]);
     
   }
 
-  public function readExcelsPresidentGroup(Request $request){
+  public function ExcelsAdviser($request){
+      $S1=Sinh_Vien::all()->count();
+      Excel::selectSheets('Sheet1')->load($request->fileExcels, function($reader){
+        $reader->each(function($row){
+            if (Sinh_Vien::find($row->mssv) == null ) {
+              echo $row;
+              // $sinh_vien_new = new Sinh_Vien();
+              // $sinh_vien_new->save();
+              // $user = new User();
+              // $user->save();
+            }
+        });
+      });
+
+      $S2=Sinh_Vien::all()->count();
+      $S2=$S2-$S1;
+      return view('admin.Excels')->with([
+          'user' => $request->session()->get('user'),
+          'sinhvien' => $request->session()->get('sinhvien'),
+          'dcount' => $S2,
+          'chosetable' => $request->choseTable
+          ]);
     
   }
 
-  public function readExcelsAdviser(Request $request){
+  public function ExcelsViolateYTSV( $request){
+      $S1=Sinh_Vien::all()->count();
+      Excel::selectSheets('Sheet1')->load($request->fileExcels, function($reader){
+        $reader->each(function($row){
+            if (Sinh_Vien::find($row->mssv) == null ) {
+              echo $row;
+              // $sinh_vien_new = new Sinh_Vien();
+              // $sinh_vien_new->save();
+              // $user = new User();
+              // $user->save();
+            }
+        });
+      });
+
+      $S2=Sinh_Vien::all()->count();
+      $S2=$S2-$S1;
+      return view('admin.Excels')->with([
+          'user' => $request->session()->get('user'),
+          'sinhvien' => $request->session()->get('sinhvien'),
+          'dcount' => $S2,
+          'chosetable' => $request->choseTable
+          ]);
     
   }
 
-  public function readExcelsViolateYTSV(Request $request){
+  public function ExcelsViolateYTCD( $request){
+      $S1=Sinh_Vien::all()->count();
+      Excel::selectSheets('Sheet1')->load($request->fileExcels, function($reader){
+        $reader->each(function($row){
+            if (Sinh_Vien::find($row->mssv) == null ) {
+              echo $row;
+              // $sinh_vien_new = new Sinh_Vien();
+              // $sinh_vien_new->save();
+              // $user = new User();
+              // $user->save();
+            }
+        });
+      });
+
+      $S2=Sinh_Vien::all()->count();
+      $S2=$S2-$S1;
+      return view('admin.Excels')->with([
+          'user' => $request->session()->get('user'),
+          'sinhvien' => $request->session()->get('sinhvien'),
+          'dcount' => $S2,
+          'chosetable' => $request->choseTable
+          ]);
     
   }
 
-  public function readExcelsViolateYTCD(Request $request){
+  public function ExcelsBonus($request){
+      $S1=Sinh_Vien::all()->count();
+      Excel::selectSheets('Sheet1')->load($request->fileExcels, function($reader){
+        $reader->each(function($row){
+            if (Sinh_Vien::find($row->mssv) == null ) {
+              echo $row;
+              // $sinh_vien_new = new Sinh_Vien();
+              // $sinh_vien_new->save();
+              // $user = new User();
+              // $user->save();
+            }
+        });
+      });
+
+      $S2=Sinh_Vien::all()->count();
+      $S2=$S2-$S1;
+      return view('admin.Excels')->with([
+          'user' => $request->session()->get('user'),
+          'sinhvien' => $request->session()->get('sinhvien'),
+          'dcount' => $S2,
+          'chosetable' => $request->choseTable
+          ]);
     
   }
 
-  public function readExcelsBonus(Request $request){
+  public function ExcelsPointAverage($request){
+      $S1=Sinh_Vien::all()->count();
+      Excel::selectSheets('Sheet1')->load($request->fileExcels, function($reader){
+        $reader->each(function($row){
+            if (Sinh_Vien::find($row->mssv) == null ) {
+              echo $row;
+              // $sinh_vien_new = new Sinh_Vien();
+              // $sinh_vien_new->save();
+              // $user = new User();
+              // $user->save();
+            }
+        });
+      });
+
+      $S2=Sinh_Vien::all()->count();
+      $S2=$S2-$S1;
+      return view('admin.Excels')->with([
+          'user' => $request->session()->get('user'),
+          'sinhvien' => $request->session()->get('sinhvien'),
+          'dcount' => $S2,
+          'chosetable' => $request->choseTable
+          ]);
+    
+  }
+
+  public function ExcelsViolatePass($request){
+      $S1=Sinh_Vien::all()->count();
+      Excel::selectSheets('Sheet1')->load($request->fileExcels, function($reader){
+        $reader->each(function($row){
+            if (Sinh_Vien::find($row->mssv) == null ) {
+              echo $row;
+              // $sinh_vien_new = new Sinh_Vien();
+              // $sinh_vien_new->save();
+              // $user = new User();
+              // $user->save();
+            }
+        });
+      });
+
+      $S2=Sinh_Vien::all()->count();
+      $S2=$S2-$S1;
+      return view('admin.Excels')->with([
+          'user' => $request->session()->get('user'),
+          'sinhvien' => $request->session()->get('sinhvien'),
+          'dcount' => $S2,
+          'chosetable' => $request->choseTable
+          ]);
+    
+  }
+
+  public function ExcelsStudyScience($request){
+      $S1=Sinh_Vien::all()->count();
+      Excel::selectSheets('Sheet1')->load($request->fileExcels, function($reader){
+        $reader->each(function($row){
+            if (Sinh_Vien::find($row->mssv) == null ) {
+              echo $row;
+              // $sinh_vien_new = new Sinh_Vien();
+              // $sinh_vien_new->save();
+              // $user = new User();
+              // $user->save();
+            }
+        });
+      });
+
+      $S2=Sinh_Vien::all()->count();
+      $S2=$S2-$S1;
+      return view('admin.Excels')->with([
+          'user' => $request->session()->get('user'),
+          'sinhvien' => $request->session()->get('sinhvien'),
+          'dcount' => $S2,
+          'chosetable' => $request->choseTable
+          ]);
+    
+  }
+
+  public function ExcelsHavePrize($request){
+      $S1=Sinh_Vien::all()->count();
+      Excel::selectSheets('Sheet1')->load($request->fileExcels, function($reader){
+        $reader->each(function($row){
+            if (Sinh_Vien::find($row->mssv) == null ) {
+              echo $row;
+              // $sinh_vien_new = new Sinh_Vien();
+              // $sinh_vien_new->save();
+              // $user = new User();
+              // $user->save();
+            }
+        });
+      });
+
+      $S2=Sinh_Vien::all()->count();
+      $S2=$S2-$S1;
+      return view('admin.Excels')->with([
+          'user' => $request->session()->get('user'),
+          'sinhvien' => $request->session()->get('sinhvien'),
+          'dcount' => $S2,
+          'chosetable' => $request->choseTable
+          ]);
+    
+  }
+
+  public function ExcelsJoinActivity($request){
+      $S1=Sinh_Vien::all()->count();
+      Excel::selectSheets('Sheet1')->load($request->fileExcels, function($reader){
+        $reader->each(function($row){
+            if (Sinh_Vien::find($row->mssv) == null ) {
+              echo $row;
+              // $sinh_vien_new = new Sinh_Vien();
+              // $sinh_vien_new->save();
+              // $user = new User();
+              // $user->save();
+            }
+        });
+      });
+
+      $S2=Sinh_Vien::all()->count();
+      $S2=$S2-$S1;
+      return view('admin.Excels')->with([
+          'user' => $request->session()->get('user'),
+          'sinhvien' => $request->session()->get('sinhvien'),
+          'dcount' => $S2,
+          'chosetable' => $request->choseTable
+          ]);
+    
+  }
+
+  public function ExcelsHavePraise($request){
+      $S1=Sinh_Vien::all()->count();
+      Excel::selectSheets('Sheet1')->load($request->fileExcels, function($reader){
+        $reader->each(function($row){
+            if (Sinh_Vien::find($row->mssv) == null ) {
+              echo $row;
+              // $sinh_vien_new = new Sinh_Vien();
+              // $sinh_vien_new->save();
+              // $user = new User();
+              // $user->save();
+            }
+        });
+      });
+
+      $S2=Sinh_Vien::all()->count();
+      $S2=$S2-$S1;
+      return view('admin.Excels')->with([
+          'user' => $request->session()->get('user'),
+          'sinhvien' => $request->session()->get('sinhvien'),
+          'dcount' => $S2,
+          'chosetable' => $request->choseTable
+          ]);
+    
+  }
+
+  public func
+      $S1=Sinh_Vien::all()->count();
+      Excel::selectSheets('Sheet1')->load($request->fileExcels, function($reader){
+        $reader->each(function($row){
+            if (Sinh_Vien::find($row->mssv) == null ) {
+              echo $row;
+              // $sinh_vien_new = new Sinh_Vien();
+              // $sinh_vien_new->save();
+              // $user = new User();
+              // $user->save();
+            }
+        });
+      });
+
+      $S2=Sinh_Vien::all()->count();
+      $S2=$S2-$S1;
+      return view('admin.Excels')->with([
+          'user' => $request->session()->get('user'),
+          'sinhvien' => $request->session()->get('sinhvien'),
+          'dcount' => $S2,
+          'chosetable' => $request->choseTable
+          ]);tion ExcelsViolateDepartment($request){
+      $S1=Sinh_Vien::all()->count();
+      Excel::selectSheets('Sheet1')->load($request->fileExcels, function($reader){
+        $reader->each(function($row){
+            if (Sinh_Vien::find($row->mssv) == null ) {
+              echo $row;
+              // $sinh_vien_new = new Sinh_Vien();
+              // $sinh_vien_new->save();
+              // $user = new User();
+              // $user->save();
+            }
+        });
+      });
+
+      $S2=Sinh_Vien::all()->count();
+      $S2=$S2-$S1;
+      return view('admin.Excels')->with([
+          'user' => $request->session()->get('user'),
+          'sinhvien' => $request->session()->get('sinhvien'),
+          'dcount' => $S2,
+          'chosetable' => $request->choseTable
+          ]);
+    
+  }
+
+  public function ExcelsViolateActivity($request){
+      $S1=Sinh_Vien::all()->count();
+      Excel::selectSheets('Sheet1')->load($request->fileExcels, function($reader){
+        $reader->each(function($row){
+            if (Sinh_Vien::find($row->mssv) == null ) {
+              echo $row;
+              // $sinh_vien_new = new Sinh_Vien();
+              // $sinh_vien_new->save();
+              // $user = new User();
+              // $user->save();
+            }
+        });
+      });
+
+      $S2=Sinh_Vien::all()->count();
+      $S2=$S2-$S1;
+      return view('admin.Excels')->with([
+          'user' => $request->session()->get('user'),
+          'sinhvien' => $request->session()->get('sinhvien'),
+          'dcount' => $S2,
+          'chosetable' => $request->choseTable
+          ]);
     
   }
 }
