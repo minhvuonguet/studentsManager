@@ -27,8 +27,9 @@ Route::group(['middleware' => ['web']], function () {
     // admin va phong cong tac sinh vien
     Route::get('/login', ['as' => 'login', 'uses' => 'AdminControler@getLogin']);
     Route::post('/postLogin', ['as' => 'postLogin', 'uses' => 'AdminControler@postLogin']);
-    Route::get('sendmail', ['as' => 'sendmail', 'uses' => 'AdminControler@sendmail']);
+    // Route::get('sendmail', ['as' => 'sendmail', 'uses' => 'AdminControler@sendmail']);
     Route::post('/message/send', ['uses' => 'FrontController@addFeedback', 'as' => 'front.fb']);
+    //Form can't work
     Route::get('formdiem', ['as' => 'formdiem', 'uses' => 'AdminControler@formdiem']);
     Route::get('newclass', ['as' => 'newclass', 'uses' => 'AdminControler@newclass']);
     Route::post('postnewclass', ['as'=>'postnewclass','uses'=>'AdminControler@postnewclass']);

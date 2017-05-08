@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Models\User;
 use App\Models\Sinh_Vien;
 use Excel,Input,File;
+use Hash;
 use DB;
 class DatabaseController extends Controller{
     public function readExcels(Request $request){
@@ -18,27 +19,78 @@ class DatabaseController extends Controller{
             ]);
     }
     public function updateDB(Request $request) {
-    $sinh_vien= new Sinh_Vien();
-      Excel::load($request->fileExcels, function($reader){
-          $reader->each(function($sheet){
-              $sheet->each(function($row){
-                  $sinh_vien = Sinh_Vien::find($row->mssv);
-                  if (Sinh_Vien::find($row->mssv) != null ) {
-                    echo "</br>"."Sinh vien:".$sinh_vien->fullname." mssv:".$sinh_vien->mssv." đã có trong csdl";
-                  }else {
-                    // $add=1;
-                    $sinh_vien_new = new Sinh_Vien();
-                    $sinh_vien_new->mssv = $row->mssv;
-                    $sinh_vien_new->fullname = $row->name;
-                    $sinh_vien_new->birthday = $row->birthday;
-                    $sinh_vien_new->class = $row->class;
-                    $sinh_vien_new->save();
-                    // $add++;
-                    // echo $add;
-                  }
-              });
-          });
+    switch ($request->choseTable) {
+      case 'students':
+        $this->readExcelsStudents($request);
+        break;
+      case 'class':
+        # code...
+        break;
+      default:
+        # code...
+        break;
+    }
+  }
+
+  public function readExcelsClass($request){
+    echo $request->choseTable;
+  }
+
+  public function readExcelsStudents($request){
+      $S1=Sinh_Vien::all()->count();
+      Excel::selectSheets('Sheet1')->load($request->fileExcels, function($reader){
+        $reader->each(function($row){
+            if (Sinh_Vien::find($row->mssv) != null ) {
+              echo "</br>"."Haved: ".$row->name;
+            }else {
+              $sinh_vien_new = new Sinh_Vien();
+              $user = new User();
+
+              $sinh_vien_new->mssv = $row->mssv;
+              $sinh_vien_new->fullname = $row->name;
+              $sinh_vien_new->birthday = $row->birthday;
+              $sinh_vien_new->class = $row->class;
+
+              $user->username = $row->mssv;
+              $user->email = "$row->mssv"."@vnu.edu.vn";
+              $user->password = Hash::make($row->mssv);
+              $user->mssv = $row->mssv;
+              $user->id_role =3;
+              $user->avatar = $row->mssv;
+
+              $user->save();
+              $sinh_vien_new->save();
+            }
+        });
       });
-    // echo "</br>"."Đã thêm ".$add." vào csdl";
+      $S2=Sinh_Vien::all()->count();
+      echo "</br>"."Before: ".$S1;
+      echo "</br>"."Later: ".$S2;
+      echo "</br>"."Đã thêm ".($S2-$S1)." Sinh Viên";
+      return view('admin.readExcels');
+  }
+
+  public function readExcelsPresidentClass(Request $request){
+    
+  }
+
+  public function readExcelsPresidentGroup(Request $request){
+    
+  }
+
+  public function readExcelsAdviser(Request $request){
+    
+  }
+
+  public function readExcelsViolateYTSV(Request $request){
+    
+  }
+
+  public function readExcelsViolateYTCD(Request $request){
+    
+  }
+
+  public function readExcelsBonus(Request $request){
+    
   }
 }

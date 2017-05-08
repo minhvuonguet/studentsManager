@@ -10,10 +10,7 @@
                     </li>
 @endsection
 
-@section('navAddExcels')
-@endsection
-@section('navShowExcels')
-@endsection
+
 
 @section('content')
     <h1 class="text-center">Điểm rèn luyện của {{$sinhvien->fullname}}</h1>

@@ -10,11 +10,6 @@
                     </li>
 @endsection
 
-@section('navAddExcels')
-@endsection
-@section('navShowExcels')
-@endsection
-
 @section('content')
 	<p>{{$user->id_role}}</p>
 	<p>{{$user->mssv}}</p>

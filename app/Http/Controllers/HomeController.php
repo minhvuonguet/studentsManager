@@ -34,6 +34,12 @@ class HomeController extends Controller
         $user= $request->session()->get('user');
         $sinhvien = $request->session()->get('sinhvien');
         switch ($user->id_role) {
+            case '4':
+                return view('role2+4.covanhoctap')->With([
+                    'user' => $user,
+                    'sinhvien' => $sinhvien
+                ]);
+                break;
             case '3':
                 $data = Form_Diem::all();
                 return View('Employee.indexStudents')->With([
@@ -43,10 +49,32 @@ class HomeController extends Controller
                 ]);
                 break;
             case '2':
-                return view('admin.adminManager')->With([
-                    'user' => $user,
-                    'sinhvien' => $sinhvien
-                ]);
+                switch ($user->username) {
+                    case 'phongdaotao':
+                        return view('role2+4.phongdaotao')->With([
+                            'user' => $user,
+                            'sinhvien' => $sinhvien
+                        ]);
+                        break;
+                    case 'phongkhcn':
+                        return view('role2+4.phongkhcn')->With([
+                            'user' => $user,
+                            'sinhvien' => $sinhvien
+                        ]);
+                        break;
+                    case 'vanphongdoan':
+                        return view('role2+4.vanphongdoan')->With([
+                            'user' => $user,
+                            'sinhvien' => $sinhvien
+                        ]);
+                        break;
+                    case 'vanphongkhoa':
+                        return view('role2+4.vanphongkhoa')->With([
+                            'user' => $user,
+                            'sinhvien' => $sinhvien
+                        ]);
+                        break;
+                }
                 break;
             case '1':
                 return view('admin.adminManager')->With([
@@ -54,9 +82,9 @@ class HomeController extends Controller
                     'sinhvien' => $sinhvien
                 ]);
                 break;
-            // default:
-            //     return redirect()->route('login');
-            //     break;
+            default:
+                return redirect()->route('login');
+                break;
         }
     }
 }

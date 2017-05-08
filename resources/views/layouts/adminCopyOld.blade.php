@@ -60,12 +60,6 @@
 
 
                 @if(Auth::user()->username == 'Administartor' || Auth::user()->username == 'phongctsv')
-                    <li class="nav-parent">
-                        <a href="{{ URL::to('readExcels') }}" class="test_">
-                            <i class="icon-puzzle"></i>
-                            <span>Thêm file </span> 
-                        </a>
-                    </li>
 
                     <li class="nav-parent">
                         <a href="{{ URL::to('formdiem') }}" class="test_">

@@ -27,7 +27,11 @@
                 <div class="user-image">
                     <a href="{{URL::to('account')}}">
                 		<center>
+                            @if(file_exists('public\assets\Admin\images\avatars\{{$user->avatar}}.png'))
                             <img src="public\assets\Admin\images\avatars\{{$user->avatar}}.png" class="img-responsive img-circle" alt="friend 8" height="200" width="200">
+                            @else
+                            <img src="public\assets\Admin\images\avatars\avatar7_big.png" class="img-responsive img-circle" alt="friend 8" height="200" width="200">
+                            @endif
                         </center>
                     </a>
                 </div>
@@ -41,6 +45,8 @@
                 </div>
             </div>
             <ul class="nav nav-sidebar">
+
+            <!-- Nav dùng chung -->
             @section('navHome')
                     <li class=" nav-parent">
                         <a href="{{URL::to('home')}}">
@@ -58,45 +64,81 @@
                         </a>
                     </li>
             @show
+            
+            @if($user->id_role!=3)
+                @section('navExcels')
+                        <li class="nav-parent">
+                            <a href="{{URL::to('readExcels')}}">
+                                <i class="glyphicon glyphicon-circle-arrow-up fa-2x"></i>
+                                <span style="font-size: 200%">Excels</span>
+                            </a>
+                        </li>
+                @show
+            @endif
 
-            @section('navAddExcels')
-                    <li class="nav-parent">
-                        <a href="{{URL::to('showPoint')}}">
-                            <i class="glyphicon glyphicon-circle-arrow-up fa-2x"></i>
-                            <span style="font-size: 200%">Excels</span>
-                        </a>
-                    </li>
-            @show
+            @if($user->username!='phongdaotao' && $user->username!='phongkhcn' && $user->username!='vanphongdoan')
+                @section('navShowPoint')
+                        <li class="nav-parent">
+                            <a href="{{URL::to('showPoint')}}">
+                                <i class="glyphicon glyphicon-grain fa-2x"></i>
+                                <span style="font-size: 200%">Tạo Mới</span>
+                            </a>
+                        </li>
+                @show
+            @endif
 
-            @section('navShowPoint')
-                    <li class="nav-parent">
-                        <a href="{{URL::to('showPoint')}}">
-                            <i class="glyphicon glyphicon-flash fa-2x"></i>
-                            <span style="font-size: 200%">Xem Điểm</span>
-                        </a>
-                    </li>
-            @show
+            @if($user->id_role!=3)
+                @section('navShowExcels')
+                        <li class="nav-parent">
+                            <a href="{{URL::to('showPoint')}}">
+                                <i class="glyphicon glyphicon-briefcase fa-2x"></i>
+                                <span style="font-size: 200%">Xem Danh Sách</span>
+                            </a>
+                        </li>
+                @show
+            @endif
 
-            @section('navShowExcels')
-                    <li class="nav-parent">
-                        <a href="{{URL::to('showPoint')}}">
-                            <i class="glyphicon glyphicon-briefcase fa-2x"></i>
-                            <span style="font-size: 200%">Xem Danh Sách</span>
-                        </a>
-                    </li>
-            @show
+            <!-- Nav dùng chung -->
 
-            @section('navReport')
-                    <li class="nav-parent">
-                        <a href="{{URL::to('report')}}">
-                            <i class="glyphicon glyphicon-send fa-2x"></i>
-                            <span style="font-size: 200%">Phản hồi</span>
-                        </a>
-                    </li>
-            @show
+            @if($user->id_role==3||$user->id_role==1)
+                @section('navReport')
+                        <li class="nav-parent">
+                            <a href="{{URL::to('report')}}">
+                                <i class="glyphicon glyphicon-send fa-2x"></i>
+                                <span style="font-size: 200%">Phản hồi</span>
+                            </a>
+                        </li>
+                @show
+            @endif
 
-            @section('navAdmin')
-            @show
+            @if($user->id_role==1)
+                @section('navForm')
+                        <li class="nav-parent">
+                            <a href="{{URL::to('showPoint')}}">
+                                <i class="glyphicon glyphicon-list-alt fa-2x"></i>
+                                <span style="font-size: 200%">Quản Lý Form</span>
+                            </a>
+                        </li>
+                @show
+
+                @section('navPoint')
+                        <li class="nav-parent">
+                            <a href="{{URL::to('showPoint')}}">
+                                <i class="glyphicon glyphicon-plus fa-2x"></i>
+                                <span style="font-size: 200%">Tính Điểm</span>
+                            </a>
+                        </li>
+                @show
+
+                @section('navStat')
+                        <li class="nav-parent">
+                            <a href="{{URL::to('showPoint')}}">
+                                <i class="glyphicon glyphicon-stats fa-2x"></i>
+                                <span style="font-size: 200%">Thống kê</span>
+                            </a>
+                        </li>
+                @show
+            @endif
 
             </ul>
         </div>

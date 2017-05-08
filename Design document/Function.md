@@ -2,7 +2,7 @@
 	+Quản lý form
 	+Thêm Danh Sách
 		-Thêm DS sv(QLSV)
-		-Thêm DS lớp(QLSV)
+		-Thêm lớp(QLSV)
 		-Thêm DS cán bộ lớp, đoàn
 		-Thêm DS cố vấn học tập
 		-Thêm DS vi phạm YTSV
