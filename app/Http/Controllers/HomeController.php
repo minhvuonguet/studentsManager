@@ -35,14 +35,14 @@ class HomeController extends Controller
         $sinhvien = $request->session()->get('sinhvien');
         switch ($user->id_role) {
             case '4':
-                return view('role2+4.covanhoctap')->With([
+                return view('layouts.admin')->With([
                     'user' => $user,
                     'sinhvien' => $sinhvien
                 ]);
                 break;
             case '3':
                 $data = Form_Diem::all();
-                return View('Employee.indexStudents')->With([
+                return View('layouts.admin')->With([
                     'data' => $data,
                     'user' => $user,
                     'sinhvien' => $sinhvien
@@ -51,25 +51,25 @@ class HomeController extends Controller
             case '2':
                 switch ($user->username) {
                     case 'phongdaotao':
-                        return view('role2+4.phongdaotao')->With([
+                        return view('layouts.admin')->With([
                             'user' => $user,
                             'sinhvien' => $sinhvien
                         ]);
                         break;
                     case 'phongkhcn':
-                        return view('role2+4.phongkhcn')->With([
+                        return view('layouts.admin')->With([
                             'user' => $user,
                             'sinhvien' => $sinhvien
                         ]);
                         break;
                     case 'vanphongdoan':
-                        return view('role2+4.vanphongdoan')->With([
+                        return view('layouts.admin')->With([
                             'user' => $user,
                             'sinhvien' => $sinhvien
                         ]);
                         break;
                     case 'vanphongkhoa':
-                        return view('role2+4.vanphongkhoa')->With([
+                        return view('layouts.admin')->With([
                             'user' => $user,
                             'sinhvien' => $sinhvien
                         ]);
@@ -77,7 +77,7 @@ class HomeController extends Controller
                 }
                 break;
             case '1':
-                return view('admin.adminManager')->With([
+                return view('layouts.admin')->With([
                     'user' => $user,
                     'sinhvien' => $sinhvien
                 ]);

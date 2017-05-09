@@ -38,7 +38,7 @@ class AdminControler extends Controller {
         return view('admin.login');
     }
     
-    public function postLogin(Request $request){ 
+    public function postLogin(Request $request){
 
         $request->session()->forget('user');
         $request->session()->forget('sinhvien');
@@ -61,7 +61,7 @@ class AdminControler extends Controller {
 
             $request->session()->put('user',Auth::user());
             $request->session()->put('sinhvien',Sinh_Vien::find(Auth::user()->mssv));
-            
+
             // return redirect()->route('ViewUser');
             return redirect()->route('home');
         }
@@ -197,7 +197,7 @@ class AdminControler extends Controller {
         return  [$id, $chu_de];
     }
     public function formdiem () {
-        if(Auth::user()->username == 'Administartor') {
+        if(Auth::user()->username == 'admin1') {
             $data = Form_Diem::all();
             echo $data[0]->tong_hoc_tap;
             return View('Employee.mau_diem')->With([

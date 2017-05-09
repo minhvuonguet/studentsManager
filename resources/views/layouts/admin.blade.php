@@ -59,7 +59,7 @@
                 
 
 
-                @if(Auth::user()->username == 'Administartor' || Auth::user()->username == 'phongctsv')
+                @if(Auth::user()->username == 'admin1' || Auth::user()->username == 'phongctsv')
 
                     <li class="nav-parent">
                         <a href="{{ URL::to('formdiem') }}" class="test_">
