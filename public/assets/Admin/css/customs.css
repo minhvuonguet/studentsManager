@@ -24,7 +24,7 @@
     position: absolute;
 }
 body {
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 .glyphicon-pencil,
@@ -47,4 +47,7 @@ span.glyphicon:hover {
 .center-table {
     margin: 0px auto;
     display: table;
+}
+.chooseTerm {
+    cursor: pointer;
 }

@@ -52,6 +52,8 @@ class CacularPoint extends Controller
     public function diem ($table, $type) {
         // neu khong co thi ghi vao dong moi. neu co roi thi update.
         $hocky = Hoc_Ky::all();
+        $present_term = Hoc_Ky::where('term_present','=',  '1')->get();
+        echo $present_term;
         $Point = new Points();
         $instanceTable = $table::all();
 

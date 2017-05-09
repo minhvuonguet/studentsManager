@@ -58,10 +58,14 @@
                     </li>
 
                     <li class="nav-parent">
+                        <a href="{{ URL::to('newterm') }}" class="test_"><i class="icon-puzzle"></i><span> Quản lý học kỳ </span> </a>
+                    </li>
+
+                    <li class="nav-parent">
                         <a href="{{ URL::to('newclass') }}" class="test_"><i class="icon-puzzle"></i><span>Thêm danh sách lớp</span> </a>
                     </li>
                     <li class="nav-parent">
-                        <a href="{{ URL::to('done_import') }}" class="test_"><i class="icon-puzzle"></i><span>xem danh sách sv</span> </a>
+                        <a href="{{ URL::to('listclass') }}" class="test_"><i class="icon-puzzle"></i><span>xem danh sách sv</span> </a>
                     </li>
 
                     {{--Danh sách sinh viên vi phạm ý thức công dân và vi phạm ý thức sinh viên--}}
@@ -156,33 +160,6 @@
 
                 @endif
 
-{{--=======--}}
-                {{--<li class="nav-parent">--}}
-                    {{--<a href="{{ URL::to('formdiem') }}" class="test_"><i class="icon-puzzle"></i><span> Form điểm rèn luyện </span> </a>--}}
-                {{--</li>--}}
-                {{--<li class="nav-parent">--}}
-                    {{--<a href="{{ URL::to('newclass') }}" class="test_"><i class="icon-puzzle"></i><span> Import Danh Sách</span> </a>--}}
-                {{--</li>--}}
-                {{--<li class="nav-parent">--}}
-                    {{--<a href="{{ URL::to('done_import') }}" class="test_"><i class="icon-puzzle"></i><span>Xem danh sách</span> </a>--}}
-                {{--</li>--}}
-                {{--<li class="nav-parent">--}}
-                    {{--<a href="{{ URL::to('coVanHocTap.listCoVanHocTap') }}" class="test_"><i class="icon-puzzle"></i><span>Danh Sách Cố Vấn Học Tập </span> </a>--}}
-                {{--</li>--}}
-{{-->>>>>>> bbddd39cd7253dfbc7f2ebdbecec57d1e02db489--}}
-                {{--<li class="nav-parent">--}}
-                    {{--<a href="{{ URL::to('doanVien.listDoanVien') }}" class="test_"><i class="icon-puzzle"></i><span>Danh Sách Vi Phạm </span> </a>--}}
-                {{--</li>--}}
-{{--<<<<<<< HEAD--}}
-{{--=======--}}
-                {{--<li class="nav-parent">--}}
-                    {{--<a href="{{ URL::to('phanHoi.phan_hoi') }}" class="test_"><i class="icon-puzzle"></i><span>Xử Lý Phản Hồi </span> </a>--}}
-                {{--</li>--}}
-                {{--<li class="nav-parent">--}}
-                    {{--<a href="{{ URL::to('khenThuong.khen_thuong') }}" class="test_"><i class="icon-puzzle"></i><span>Khen Thưởng </span> </a>--}}
-                {{--</li>--}}
-
-{{-->>>>>>> bbddd39cd7253dfbc7f2ebdbecec57d1e02db489--}}
                 <li class="nav-parent">
                     <a href="{{URL::to('adstudents')}}"><i class="icon-bulb"></i><span> Thống kê </span> </a>
                 </li>
@@ -210,12 +187,11 @@
             </div>
             <!-- header-right -->
         </div>
-        <div class="page-content page-thin ">
+        <div class="">
             <div class="col-md-12">
 
-                <div class="row">
-                    @yield('content')
-                </div>
+                @yield('content')
+
             </div> <!-- end .page-content-->
         </div> <!-- end .main-content-->
 

@@ -14,6 +14,7 @@ class FormDiemSeeder extends Seeder
     {
          /* Ý thức và kết quả học tập, nghiên cứu khoa học */
          Form_Diem::create([
+            'ma_hk' => 2020162017,
             'tong_hoc_tap' => 20,
             'tru_hoc_luc_yeu' => -3,
             'tru_canh_bao_hoc_vu' => -5,

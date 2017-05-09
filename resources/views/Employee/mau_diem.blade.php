@@ -2,6 +2,13 @@
 @section('title',' form điểm rèn luyện')
 @section('content')
     <h1 class="text-center"> FORM ĐIỂM RÈN LUYỆN </h1>
+
+    <select name="hoc_ky" class="form-control">
+        @foreach($term_present as $term)
+            <option value="{{$term->ma_hk}}"> {{$term->note}} </option>
+        @endforeach
+    </select>
+
     <form>
         {{csrf_field()}}
         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
@@ -283,7 +290,6 @@
             });
             $('.changeID').click( function () {
                 var id = $('.tong_hoc_tap').val();
-                console.log('id', id)
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -292,7 +298,6 @@
                     type: 'post',
                     dataType: 'json',
                     success: function(data){
-                        console.log('dad', data);
                         $('.tong_hoc_tap').parent().text(id);
                         $('.tong_hoc_tap').remove();
                         $(this).parent().siblings().eq(1).html("");

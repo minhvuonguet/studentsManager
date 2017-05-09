@@ -16,7 +16,7 @@ class CreateFormDiemTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->increments('id');
-
+            $table->string('ma_hk');
             /* Ý thức và kết quả học tập, nghiên cứu khoa học */
             $table->integer('tong_hoc_tap');
             $table->integer('tru_hoc_luc_yeu');

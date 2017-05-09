@@ -43,22 +43,9 @@ class AdminControler extends Controller {
         if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>2 ]) ||
             Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>1 ]) ) {
             $this->use_ = new User();
-            return view('admin.adminManager');
-//        if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>1 ]) ) {
-//            $use_ = new User();
-//
-//
-//
-//        }
-//        if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>2 ]) ) {
-//            $use_ = new User();
-//            echo ("abc");
-//            return view('layouts.van_phong_doan');
-        }
+            return redirect()->route('list');
 
-
-
-        else if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>3 ])) {
+        } else if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>3 ])) {
             $this->use_ = new User();
 
             return redirect()->route('ViewUser');
@@ -69,7 +56,6 @@ class AdminControler extends Controller {
                 ['flash_level' => 'danger', 'flash_message' => 'login error, Please check your name or password and try again']
             )->withInput();
         }
-//        echo ("asdfasdfsadf");
     }
     public function listUser(){
         return view('admin.adminManager');
@@ -197,8 +183,10 @@ class AdminControler extends Controller {
     public function formdiem () {
         if(Auth::user()->username == 'admin1') {
             $data = Form_Diem::all();
+            $term_present = Hoc_Ky::all();
             echo $data[0]->tong_hoc_tap;
             return View('Employee.mau_diem')->With([
+                'term_present' => $term_present,
                 'tong_hoc_tap' => $data[0]->tong_hoc_tap,
                 'tru_hoc_luc_yeu' => $data[0]->tru_hoc_luc_yeu,
                 'tru_canh_bao_hoc_vu' => $data[0]->tru_canh_bao_hoc_vu,
@@ -277,17 +265,6 @@ class AdminControler extends Controller {
                             $sinh_vien_new->birthday = $value->birthday;
                             $sinh_vien_new->class = $value->class;
                             $sinh_vien_new->save();
-
-//                    if($value != null && $value->id != null) {
-//                        $sinh_vien_new = new Sinh_Vien();
-//                        $sinh_vien_new->mssv = $value->mssv;
-//                        $sinh_vien_new->fullname = $value->name;
-//                        $sinh_vien_new->office = 'Sinh Viên';
-//                        $sinh_vien_new->birthday = $value->birthday;
-//                        $sinh_vien_new->class = $value->class;
-
-
-
                         $sinh_vien_new->save();
 
 
@@ -613,6 +590,7 @@ class AdminControler extends Controller {
         }
         $listClass = array_unique($listClass);
 
+
         return View('admin.listclass')->with([
             'list_sinh_vien' =>$sinhvien,
             'list_diem_ren_luyen' =>$diem,
@@ -689,8 +667,8 @@ class AdminControler extends Controller {
             'list_class' =>$listClass
         ]);
     }
-    
-    // co van hoc tap 
+
+    // co van hoc tap
 
     public function listCoVanHocTap() {
         $sinhvien = Sinh_Vien::all();
@@ -735,30 +713,8 @@ class AdminControler extends Controller {
             'list_class' =>$listClass
         ]);
     }
-//    public function khenThuong() {
-//        $sinhvien = Sinh_Vien::all();
-//        $diem = Points::all();
-//        $listClass = [];
-//        for($i = 0; $i < count($sinhvien); $i++){
-//            $sinhvien[$i]->point = 0;
-//            for($j = 0; $j < count($diem)-1 ; $j++) {
-//                if($diem[$j]->mssv == $sinhvien[$i]->mssv){
-//                    $sinhvien[$i]->point = $diem[$j]->point_total;
-//                }
-//            }
-//            $listClass[$i] = $sinhvien[$i]->khen_thuong;
-//        }
-//        $listClass = array_unique($listClass);
-//
-//        return View('admin.khenThuong.khen_thuong')->with([
-//            'list_sinh_vien' =>$sinhvien,
-//            'list_diem_ren_luyen' =>$diem,
-//            'list_class' =>$listClass
-//        ]);
-//    }
-    
-    // xu ly phan hoi 
-    
+
+
     public function phanhoi(){
         return view('admin.phanHoi.phan_hoi');
     }
@@ -809,5 +765,129 @@ class AdminControler extends Controller {
             ];
         }
 
+    }
+    public  function newterm () {
+        $term = Hoc_Ky::all();
+
+        return View('admin.themhocky')->with([
+            'listTerm' =>$term,
+        ]);
+
+       // return View('admin.themhocky');
+    }
+    public function postnewterm (Request $request){
+        $namhoc = $request->ten_hoc_ky;
+        $tmp = str_replace(' ', '',$namhoc);
+        $hoc_ky = '';
+        $name = '';
+        switch ($request->hoc_ky){
+            case '10' :
+                $name = "Học kỳ 1" . $request->ten_hoc_ky;
+                $hoc_ky = "10" . str_replace(' ', '',$namhoc);
+                break;
+
+            case '11' :
+                $name = 'Học kỳ 1 phụ ' . $request->ten_hoc_ky;
+                $hoc_ky = '11' . str_replace(' ', '',$namhoc);
+                break;
+
+            case '20' :
+                $name = 'Học kỳ 2 ' . $request->ten_hoc_ky;
+                $hoc_ky = '20' . str_replace(' ', '',$namhoc);
+                break;
+
+            case '21' :
+                $name = 'Học kỳ 2 phụ ' . $request->ten_hoc_ky;
+                $hoc_ky = '21' . str_replace(' ', '',$namhoc);
+                break;
+
+            case '31' :
+                $name = 'Học kỳ hè ' . $request->ten_hoc_ky;
+                $hoc_ky = '31' . str_replace(' ', '',$namhoc);
+                break;
+        }
+        $note = $name;
+        $new_hoc_ky = new Hoc_Ky();
+        $new_form_diem = new Form_Diem();
+
+        $present_term = Hoc_Ky::where('term_present','=',  '1')->get();
+        $form_diem = Form_Diem::where('ma_hk','=',  $present_term[0]->id_hoc_ky)->get();
+
+        $new_form_diem->ma_hk = $hoc_ky;
+        $new_form_diem ->tong_hoc_tap = $form_diem[0]->tong_hoc_tap;
+        $new_form_diem ->tru_hoc_luc_yeu = $form_diem[0]->tru_hoc_luc_yeu;
+        $new_form_diem ->tru_canh_bao_hoc_vu = $form_diem[0]->tru_canh_bao_hoc_vu;
+        $new_form_diem ->tru_khong_du_tin_chi = $form_diem[0]->tru_khong_du_tin_chi;
+        $new_form_diem ->tru_ngien_cuu_kh = $form_diem[0]->tru_ngien_cuu_kh;
+        $new_form_diem ->tru_khong_thi = $form_diem[0]->tru_khong_thi;
+
+        $new_form_diem ->tru_khien_trach_thi = $form_diem[0]->tru_khien_trach_thi;
+        $new_form_diem ->tru_canh_cao_thi = $form_diem[0]->tru_canh_cao_thi;
+        $new_form_diem ->tru_dinh_chi_thi = $form_diem[0]->tru_dinh_chi_thi;
+
+        // 2. ý thức và kết quả chấp hành nội quy,quy chế trong nhà trường
+        $new_form_diem ->tong_chap_hanh = $form_diem[0]->tong_chap_hanh;
+        $new_form_diem ->tru_nop_hoc_phi = $form_diem[0]->tru_nop_hoc_phi;
+        $new_form_diem ->tru_dang_ky_hoc_qua_han = $form_diem[0]->tru_dang_ky_hoc_qua_han;
+        $new_form_diem ->tru_khong_di_trieu_tap = $form_diem[0]->tru_khong_di_trieu_tap;
+        $new_form_diem ->tru_tra_qua_han_ho_so = $form_diem[0]->tru_tra_qua_han_ho_so;
+        $new_form_diem ->tru_khong_tham_gia_bao_hiem = $form_diem[0]->tru_khong_tham_gia_bao_hiem;
+        $new_form_diem ->tru_vi_pham_cu_tru = $form_diem[0]->tru_vi_pham_cu_tru;
+
+        $new_form_diem ->tru_phe_binh = $form_diem[0]->tru_phe_binh;
+        $new_form_diem ->tru_khien_trach = $form_diem[0]->tru_khien_trach;
+        $new_form_diem ->tru_canh_cao = $form_diem[0]->tru_canh_cao;
+
+        // 3. ý thức và kết quả tham gia hoạt động chínht trị xã hội văn hoá, văn nghệ...
+        $new_form_diem ->tong_tham_gia = $form_diem[0]->tong_tham_gia;
+        $new_form_diem ->cong_tham_gia_truong = $form_diem[0]->cong_tham_gia_truong;
+        $new_form_diem ->cong_tham_gia_ngoai = $form_diem[0]->cong_tham_gia_ngoai;
+        $new_form_diem ->tru_khong_tham_gia = $form_diem[0]->tru_khong_tham_gia;
+
+        // 4. phẩm chất công dân và quan hệ cộng đồng
+        $new_form_diem ->tong_pham_chat = $form_diem[0]->tong_pham_chat;
+        $new_form_diem ->tru_khong_chap_hanh = $form_diem[0]->tru_khong_chap_hanh;
+        $new_form_diem ->tru_khong_tinh_than = $form_diem[0]->tru_khong_tinh_than;
+
+        //5.  ý thức và kết quả tham gia công tác phụ trách lớp, đoàn thể...
+        $new_form_diem ->tong_cong_tac = $form_diem[0]->tong_cong_tac;
+        $new_form_diem ->cong_giu_chuc_vu = $form_diem[0]->cong_giu_chuc_vu;
+        $new_form_diem ->cong_hoc_luc = $form_diem[0]->cong_hoc_luc;
+        $new_form_diem ->cong_tham_gia_thi_chuyen_mon = $form_diem[0]->cong_tham_gia_thi_chuyen_mon;
+        $new_form_diem ->cong_nckh = $form_diem[0]->cong_nckh;
+        $new_form_diem ->cong_dat_giai = $form_diem[0]->cong_dat_giai;
+        $new_form_diem ->cong_ket_nap_dang = $form_diem[0]->cong_ket_nap_dang;
+
+        $new_form_diem->save();
+
+        $new_hoc_ky::updateOrCreate(
+            [ 'id_hoc_ky'=> $hoc_ky ], [ 'note' => $note ]
+        );
+
+        return  redirect()->route('newterm');
+    }
+    public function change_present_term (Request $request, $id){
+        $id_term = $id;
+        if(Auth::user()->username == 'admin1' || Auth::user()->username == 'phongctsv' ){
+            $remove_Present_term = Hoc_Ky::where('term_present','=',  '1')->get();
+            foreach ($remove_Present_term as $item){
+
+                $itemChange = Hoc_Ky::find($item->id_hoc_ky);
+                $itemChange->term_present = 0;
+                $itemChange->save();
+            }
+            $changeTerm = Hoc_Ky::find($id);
+            $changeTerm->term_present = 1;
+            $changeTerm->save();
+            return $remove_Present_term;
+        }
+
+    }
+    public function delete_term (Request $request, $id) {
+        if(Auth::user()->username == 'admin1' || Auth::user()->username == 'phongctsv' ){
+            $id_delete = Hoc_Ky::find($id);
+            $id_delete->delete();
+            return $id_delete;
+        }
     }
 }
