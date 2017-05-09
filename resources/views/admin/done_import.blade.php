@@ -85,7 +85,6 @@
                                 '<td>' + value.mssv + '</td>' +
                                 '<td>' + value.fullname + '</td>' +
                                 '<td>' + value.class + '</td>' +
-
                                 '<td>' + value.birthday + '</td>' +
 //                                '<td>' + value.khen_thuong + '</td>' +
 //                                '<td>' + value.note + '</td>' +

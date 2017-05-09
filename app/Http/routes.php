@@ -21,6 +21,8 @@ Route::get('account', ['as' => 'account', 'uses' => 'StudentsControler@account']
 Route::get('report', ['as' => 'report', 'uses' => 'StudentsControler@report']);
 //view hiển thị điểm, danh sách Excels tùy tài khoản
 Route::get('view', ['as' => 'view', 'uses' => 'ViewController@view']);
+Route::post('view/{chose}', ['as' => 'viewChose', 'uses' => 'ViewController@viewChose']);
+
 
 //readExcels Đọc file Excels theo từng tài khoản
 Route::get('readExcels', ['as' => 'readExcels', 'uses' => 'DatabaseController@readExcels']);

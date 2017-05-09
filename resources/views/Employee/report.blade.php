@@ -11,6 +11,13 @@
 @endsection
 
 @section('content')
-	<p>{{$user->id_role}}</p>
-	<p>{{$user->mssv}}</p>
+	<center><h1>Gửi Phản Hồi</h1></center>
+	<form action='' method="post" enctype="multipart/form-data">
+		{{ csrf_token }}
+		<section>
+			<option></option>
+			<option></option>
+		</section>
+		<input type="text" name="reportText">
+	</form>
 @endsection

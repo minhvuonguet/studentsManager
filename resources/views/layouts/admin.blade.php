@@ -247,11 +247,11 @@
 </html>
 @show
 @section('script_')
-    <script>
+    <!-- <script>
         $(document).ready(function(){
             $('.nav-parent').click( function(){
                console.log($(this));
             });
         });
-    </script>
+    </script> -->
 @show
