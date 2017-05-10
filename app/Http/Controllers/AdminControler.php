@@ -38,21 +38,16 @@ class AdminControler extends Controller {
         return view('admin.login');
     }
     
-    public function postLogin(Request $request){
-
+    public function postLogin(Request $request){ 
 
         if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>2 ]) ||
             Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>1 ]) ) {
             $this->use_ = new User();
-
             return redirect()->route('list');
-        }  else if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>3 ])) {
+
+        } else if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>3 ])) {
             $this->use_ = new User();
 
-            $request->session()->put('user',Auth::user());
-            $request->session()->put('sinhvien',Sinh_Vien::find(Auth::user()->mssv));
-
-            // return redirect()->route('ViewUser');
             return redirect()->route('ViewUser');
         }
 
@@ -63,15 +58,14 @@ class AdminControler extends Controller {
         }
     }
     public function listUser(){
-        // return view('admin.adminManager');
-        return redirect()->route('home');
+        return view('admin.adminManager');
     }
-    
+    public function ViewUser() {
+        return view('layouts.sinh_vien');
+    }
 
 
-    public function getLogout(Request $request) {
-        $request->session()->forget('user');
-        $request->session()->forget('sinhvien');
+    public function getLogout() {
         Auth::logout(); // logout user
         return Redirect()->route('login'); //redirect back to login
     }
@@ -332,17 +326,13 @@ class AdminControler extends Controller {
                     $p_khoa_hoc_cn = new P_Khoa_Hoc_CN();
                     $form_diem = Form_Diem::all();
                     $diem_cong = $form_diem[0]->cong_nckh;
-
                     //   $Note  = "de tai: " + $value->de_tai + "giai thuong: " + $value->giai_thuong;
                     $p_khoa_hoc_cn::updateOrCreate(
                         [ 'mssv'=> $value->mssv, ],
                         [
                             'point_khoa_hoc_cn'=> $diem_cong,
 
-                            'fullname' => $value-> name,
-                            'class' => $value->class,
                             'note' => $value-> note,
-
 
                         ]
                     );
@@ -371,7 +361,6 @@ class AdminControler extends Controller {
                             [
                                 'point_cong_tac_sv'=> $diem_cong,
                                 'mssv'=> $value->mssv,
-
                                 'khen_thuong' => $value->khen_thuong,
                             ]
                         );
@@ -406,8 +395,6 @@ class AdminControler extends Controller {
                             [
                                 'point_dao_tao'=> $diem_cong,
                               //  'mssv'=> $value->mssv,
-                                'fullname' => $value-> name,
-                                'class' => $value->class,
                                 'trung_binh' => $value-> trung_binh,
                                 'tich_luy' => $value-> tich_luy,
                                 'xep_loai' => $value-> xep_loai,
@@ -509,8 +496,6 @@ class AdminControler extends Controller {
                         [ 'mssv'=> $value->mssv, ],
                         [
                             'point_doan'=> $cong_diem,
-                            'fullname' => $value-> name,
-                            'class' => $value->class,
                             //     'mssv'=> $value->mssv,
                             'khen_thuong_doan' => $value-> khen_thuong_doan,
 
@@ -523,71 +508,6 @@ class AdminControler extends Controller {
                 }
             });
         }
-
-
-        else if($request->type_file == 'list_ad_vi_pham_doan') {
-
-            Excel::load($request->fileExcels, function($reader){
-                $results = $reader->all();
-                foreach ($results as $key=>$value) {
-                    //  $tmp = Sinh_Vien::find($value->mssv);
-                    //  if($tmp ) {
-
-                    $p_Doan = new P_Doan();
-                    $form_diem = Form_Diem::all();
-                    $tru_diem = $form_diem[0]->tru_khong_tinh_than;
-
-                    $p_Doan::updateOrCreate(
-                        [ 'mssv'=> $value->mssv, ],
-                        [
-                            'point_doan'=> $tru_diem,
-                            'fullname' => $value-> name,
-                            'class' => $value->class,
-                            //     'mssv'=> $value->mssv,
-                            'vi_pham_doan' => $value-> vi_pham_doan,
-
-
-
-                        ]
-                    );
-
-
-                }
-            });
-        }
-        // danh sach dang vien
-
-        else if($request->type_file == 'list_ad_dang_vien') {
-
-            Excel::load($request->fileExcels, function($reader){
-                $results = $reader->all();
-                foreach ($results as $key=>$value) {
-                    //  $tmp = Sinh_Vien::find($value->mssv);
-                    //  if($tmp ) {
-
-                    $p_Doan = new P_Doan();
-                    $form_diem = Form_Diem::all();
-                    $cong_diem = $form_diem[0]->cong_ket_nap_dang;
-
-                    $p_Doan::updateOrCreate(
-                        [ 'mssv'=> $value->mssv, ],
-                        [
-                            'point_doan'=> $cong_diem,
-                            'fullname' => $value-> name,
-                            'class' => $value->class,
-                            //     'mssv'=> $value->mssv,
-                            'dang_vien' => $value-> dang_vien,
-
-
-
-                        ]
-                    );
-
-
-                }
-            });
-        }
-
 
         // vi pham quy che thi
 
@@ -622,26 +542,22 @@ class AdminControler extends Controller {
 
 // sinh vien vi pham sh  cap khoa
 
-
         else if($request->type_file == 'list_ad_class_vi_pham_khoa') {
 
             Excel::load($request->fileExcels, function($reader){
                 $results = $reader->all();
                 foreach ($results as $key=>$value) {
-                    //  $tmp = Sinh_Vien::find($value->mssv);
-                    //  if($tmp ) {
+
 
                     $p_khoa = new P_Khoa();
                     $form_diem = Form_Diem::all();
-                    $tru_diem = $form_diem[0]->tru_khong_tham_gia;
+                    $tru_diem = $form_diem[0]->tru_phe_binh;
 
                     $p_khoa::updateOrCreate(
                         [ 'mssv'=> $value->mssv, ],
                         [
                             'point_khoa'=> $tru_diem,
                             //     'mssv'=> $value->mssv,
-                            'fullname' => $value-> name,
-                            'class' => $value->class,
                             'vi_pham_sh_khoa' => $value-> vi_pham_sh_khoa,
 
 
@@ -653,7 +569,6 @@ class AdminControler extends Controller {
                 }
             });
         }
-
 
 
 
@@ -851,7 +766,6 @@ class AdminControler extends Controller {
         }
 
     }
-
     public  function newterm () {
         $term = Hoc_Ky::all();
 
@@ -969,34 +883,11 @@ class AdminControler extends Controller {
         }
 
     }
-    public function delete_term (Request $request, $id)
-    {
-        if (Auth::user()->username == 'admin1' || Auth::user()->username == 'phongctsv') {
+    public function delete_term (Request $request, $id) {
+        if(Auth::user()->username == 'admin1' || Auth::user()->username == 'phongctsv' ){
             $id_delete = Hoc_Ky::find($id);
             $id_delete->delete();
             return $id_delete;
         }
-    }
-    public function xem_diem_ren_luyen() {
-        $sinhvien = Sinh_Vien::all();
-        $diem = Points::all();
-        $listClass = [];
-        for($i = 0; $i < count($sinhvien); $i++){
-            $sinhvien[$i]->point = 0;
-            for($j = 0; $j < count($diem)-1 ; $j++) {
-                if($diem[$j]->mssv == $sinhvien[$i]->mssv){
-                    $sinhvien[$i]->point = $diem[$j]->point_total;
-                }
-            }
-            $listClass[$i] = $sinhvien[$i]->class;
-        }
-        $listClass = array_unique($listClass);
-
-        return View('admin.doanVien.listDoanVien')->with([
-            'list_sinh_vien' =>$sinhvien,
-            'list_diem_ren_luyen' =>$diem,
-            'list_class' =>$listClass
-        ]);
-
     }
 }
