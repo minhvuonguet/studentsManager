@@ -38,7 +38,7 @@ class AdminControler extends Controller {
         return view('admin.login');
     }
     
-    public function postLogin(Request $request){ 
+    public function postLogin(Request $request){
 
 
         if (Auth::attempt([ 'username' => $request->username, 'password' => $request->password,'id_role'=>2 ]) ||
@@ -51,7 +51,7 @@ class AdminControler extends Controller {
 
             $request->session()->put('user',Auth::user());
             $request->session()->put('sinhvien',Sinh_Vien::find(Auth::user()->mssv));
-            
+
             // return redirect()->route('ViewUser');
             return redirect()->route('ViewUser');
         }
@@ -187,7 +187,7 @@ class AdminControler extends Controller {
         return  [$id, $chu_de];
     }
     public function formdiem () {
-        if(Auth::user()->username == 'Administartor') {
+        if(Auth::user()->username == 'admin1') {
             $data = Form_Diem::all();
             $term_present = Hoc_Ky::all();
             echo $data[0]->tong_hoc_tap;

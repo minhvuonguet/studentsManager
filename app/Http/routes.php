@@ -22,6 +22,7 @@ Route::get('report', ['as' => 'report', 'uses' => 'StudentsControler@report']);
 //view hiển thị điểm, danh sách Excels tùy tài khoản
 Route::get('view', ['as' => 'view', 'uses' => 'ViewController@view']);
 
+
 //readExcels Đọc file Excels theo từng tài khoản
 Route::get('readExcels', ['as' => 'readExcels', 'uses' => 'DatabaseController@readExcels']);
 Route::post('updateDB', ['as' => 'updateDB', 'uses' => 'DatabaseController@updateDB']);
@@ -43,6 +44,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('update/{id}/{chu_de}', ['as'=>'update', 'uses'=>'AdminControler@updatePoint']);
     Route::get('listclass', ['as'=>'listclass', 'uses'=>'AdminControler@listclass']);
     Route::get('done_import', ['as'=>'done_import', 'uses'=>'AdminControler@list_sinh_vien']);
+
+
+
+    ///
     Route::get('khenThuong.khen_thuong', ['as' => 'khenThuong.khen_thuong', 'uses' => 'covanController@khen_thuong']);
 
     Route::get('phongDaoTao.xem_diem', ['as' => 'phongDaoTao.xem_diem', 'uses' => 'DaoTaoController@xem_diem']);
