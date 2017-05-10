@@ -34,7 +34,7 @@
                 <td>{{$sinh_vien->mssv}}</td>
                 <td >{{$sinh_vien->fullname}} </td>
                 <td >{{$sinh_vien->class}} </td>
-                <td >{{$sinh_vien->chuc_vu}} </td>
+                <td >{{$sinh_vien->vi_pham_doan}} </td>
 
 
 
@@ -75,8 +75,8 @@
                                     '<td>' + value.mssv + '</td>' +
                                     '<td>' + value.fullname + '</td>' +
                                     '<td>' + value.class + '</td>' +
-                                    '<td>' + value.chuc_vu + '</td>' +
-                                    '<td>' + value.birthday + '</td>' +
+                                    '<td>' + value.vi_pham_doan + '</td>' +
+
 
                                     '</tr>' );
                         });

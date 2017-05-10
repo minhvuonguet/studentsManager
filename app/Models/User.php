@@ -5,7 +5,7 @@ class User extends  Model
 {
     protected $table = 'users';
     protected $primaryKey = 'username';
-    protected $fillable = ['username','email','password', 'role_id'];
+    protected $fillable = ['username','email','password', 'id_role'];
     public function role(){
         return $this->hasOne();
     }

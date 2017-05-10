@@ -18,6 +18,8 @@ class CreatePKhoaHocCNsTable extends Migration
           $table->increments('id_khoa_hoc_cn');
           $table->integer('point_khoa_hoc_cn');
           $table->integer('mssv');
+            $table->string('fullname');
+            $table->string('class');
           $table->string('note');
      //     $table->primary('id_khoa_hoc_cn');
 //          $table->foreign('mssv')

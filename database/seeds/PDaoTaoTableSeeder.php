@@ -17,7 +17,6 @@ class PDaoTaoTableSeeder extends Seeder
             'trung_binh' => '2.0',
             'tich_luy' => '2.0',
             'xep_loai' => 'TB',
-
         ]);
         P_Dao_Tao::create([
             'point_dao_tao' =>5,
@@ -25,7 +24,6 @@ class PDaoTaoTableSeeder extends Seeder
             'trung_binh' => '2.0',
             'tich_luy' => '2.0',
             'xep_loai' => 'TB',
-
         ]);
     }
 }

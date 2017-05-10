@@ -1,8 +1,6 @@
 <?php
-
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
 class CreatePDoansTable extends Migration
 {
     /**
@@ -14,22 +12,19 @@ class CreatePDoansTable extends Migration
     {
         Schema::create('p_doan', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-
             $table->increments('id_doan');
             $table->integer('point_doan');
             $table->integer('mssv');
+            $table->string('fullname');
+            $table->string('class');
             $table->string('tham_gia');
+            $table->string('dang_vien');
             $table->string('khen_thuong_doan');
-            //     $table->primary('id_doan');
-//            $table->foreign('mssv')
-//                ->references('mssv')
-//                ->on('users')
-//                ->onDelete('cascade')
-//                ->onUpdate('cascade');
+            $table->string('vi_pham_doan');
+            
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

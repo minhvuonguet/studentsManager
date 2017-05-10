@@ -49,12 +49,24 @@
 
             <ul class="nav nav-sidebar">
 
-                <li class=" nav-active active"><a href="javascript:void(0)"><i class="icon-home"></i><span>Admin Manager</span></a></li>
+                <li class=" nav-active active">
+                    <a href="javascript:void(0)">
+                        <i class="icon-home"></i>
+                        <span>Admin Manager</span>
+                    </a>
+                </li>
+
+                
 
 
-                @if(Auth::user()->username == 'admin1' || Auth::user()->username == 'phongctsv')
+                @if(Auth::user()->username == 'Administartor' || Auth::user()->username == 'phongctsv')
+
                     <li class="nav-parent">
-                        <a href="{{ URL::to('formdiem') }}" class="test_"><i class="icon-puzzle"></i><span> Form điểm rèn luyện </span> </a>
+                        <a href="{{ URL::to('formdiem') }}" class="test_">
+                            <i class="icon-puzzle">
+                            </i>
+                            <span> Form điểm rèn luyện </span> 
+                        </a>
                     </li>
 
                     <li class="nav-parent">
@@ -64,6 +76,7 @@
                     <li class="nav-parent">
                         <a href="{{ URL::to('newclass') }}" class="test_"><i class="icon-puzzle"></i><span>Thêm danh sách lớp</span> </a>
                     </li>
+                    
                     <li class="nav-parent">
                         <a href="{{ URL::to('listclass') }}" class="test_"><i class="icon-puzzle"></i><span>xem danh sách sv</span> </a>
                     </li>
@@ -78,12 +91,17 @@
                     </li>
 
                     <li class="nav-parent">
-                        <a href="{{ URL::to('newclass') }}" class="test_"><i class="icon-puzzle"></i><span>Phản hồi từ sinh viên </span> </a>
+                        <a href="{{ URL::to('phanHoi.phan_hoi') }}" class="test_"><i class="icon-puzzle"></i><span>Phản hồi từ sinh viên </span> </a>
                     </li>
 
                     <li class="nav-parent">
                         <a href="{{URL::to('tinhdiem')}}"><i class="icon-screen-desktop"></i><span>Tính điểm</span> </a>
                     </li>
+                    <li class="nav-parent">
+                        <a href="{{ URL::to('phanHoi.phan_hoi') }}" class="test_"><i class="icon-puzzle"></i><span> Xử Lý Phản Hồi  </span> </a>
+                        <a href="{{ URL::to('doanVien.listDoanVien') }}" class="test_"><i class="icon-puzzle"></i><span> Xem Điểm Sinh Viên </span> </a>
+                    </li>
+
                 @endif
 
                 @if(Auth::user()->username == 'phongdaotao')
@@ -123,10 +141,10 @@
                     </li>
 
                     <li class="nav-parent">
-                        <a href="{{URL::to('newclass')}}"><i class="icon-screen-desktop"></i><span>import sv khen thưởng </span> </a>
+                        <a href="{{URL::to('doanVien.vi_pham')}}"><i class="icon-screen-desktop"></i><span> Xem Vi Phạm Đoàn </span> </a>
                     </li>
                     <li class="nav-parent">
-                        <a href="{{URL::to('doanvien')}}"><i class="icon-screen-desktop"></i><span>khen thưởng </span> </a>
+                        <a href="{{URL::to('dangvien')}}"><i class="icon-screen-desktop"></i><span> Dang Sách Đảng Viên  </span> </a>
                     </li>
                     <li class="nav-parent">
                         <a href="{{URL::to('doanVien.khen_thuong')}}"><i class="icon-screen-desktop"></i><span>Khen thuong doan vien </span> </a>
@@ -141,6 +159,9 @@
                     </li>
                     <li class="nav-parent">
                         <a href="{{URL::to('vanPhongKhoa.xem_diem')}}"><i class="icon-screen-desktop"></i><span>Xem Diem </span> </a>
+                    </li>
+                    <li class="nav-parent">
+                        <a href="{{URL::to('vanPhongKhoa.vi_pham')}}"><i class="icon-screen-desktop"></i><span>Xem Vi Pham Khoa </span> </a>
                     </li>
 
 

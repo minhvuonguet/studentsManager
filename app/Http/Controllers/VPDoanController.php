@@ -39,7 +39,7 @@ class VPDoanController extends Controller  {
 
     // demo new
     public function demo() {
-        $sinhvien = Sinh_Vien::all();
+        $sinhvien = P_Doan::all();
         $diem = Points::all();
         $listClass = [];
         for($i = 0; $i < count($sinhvien); $i++){
@@ -63,7 +63,7 @@ class VPDoanController extends Controller  {
     //  ds dang vien
 
     public function dangvien() {
-        $sinhvien = Sinh_Vien::all();
+        $sinhvien = P_Doan::all();
         $diem = Points::all();
         $listClass = [];
         for($i = 0; $i < count($sinhvien); $i++){
@@ -87,7 +87,7 @@ class VPDoanController extends Controller  {
     // hoat dong doan
 
     public function hoat_dong_doan() {
-        $sinhvien = Sinh_Vien::all();
+        $sinhvien = P_Doan::all();
         $diem = Points::all();
         $listClass = [];
         for($i = 0; $i < count($sinhvien); $i++){
@@ -108,7 +108,7 @@ class VPDoanController extends Controller  {
         ]);
     }
     public function khen_thuong() {
-        $sinhvien = Sinh_Vien::all();
+        $sinhvien = P_Doan::all();
         $diem = Points::all();
         $listClass = [];
         for($i = 0; $i < count($sinhvien); $i++){
@@ -129,7 +129,7 @@ class VPDoanController extends Controller  {
         ]);
     }
     public function vi_pham() {
-        $sinhvien = Sinh_Vien::all();
+        $sinhvien = P_Doan::all();
         $diem = Points::all();
         $listClass = [];
         for($i = 0; $i < count($sinhvien); $i++){

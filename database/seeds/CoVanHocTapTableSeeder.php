@@ -13,12 +13,12 @@ class CoVanHocTapTableSeeder extends Seeder
     {
         Co_Van_Hoc_Tap::create([
             'point_co_van_hoc_tap' =>10,
-            'mssv' => 13000003,
+            'mssv' => 13000001,
 
         ]);
         Co_Van_Hoc_Tap::create([
             'point_co_van_hoc_tap' =>5,
-            'mssv' => 13000004,
+            'mssv' => 13000002,
 
         ]);
     }
